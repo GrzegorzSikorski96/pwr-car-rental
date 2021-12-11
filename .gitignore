@@ -1,0 +1,14 @@
+.idea
+.mypy_cache
+venv
+.env
+.vscode
+
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+# Python #
+*.py[cod]
+*$py.class
