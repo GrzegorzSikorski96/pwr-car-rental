@@ -1,0 +1,13 @@
+[
+  {
+    "model": "core.address",
+    "pk": 1,
+    "fields": {
+      "country": "Poland",
+      "city": "Wrocław",
+      "postal_code": "51-000",
+      "street": "Wrocławska",
+      "number": "31A"
+    }
+  }
+]
