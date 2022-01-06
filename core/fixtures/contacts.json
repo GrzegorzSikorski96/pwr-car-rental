@@ -1,0 +1,18 @@
+[
+  {
+    "model": "core.contact",
+    "pk": 1,
+    "fields": {
+      "value": "admin@example.com ",
+      "type": "e-mail"
+    }
+  },
+  {
+    "model": "core.contact",
+    "pk": 2,
+    "fields": {
+      "value": "123-123-123",
+      "type": "phone number"
+    }
+  }
+]
