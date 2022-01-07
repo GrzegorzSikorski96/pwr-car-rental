@@ -19,7 +19,7 @@ Inż. Grzegorz Sikorski
   * Make (Opcjonalnie)
   * Docker (Opcjonalnie)
 
-####Uruchamianie aplikacji - docker
+### Uruchamianie aplikacji - docker
 
 * Skopiuj zawartość pliku `.env.dist` do pliku `.env` oraz zmień wartości zmiennych zgodnie z potrzebą. Aplikacja powinna działać bez żadnych zmian.
 * Polecenie `make run` uruchomienie aplikacji.
@@ -27,7 +27,7 @@ Inż. Grzegorz Sikorski
 * Polecenie `make bash` przejście do konsoli dockerowej.
 * Aplikacja dostępna pod adresem `127.0.0.1:<PORT Z PLIKU .ENV>`.
 
-####Uruchamianie aplikacji
+### Uruchamianie aplikacji
 
 * Utworzyć wirtualne środowisko python (venv) w projekcie używajac polecenia `python3 -m venv venv`
 * Aktywować wirtualne środowisko
