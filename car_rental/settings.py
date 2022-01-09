@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
+    'rent.apps.RentConfig',
+    'car.apps.CarConfig',
 ]
 
 MIDDLEWARE = [
@@ -46,7 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'core.middlewares.login_required_middleware.LoginRequiredMiddleware'
+    # 'core.middlewares.login_required_middleware.LoginRequiredMiddleware'
 ]
 
 ROOT_URLCONF = 'car_rental.urls'
