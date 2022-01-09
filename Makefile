@@ -10,7 +10,7 @@ build:
 down:
 	docker-compose down -v
 
-run: build start-mysql wait-for-database-connection up create-database load-groups load-users-fixtures load-fixtures
+run: build start-mysql wait-for-database-connection up create-database load-groups load-fixtures
 
 load-users-fixtures:
 	-docker-compose run --rm python python3.9 manage.py loaddata users.json
