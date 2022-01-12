@@ -13,10 +13,6 @@
       "is_active": true,
       "groups": [],
       "user_permissions": [],
-      "contacts": [
-        1,
-        2
-      ],
       "address_id": 1
     }
   }

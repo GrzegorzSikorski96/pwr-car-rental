@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 
-from core.models import Address, Contact, User
+from core.models import Address, User
 
 
 def sample_user(**kwargs) -> User:
@@ -9,6 +9,7 @@ def sample_user(**kwargs) -> User:
         'password': 'password',
         'first_name': 'first_vendor',
         'last_name': 'last_manager',
+        'phone_number': 'last_manager',
         'is_superuser': True,
         'address_id': sample_address().id,
     }
@@ -30,13 +31,3 @@ def sample_address(**kwargs) -> Address:
     defaults.update(kwargs)
 
     return Address.objects.create(**defaults)
-
-
-def sample_contact(**kwargs) -> Contact:
-    defaults = {
-        'value': 'example@example.com',
-        'type': 'email',
-    }
-    defaults.update(kwargs)
-
-    return Contact.objects.create(**defaults)

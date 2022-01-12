@@ -19,13 +19,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=100, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    phone_number = models.CharField(max_length=30)
     address = models.ForeignKey(
         'core.Address',
         on_delete=models.DO_NOTHING,
-        related_name='users',
-    )
-    contacts = models.ManyToManyField(
-        'core.Contact',
         related_name='users',
     )
 
@@ -40,16 +37,3 @@ class Address(models.Model):
     postal_code = models.CharField(max_length=15)
     street = models.CharField(max_length=150)
     number = models.CharField(max_length=150)
-
-
-class Contact(models.Model):
-    EMAIL = 'e-mail'
-    PHONE_NUMBER = 'phone number'
-
-    CONTACT_FORMS_CHOICES = [
-        (EMAIL, 'Email'),
-        (PHONE_NUMBER, 'Phone number'),
-    ]
-
-    value = models.CharField(max_length=150)
-    type = models.CharField(max_length=20, choices=CONTACT_FORMS_CHOICES)
