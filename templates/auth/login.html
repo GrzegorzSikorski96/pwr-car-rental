@@ -1,0 +1,54 @@
+{% include 'layout/header.html' %}
+
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="{% url 'welcome-view' %}"><b>PWr</b> caRent</a>
+  </div>
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Sign in to you caRent account</p>
+      <form method="post">
+        {% if form.errors %}
+          <div class="alert alert-danger">
+            {% for field, errors in form.errors.items %}
+              <div class="alert-danger">
+                {{ field|escape }}:
+                {% for error in errors %}
+                  {{ error|escape }}
+                {% endfor %}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% csrf_token %}
+        <div class="input-group mb-3">
+          {{ form.username }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          {{ form.password }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          <a href="{% url 'welcome-view' %}" class="btn btn-secondary btn-block">Back</a>
+        </div>
+
+        <input type="hidden" name="next" value={{ request.GET.next }}>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% include 'layout/scripts.html' %}
+
+
