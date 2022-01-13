@@ -1,0 +1,64 @@
+{% extends "layout/dashboard-base.html" %}
+{% load template_filetrs %}
+{% load static %}
+
+{% block title %}
+  #{{ car.id }} - {{ car.manufacturer }} {{ car.model }}
+{% endblock %}
+
+{% block breadcumbs %}
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-view' %}">Dashboard</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-cars-list-view' %}">Cars</a></li>
+  <li class="breadcrumb-item">#{{ car.id }} - {{ car.manufacturer }} {{ car.model }}</li>
+{% endblock %}
+
+{% block content %}
+  <div class="card card-widget widget-user shadow">
+
+    <div class="ribbon-wrapper ribbon-xl">
+      <div class="ribbon bg-success text-lg">
+        Ready to rent
+      </div>
+    </div>
+    <div class="widget-user-header bg-secondary">
+      <h3 class="widget-user-username">{{ car.manufacturer }} {{ car.model }}</h3>
+      <h5 class="widget-user-desc">#{{ car.id }}</h5>
+    </div>
+    <div class="widget-user-image">
+      <img class="img-circle elevation-2 bg-white" src="{% static 'img/car.svg' %}" alt="User Avatar">
+    </div>
+    <div class="card-footer">
+      <div class="row">
+        <div class="col-sm-4 border-right">
+          <div class="description-block">
+            <h5 class="description-header">{{ car.mileage }} km</h5>
+            <span class="description-text">Mielage</span>
+            <h5 class="description-header">1230 km</h5>
+            <span class="description-text">Next service</span>
+          </div>
+        </div>
+        <div class="col-sm-4 border-right">
+          <div class="description-block">
+            <h5 class="description-header">
+              {{ car.get_body_type_display }} <br>
+              {{ car.get_transmission_type_display }} <br>
+              {{ car.get_drivetrain_type_display }} <br>
+              {{ car.seats }} Seats<br>
+              {{ car.trunk_volume }} Luggage<br>
+            </h5>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="description-block">
+            <h5 class="description-header">
+              {{ car.daily_rent_price }} PLN/day <br>
+              {{ car.weekly_rent_price }} PLN/week<br>
+              {{ car.monthly_rent_price }} PLN/month<br>
+            </h5>
+            <span class="description-text">Pricing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

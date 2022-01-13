@@ -1,0 +1,112 @@
+{% extends "layout/dashboard-base.html" %}
+
+
+{% block title %}
+  Cars
+{% endblock %}
+
+{% block breadcumbs %}
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-view' %}">Dashboard</a></li>
+  <li class="breadcrumb-item">Cars</li>
+{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <div class="card-body p-0">
+      <table id="test-table" class="table table-striped projects">
+        <thead>
+        <tr class="col-12">
+          <th class="col-md-1">
+            System id
+          </th>
+          <th class="col-md-1">
+            Manufacturer
+          </th>
+          <th class="col-md-1">
+            Model
+          </th>
+          <th class="col-md-1">
+            Body type
+          </th>
+          <th class="col-md-1">
+            Seats
+          </th>
+          <th class="col-md-1">
+            Drive type
+          </th>
+          <th class="col-md-1">
+            Trunk volume
+          </th>
+          <th class="col-md-1">
+            Daily price
+          </th>
+          <th class="col-md-1">
+            Weekly price
+          </th>
+          <th class="col-md-1">
+            Monthly price
+          </th>
+          <th class="col-md-1">
+            Status
+          </th>
+          <th class="col-md-1 text-right">
+            <a href="{% url 'dashboard-car-create-view' %}">
+              <i class="fas fa-plus"></i>
+            </a>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for car in car_list %}
+          <tr>
+            <td class="col-md-1">
+              {{ car.id }}
+            </td>
+            <td class="col-md-1">
+              {{ car.manufacturer }}
+            </td>
+            <td class="col-md-1">
+              {{ car.model }}
+            </td>
+            <td class="col-md-1">
+              {{ car.body_type }}
+            </td>
+            <td class="col-md-1">
+              {{ car.seats }}
+            </td>
+            <td class="col-md-1">
+              {{ car.drivetrain_type }}
+            </td>
+            <td class="col-md-1">
+              {{ car.trunk_volume }}
+            </td>
+            <td class="col-md-1">
+              {{ car.daily_rent_price }}
+            </td>
+            <td class="col-md-1">
+              {{ car.weekly_rent_price }}
+            </td>
+            <td class="col-md-1">
+              {{ car.monthly_rent_price }}
+            </td>
+            <td class="col-md-1">
+              {% if car.rent is not None %}
+                <i class="nav-icon far fa-circle text-warning"></i>
+                <p>Ready to rent</p>
+              {% else%}
+                <i class="nav-icon far fa-circle text-success"></i>
+                <p>Rented</p>
+              {% endif %}
+            </td>
+            <td class="col-md-1 text-right">
+              <a href="{% url 'dashboard-cars-detail-view' car.pk %}">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

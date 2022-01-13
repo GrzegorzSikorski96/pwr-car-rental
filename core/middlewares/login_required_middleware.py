@@ -21,6 +21,7 @@ class LoginRequiredMiddleware:
     def __is_excluded_route(self, request) -> bool:
         excluded = [
             request.path == reverse('core-login-view'),
+            request.path == reverse('core-register-view'),
             request.path == reverse('welcome-view'),
         ]
 

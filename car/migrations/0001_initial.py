@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 ('air_conditioning', models.BooleanField(default=False)),
                 ('transmission_type', models.CharField(choices=[('manual', 'Manual'), ('automatic', 'Automatic')], max_length=15)),
                 ('body_type', models.CharField(choices=[('micro', 'Micro'), ('sedan', 'Sedan'), ('suv', 'Suv'), ('hatchback', 'Hatchback'), ('roadster', 'Roadster'), ('pickup', 'Pickup'), ('van', 'Van'), ('coupe', 'Coupe'), ('supercar', 'Supercar'), ('camper', 'Camper'), ('cabriolet', 'Cabriolet'), ('minivan', 'Minivan')], max_length=20)),
-                ('drive_type', models.CharField(choices=[('all wheel drive', 'All wheel drive'), ('four wheel drive', 'Four wheel drive'), ('front wheel drive', 'Front wheel drive'), ('rear wheel drive', 'Rear wheel drive')], max_length=25)),
+                ('drivetrain_type', models.CharField(choices=[('all wheel drive', 'All wheel drive'), ('four wheel drive', 'Four wheel drive'), ('front wheel drive', 'Front wheel drive'), ('rear wheel drive', 'Rear wheel drive')], max_length=25)),
                 ('daily_rent_price', models.PositiveIntegerField()),
                 ('weekly_rent_price', models.PositiveIntegerField()),
                 ('monthly_rent_price', models.PositiveIntegerField()),

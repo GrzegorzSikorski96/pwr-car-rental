@@ -11,29 +11,3 @@ urlpatterns: List[URLPattern] = [
     path('logout', views.core_logout, name='core-logout'),
     path('dashboard', views.dashboard, name='dashboard-view'),
 ]
-
-#
-# <div class="input-group mb-3">
-#           {{ form.username }}
-#           <div class="input-group-append">
-#             <div class="input-group-text">
-#               <span class="fas fa-envelope"></span>
-#             </div>
-#           </div>
-#         </div>
-#         <div class="input-group mb-3">
-#           {{ form.password }}
-#           <div class="input-group-append">
-#             <div class="input-group-text">
-#               <span class="fas fa-lock"></span>
-#             </div>
-#           </div>
-#         </div>
-#         <div class="input-group mb-3">
-#           {{ form.password1 }}
-#           <div class="input-group-append">
-#             <div class="input-group-text">
-#               <span class="fas fa-lock"></span>
-#             </div>
-#           </div>
-#         </div>

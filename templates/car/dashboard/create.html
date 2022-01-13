@@ -1,0 +1,41 @@
+{% extends "layout/dashboard-base.html" %}
+
+{% block title %}
+  Add new board
+{% endblock %}
+
+{% block breadcumbs %}
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-view' %}">Dashboard</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-cars-list-view' %}">Cars</a></li>
+  <li class="breadcrumb-item">Create car</li>
+{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <div class="card-header">
+      Add new car
+    </div>
+
+    <div class="card-body">
+      <form id="createCar" method="post">
+        {% if form.errors %}
+          <div class="alert alert-danger">
+            {{ form.errors }}
+          </div>
+        {% endif %}
+        <div class="p-2">
+          {% csrf_token %}
+          {% for field in form %}
+            {{ field.label }}
+            {{ field }}
+          {% endfor %}
+        </div>
+      </form>
+    </div>
+
+    <div class="card-footer text-right">
+      <a class="mb-2 mr-2 btn btn-shadow ml-3 btn-outline-danger" href="{% url 'dashboard-cars-list-view' %}">Cancel</a>
+      <button class="mb-2 btn btn-shadow btn-primary" type="submit" form="createCar" value="Save">Save</button>
+    </div>
+  </div>
+{% endblock %}

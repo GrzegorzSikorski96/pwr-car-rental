@@ -37,6 +37,9 @@ def core_login(request):
 
 
 def core_register(request):
+    if request.user.is_authenticated:
+        return redirect('dashboard-view')
+
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
@@ -56,7 +59,6 @@ def core_register(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect('dashboard-view')
-
     else:
         form = UserRegistrationForm()
 
