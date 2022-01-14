@@ -1,0 +1,17 @@
+<li class="nav-item">
+  <a href="{% url 'dashboard-view' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard-view' %} active {% endif %}">
+    <i class="nav-icon fas fa-th"></i>
+    <p>
+      Dashboard
+    </p>
+  </a>
+</li>
+
+<li class="nav-item">
+  <a href="{% url 'dashboard-cars-list-view' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard-cars-list-view' %} active {% endif %}">
+    <i class="nav-icon fas fa-car"></i>
+    <p>
+      Cars
+    </p>
+  </a>
+</li>

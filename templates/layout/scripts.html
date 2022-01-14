@@ -1,7 +1,12 @@
-  {% load static %}
-  <script src="{% static 'js/jquery.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'js/adminlte.min.js' %}"></script>
+{% load static %}
 
-  </body>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/adminlte.min.js' %}"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+
+{% block scripts %}
+{% endblock %}
+
+</body>
 </html>

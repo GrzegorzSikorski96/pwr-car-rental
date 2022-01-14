@@ -1,7 +1,7 @@
 from django.db import models
 
 from car.choices.body_type_choices import BodyType
-from car.choices.drive_type_choices import DriveType
+from car.choices.drivetrain_type_choices import DrivetrainType
 from car.choices.fuel_type_choices import FuelType
 from car.choices.transmission_type_choices import TransmissionType
 
@@ -14,7 +14,7 @@ class Car(models.Model):
     air_conditioning = models.BooleanField(default=False)
     transmission_type = models.CharField(max_length=15, choices=TransmissionType.TRANSMISSION_TYPE_CHOICES)
     body_type = models.CharField(max_length=20, choices=BodyType.BODY_TYPE_CHOICES)
-    drive_type = models.CharField(max_length=25, choices=DriveType.DRIVE_TYPE_CHOICES)
+    drivetrain_type = models.CharField(max_length=25, choices=DrivetrainType.DRIVETRAIN_TYPE_CHOICES)
     daily_rent_price = models.PositiveIntegerField()
     weekly_rent_price = models.PositiveIntegerField()
     monthly_rent_price = models.PositiveIntegerField()
@@ -22,9 +22,12 @@ class Car(models.Model):
     trunk_volume = models.PositiveIntegerField()
     engine = models.ForeignKey(
         'car.Engine',
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
         related_name='cars'
     )
+
+    def __str__(self):
+        return "%d - %s %s" % (self.pk, self.manufacturer, self.model)
 
 
 class Engine(models.Model):

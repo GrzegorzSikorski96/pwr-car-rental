@@ -1,5 +1,21 @@
 {% include 'layout/header.html' %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>caRent</title>
+  {% load static %}
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="{% static 'css/fontawesome/all.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'css/adminlte.css' %} ">
+</head>
+
 
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -37,15 +53,7 @@
 
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item">
-            <a href=""
-               class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Dashboard
-              </p>
-            </a>
-          </li>
+          {% include 'layout/menu.html' %}
         </ul>
       </nav>
     </div>
@@ -91,17 +99,11 @@
   </footer>
 </div>
 
-{% include 'layout/scripts.html' %}
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/adminlte.min.js' %}"></script>
 
-<style>
-  .breadcrumb-item-options + .breadcrumb-item-options::before {
-    display: inline-block;
-    padding-right: 0.5rem;
-    padding-left: 0.5rem;
-    color: #6c757d;
-    content: "|";
-  }
-</style>
-
+{% block scripts %}
+{% endblock %}
 </body>
 </html>
