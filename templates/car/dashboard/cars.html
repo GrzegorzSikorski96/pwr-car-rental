@@ -93,7 +93,7 @@
               {% if car.rent is not None %}
                 <i class="nav-icon far fa-circle text-warning"></i>
                 <p>Ready to rent</p>
-              {% else%}
+              {% else %}
                 <i class="nav-icon far fa-circle text-success"></i>
                 <p>Rented</p>
               {% endif %}
@@ -101,6 +101,12 @@
             <td class="col-md-1 text-right">
               <a href="{% url 'dashboard-cars-detail-view' car.pk %}">
                 <i class="fas fa-external-link-alt"></i>
+              </a>
+              <a href="{% url 'dashboard-car-update-view' car.pk %}">
+                <i class="fas fa-pen text-info"></i>
+              </a>
+              <a href="{% url 'dashboard-car-delete-view' car.pk %}">
+                <i class="fas fa-trash text-danger"></i>
               </a>
             </td>
           </tr>

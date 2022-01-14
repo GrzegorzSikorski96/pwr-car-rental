@@ -22,9 +22,12 @@ class Car(models.Model):
     trunk_volume = models.PositiveIntegerField()
     engine = models.ForeignKey(
         'car.Engine',
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
         related_name='cars'
     )
+
+    def __str__(self):
+        return "%d - %s %s" % (self.pk, self.manufacturer, self.model)
 
 
 class Engine(models.Model):

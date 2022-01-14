@@ -1,7 +1,7 @@
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
 from django.urls import reverse
-from car.forms.CarCreateForm import CarCreateForm
+from car.forms.CarForm import CarForm
 from car.models import Car, Engine
 
 
@@ -17,7 +17,7 @@ class DashboardCarDetailView(DetailView):
 
 
 class DashboardCarCreateView(CreateView):
-    form_class = CarCreateForm
+    form_class = CarForm
     template_name = 'car/dashboard/create.html'
 
     def form_valid(self, form):
@@ -34,3 +34,16 @@ class DashboardCarCreateView(CreateView):
 
     def get_success_url(self):
         return reverse('dashboard-cars-detail-view', kwargs={'pk': self.object.pk})  # type: ignore
+
+
+class DashboardCarUpdateView(UpdateView):
+    model = Car
+    form_class = CarForm
+    template_name = 'car/dashboard/update.html'
+
+
+class DashboardCarDeleteView(DeleteView):
+    model = Car
+
+    def get_success_url(self):
+        return reverse('dashboard-cars-list-view')

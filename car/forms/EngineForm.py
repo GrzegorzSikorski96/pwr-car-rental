@@ -5,7 +5,7 @@ from car.choices.fuel_type_choices import FuelType
 from car.models import Engine
 
 
-class EngineCreateForm(ModelForm):
+class EngineForm(ModelForm):
     engine_volume = forms.IntegerField(
         label='Engine volume',
         widget=forms.NumberInput(attrs={'placeholder': 'Volume...', 'class': 'form-control'})
@@ -29,7 +29,12 @@ class EngineCreateForm(ModelForm):
         ]
 
     def __init__(self, *args, **kwargs):
-        super(EngineCreateForm, self).__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-control'
-            field.widget.attrs['placeholder'] = field.label + '...'
+        super(EngineForm, self).__init__(*args, **kwargs)
+        self.fields['engine_volume'].widget.attrs['class'] = 'form-control'
+        self.fields['engine_volume'].widget.attrs['placeholder'] = 'Manufacturer...'
+
+        self.fields['horsepower'].widget.attrs['class'] = 'form-control'
+        self.fields['horsepower'].widget.attrs['placeholder'] = 'Model...'
+
+        self.fields['fuel_type'].widget.attrs['class'] = 'form-control'
+        self.fields['fuel_type'].widget.attrs['placeholder'] = 'Mileage...'

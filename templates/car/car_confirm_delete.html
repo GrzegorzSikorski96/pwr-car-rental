@@ -1,0 +1,22 @@
+{% extends "layout/dashboard-base.html" %}
+{% load template_filetrs %}
+{% load static %}
+
+{% block title %}
+  <strong class="text-danger">DELETE CAR</strong> #{{ car.id }} - {{ car.manufacturer }} {{ car.model }}
+{% endblock %}
+
+{% block breadcumbs %}
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-view' %}">Dashboard</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-cars-list-view' %}">Car</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-cars-detail-view' car.id %}">#{{ car.id }}
+    - {{ car.manufacturer }} {{ car.model }}</a></li>
+  <li class="breadcrumb-item text-danger">Delete</li>
+{% endblock %}
+
+{% block content %}
+  <form method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input class="btn btn-danger" type="submit" value="Confirm">
+  </form>
+{% endblock %}
