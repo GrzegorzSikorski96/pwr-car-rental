@@ -7,11 +7,12 @@
 {% block breadcumbs %}
   <li class="breadcrumb-item"><a href="{% url 'dashboard-view' %}">Dashboard</a></li>
   <li class="breadcrumb-item"><a href="{% url 'dashboard-cars-list-view' %}">Cars</a></li>
-  <li class="breadcrumb-item">Create car</li>
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-car-detail-view' car.id %}">{{ car }}</a></li>
+  <li class="breadcrumb-item">Update</li>
 {% endblock %}
 
 {% block content %}
-  <form id="updateRent" method="post">
+  <form id="updateCar" method="post">
     {% if form.errors %}
       <div class="alert alert-danger">
         {{ form.errors }}
@@ -149,7 +150,7 @@
           </div>
           Engine volume
           <div class="input-group mb-3">
-            {{ form.engine_volume }}
+            {{ form.volume }}
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-car"></span>
@@ -213,7 +214,7 @@
             {{ form.service_mileage_interval }}
             <div class="input-group-append">
               <div class="input-group-text">
-                <span class="fas fa-dollar-sign"></span>
+                <span class="fas fa-road"></span>
               </div>
             </div>
           </div>
@@ -222,7 +223,7 @@
             {{ form.insured_date }}
             <div class="input-group-append">
               <div class="input-group-text">
-                <span class="fas fa-dollar-sign"></span>
+                <span class="fas fa-calendar"></span>
               </div>
             </div>
           </div>
@@ -231,7 +232,7 @@
             {{ form.technical_overview_date }}
             <div class="input-group-append">
               <div class="input-group-text">
-                <span class="fas fa-dollar-sign"></span>
+                <span class="fas fa-calendar"></span>
               </div>
             </div>
           </div>
@@ -243,7 +244,7 @@
   <div class="card">
     <div class="card-footer text-right">
       <a class="mb-2 mr-2 btn btn-shadow ml-3 btn-outline-danger" href="{% url 'dashboard-cars-list-view' %}">Cancel</a>
-      <button class="mb-2 btn btn-shadow btn-primary" type="submit" form="updateRent" value="Save">Save</button>
+      <button class="mb-2 btn btn-shadow btn-primary" type="submit" form="updateCar" value="Save">Save</button>
     </div>
   </div>
 {% endblock %}

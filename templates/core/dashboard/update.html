@@ -1,0 +1,119 @@
+{% extends "layout/dashboard-base.html" %}
+
+{% block title %}
+  Update client
+{% endblock %}
+
+{% block breadcumbs %}
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-view' %}">Dashboard</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-clients-list-view' %}">Clients</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-client-detail-view' user.id %}">{{ user }}</a></li>
+  <li class="breadcrumb-item">Update client</li>
+{% endblock %}
+
+{% block content %}
+  <form id="updateClient" method="post">
+        {% if form.errors %}
+          <div class="alert alert-danger">
+            {% for field, errors in form.errors.items %}
+              <div class="alert-danger">
+                {{ field|escape }}:
+                {% for error in errors %}
+                  {{ error|escape }}
+                {% endfor %}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% csrf_token %}
+        Account data
+        <hr>
+        <div class="input-group mb-3">
+          {{ form.email }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+
+        Personal data
+        <hr>
+        <div class="input-group mb-3">
+          {{ form.first_name }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          {{ form.last_name }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          {{ form.phone_number }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+
+        Address
+        <hr>
+
+        <div class="input-group mb-3">
+          {{ form.country }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-map-marked-alt"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          {{ form.city }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-map-marked-alt"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          {{ form.postal_code }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-map-marked-alt"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          {{ form.street }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-map-marked-alt"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          {{ form.number }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-map-marked-alt"></span>
+            </div>
+          </div>
+        </div>
+      </form>
+
+  <div class="card">
+  <div class="card-footer text-right">
+    <a class="mb-2 mr-2 btn btn-shadow ml-3 btn-outline-danger" href="{% url 'dashboard-client-detail-view' user.pk %}">Cancel</a>
+    <button class="mb-2 btn btn-shadow btn-primary" type="submit" form="updateClient" value="Save">Save</button>
+  </div>
+  </div>
+
+{% endblock %}

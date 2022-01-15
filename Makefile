@@ -41,3 +41,8 @@ make-migrations:
 
 owner:
 	sudo chown grzegorz . -R
+
+reload:
+	clear
+	make down
+	make run

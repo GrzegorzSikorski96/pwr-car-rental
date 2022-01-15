@@ -1,3 +1,5 @@
+from typing import Dict, Any
+
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
 from django.urls import reverse
@@ -24,7 +26,7 @@ class DashboardCarCreateView(CreateView):
         obj = form.save(commit=False)
 
         engine: Engine = Engine.objects.create(
-            volume=form.cleaned_data.get("engine_volume"),
+            volume=form.cleaned_data.get("volume"),
             horsepower=form.cleaned_data.get("horsepower"),
             fuel_type=form.cleaned_data.get("fuel_type"),
         )
@@ -40,9 +42,32 @@ class DashboardCarCreateView(CreateView):
 
 
 class DashboardCarUpdateView(UpdateView):
+    permission_required = 'core.client'
     model = Car
     form_class = CarForm
     template_name = 'car/dashboard/update.html'
+
+    def get_initial(self) -> Dict[str, Any]:
+        car = Car.objects.get(id=self.kwargs['pk'])
+        car_dict = car.__dict__
+        car_dict.update(car.engine.__dict__)
+
+        return car_dict
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+
+        obj.engine.volume = int(form.cleaned_data.get("volume"))
+        obj.engine.horsepower = int(form.cleaned_data.get("horsepower"))
+        obj.engine.fuel_type = form.cleaned_data.get("fuel_type")
+        obj.engine.save()
+
+        obj.updated_by = self.request.user
+
+        return super(DashboardCarUpdateView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('dashboard-car-detail-view', kwargs={'pk': self.object.pk})  # type: ignore
 
 
 class DashboardCarDeleteView(DeleteView):

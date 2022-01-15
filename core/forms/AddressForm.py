@@ -1,9 +1,10 @@
 from django import forms
+from django.forms import ModelForm
 
 from core.models import Address
 
 
-class AddressForm(forms.Form):
+class AddressForm(ModelForm):
     country = forms.CharField(
         label='Country',
         max_length=150,

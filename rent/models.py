@@ -1,12 +1,10 @@
 from django.db import models
 from django.utils.timezone import now
 
-from car_rental import settings
-
 
 class Rent(models.Model):
     rented_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        'core.User',
         on_delete=models.DO_NOTHING,
         related_name='rents'
     )

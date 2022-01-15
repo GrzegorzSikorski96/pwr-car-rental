@@ -3,13 +3,13 @@
 {% load static %}
 
 {% block title %}
-  #{{ car.id }} - {{ car.manufacturer }} {{ car.model }}
+  {{ car }}
 {% endblock %}
 
 {% block breadcumbs %}
   <li class="breadcrumb-item"><a href="{% url 'dashboard-view' %}">Dashboard</a></li>
   <li class="breadcrumb-item"><a href="{% url 'dashboard-cars-list-view' %}">Cars</a></li>
-  <li class="breadcrumb-item">#{{ car.id }} - {{ car.manufacturer }} {{ car.model }}</li>
+  <li class="breadcrumb-item">{{ car }}</li>
 {% endblock %}
 
 {% block content %}
@@ -33,8 +33,8 @@
           <div class="description-block">
             <h5 class="description-header">{{ car.mileage }} km</h5>
             <span class="description-text">Mielage</span>
-            <h5 class="description-header">1230 km</h5>
-            <span class="description-text">Next service</span>
+            <h5 class="description-header">{{ car.last_service.next_service_mileage|subtract:car.mileage }} km</h5>
+            <span class="description-text">To next service</span>
           </div>
         </div>
         <div class="col-sm-4 border-right">
@@ -92,6 +92,8 @@
         <thead>
         <tr>
           <th>Date</th>
+          <th>Mileage</th>
+          <th>Next service</th>
           <th>Action</th>
           <th>Description</th>
         </tr>
@@ -101,6 +103,12 @@
           <tr>
             <td>
               {{ service.created_at }}
+            </td>
+            <td>
+              {{ service.mileage }}
+            </td>
+            <td>
+              {{ service.next_service_mileage }} / {{ service.next_service_date }}
             </td>
             <td>
               {{ service.action }}
@@ -115,37 +123,38 @@
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-header text-bold">
-      Daily log
-    </div>
-    <div class="card-body">
-      <table class="table table-responsive">
-        <thead>
-        <tr>
-          <th>Date</th>
-          <th>Mileage</th>
-          <th>Difference to previous day</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for log in car.logs.all %}
+  {% if car.logs.count > 0 %}
+    <div class="card">
+      <div class="card-header text-bold">
+        Daily log
+      </div>
+      <div class="card-body">
+        <table class="table table-responsive">
+          <thead>
           <tr>
-            <td>
-              {{ log.created_at }}
-            </td>
-            <td>
-              {{ log.mileage }}
-            </td>
-            <td>
-              {{ log.difference_to_previous_day }}
-            </td>
+            <th>Date</th>
+            <th>Mileage</th>
+            <th>Difference to previous day</th>
           </tr>
-        {% endfor %}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+          {% for log in car.logs.all %}
+            <tr>
+              <td>
+                {{ log.created_at }}
+              </td>
+              <td>
+                {{ log.mileage }}
+              </td>
+              <td>
+                {{ log.difference_to_previous_day }}
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
-
+  {% endif %}
 
 {% endblock %}

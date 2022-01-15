@@ -1,6 +1,40 @@
 {
   "employee": [
+    "core.add_address",
+    "core.change_address",
+    "core.delete_address",
+    "core.view_address",
+    "core.add_user",
+    "core.change_user",
+    "core.delete_user",
+    "core.view_user",
+    "rent.add_rent",
+    "rent.change_rent",
+    "rent.delete_rent",
+    "rent.view_rent",
+    "car.add_engine",
+    "car.change_engine",
+    "car.delete_engine",
+    "car.view_engine",
+    "car.add_car",
+    "car.change_car",
+    "car.delete_car",
+    "car.view_car",
+    "log.add_servicelog",
+    "log.change_servicelog",
+    "log.delete_servicelog",
+    "log.view_servicelog",
+    "log.add_carlog",
+    "log.change_carlog",
+    "log.delete_carlog"
   ],
   "client": [
+    "core.change_address",
+    "core.view_address",
+    "rent.add_rent",
+    "rent.view_rent",
+    "car.view_car",
+    "log.view_servicelog",
+    "log.add_carlog"
   ]
 }

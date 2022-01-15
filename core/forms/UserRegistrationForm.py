@@ -39,3 +39,10 @@ class UserRegistrationForm(UserCreationForm, AddressForm):
     class Meta:
         model = User
         fields = ['email', 'password1', 'password2', 'first_name', 'last_name', 'phone_number', ]
+
+    def __init__(self, *args, **kwargs):
+        super(UserRegistrationForm, self).__init__(*args, **kwargs)
+
+        if self.initial:
+            self.fields['password1'].required = False
+            self.fields['password2'].required = False

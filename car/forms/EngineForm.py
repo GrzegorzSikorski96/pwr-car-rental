@@ -6,7 +6,7 @@ from car.models import Engine
 
 
 class EngineForm(ModelForm):
-    engine_volume = forms.IntegerField(
+    volume = forms.IntegerField(
         label='Engine volume',
         widget=forms.NumberInput(attrs={'placeholder': 'Volume...', 'class': 'form-control'})
     )
@@ -30,8 +30,8 @@ class EngineForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(EngineForm, self).__init__(*args, **kwargs)
-        self.fields['engine_volume'].widget.attrs['class'] = 'form-control'
-        self.fields['engine_volume'].widget.attrs['placeholder'] = 'Volume...'
+        self.fields['volume'].widget.attrs['class'] = 'form-control'
+        self.fields['volume'].widget.attrs['placeholder'] = 'Volume...'
 
         self.fields['horsepower'].widget.attrs['class'] = 'form-control'
         self.fields['horsepower'].widget.attrs['placeholder'] = 'Horsepower...'
