@@ -5,7 +5,7 @@ from car.forms.CarForm import CarForm
 from car.models import Car, Engine
 
 
-class DashboardBoardsListView(ListView):
+class DashboardCarsListView(ListView):
     model = Car
     template_name = 'car/dashboard/cars.html'
     queryset = Car.objects.all()
@@ -30,10 +30,13 @@ class DashboardCarCreateView(CreateView):
         )
 
         obj.engine = engine
+        obj.created_by = self.request.user
+        obj.updated_by = self.request.user
+
         return super(DashboardCarCreateView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse('dashboard-cars-detail-view', kwargs={'pk': self.object.pk})  # type: ignore
+        return reverse('dashboard-car-detail-view', kwargs={'pk': self.object.pk})  # type: ignore
 
 
 class DashboardCarUpdateView(UpdateView):

@@ -38,3 +38,6 @@ tests: build start-mysql wait-for-database-connection up
 
 make-migrations:
 	docker-compose exec python python3.9 manage.py makemigrations
+
+owner:
+	sudo chown grzegorz . -R

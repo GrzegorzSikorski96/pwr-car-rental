@@ -15,3 +15,12 @@
     </p>
   </a>
 </li>
+
+<li class="nav-item">
+  <a href="{% url 'dashboard-rents-list-view' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard-rents-list-view' %} active {% endif %}">
+    <i class="nav-icon fas fa-external-link-alt"></i>
+    <p>
+      Rents
+    </p>
+  </a>
+</li>

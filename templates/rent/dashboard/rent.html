@@ -1,0 +1,28 @@
+{% extends "layout/dashboard-base.html" %}
+{% load template_filetrs %}
+{% load static %}
+
+{% block title %}
+  #{{ rent.id }} - {{ rent.rented_by.first_name }} {{ rent.rented_by.last_name }}
+{% endblock %}
+
+{% block breadcumbs %}
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-view' %}">Dashboard</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-rents-list-view' %}">Rents</a></li>
+  <li class="breadcrumb-item">#{{ rent.id }}</li>
+{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <div class="card-header">
+      Rented by
+    </div>
+
+    <div class="card-body">
+      Rented at: {{ rent.rented_at }}<br>
+      Rented to: {{ rent.rented_to }}<br>
+      Rented by: {{ rent.rented_by }}<br>
+      Rented car: {{ rent.rented_car }}<br>
+    </div>
+  </div>
+{% endblock %}

@@ -31,10 +31,10 @@ class EngineForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(EngineForm, self).__init__(*args, **kwargs)
         self.fields['engine_volume'].widget.attrs['class'] = 'form-control'
-        self.fields['engine_volume'].widget.attrs['placeholder'] = 'Manufacturer...'
+        self.fields['engine_volume'].widget.attrs['placeholder'] = 'Volume...'
 
         self.fields['horsepower'].widget.attrs['class'] = 'form-control'
-        self.fields['horsepower'].widget.attrs['placeholder'] = 'Model...'
+        self.fields['horsepower'].widget.attrs['placeholder'] = 'Horsepower...'
 
         self.fields['fuel_type'].widget.attrs['class'] = 'form-control'
-        self.fields['fuel_type'].widget.attrs['placeholder'] = 'Mileage...'
+        self.fields['fuel_type'].widget.attrs['placeholder'] = 'Fuel type...'

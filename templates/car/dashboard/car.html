@@ -62,4 +62,90 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-md-3 col-sm-6 col-12">
+      <div class="info-box bg-info">
+        <span class="info-box-icon"><i class="fas fa-road"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Mileage</span>
+          <span class="info-box-number">{{ car.mileage }}</span>
+
+          <div class="progress">
+            <div class="progress-bar"
+                 style="width: {{ car.last_service.next_service_mileage|subtract:car.mileage|percentage_of:car.service_mileage_interval }}%"></div>
+          </div>
+          <span class="progress-description">
+                  {{ car.last_service.next_service_mileage|subtract:car.mileage }} km to next service ({{ car.last_service.next_service_mileage }} km).
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header text-bold">
+      Services
+    </div>
+    <div class="card-body">
+      <table class="table table-responsive">
+        <thead>
+        <tr>
+          <th>Date</th>
+          <th>Action</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for service in car.services.all %}
+          <tr>
+            <td>
+              {{ service.created_at }}
+            </td>
+            <td>
+              {{ service.action }}
+            </td>
+            <td>
+              {{ service.description }}
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header text-bold">
+      Daily log
+    </div>
+    <div class="card-body">
+      <table class="table table-responsive">
+        <thead>
+        <tr>
+          <th>Date</th>
+          <th>Mileage</th>
+          <th>Difference to previous day</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for log in car.logs.all %}
+          <tr>
+            <td>
+              {{ log.created_at }}
+            </td>
+            <td>
+              {{ log.mileage }}
+            </td>
+            <td>
+              {{ log.difference_to_previous_day }}
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
 {% endblock %}
