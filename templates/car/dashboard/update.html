@@ -1,7 +1,7 @@
 {% extends "layout/dashboard-base.html" %}
 
 {% block title %}
-  Add new board
+  Update car
 {% endblock %}
 
 {% block breadcumbs %}
@@ -11,26 +11,20 @@
 {% endblock %}
 
 {% block content %}
-  <div class="card">
-    <div class="card-header">
-      Add new car
-    </div>
+  <form id="updateRent" method="post">
+    {% if form.errors %}
+      <div class="alert alert-danger">
+        {{ form.errors }}
+      </div>
+    {% endif %}
+    <div class="p-2">
+      {% csrf_token %}
 
-    <div class="card-body">
-      <form id="createCar" method="post">
-        {% if form.errors %}
-          <div class="alert alert-danger">
-            {{ form.errors }}
-          </div>
-        {% endif %}
-        <div class="p-2">
-          {% csrf_token %}
-
-          <strong>
-            Car details
-          </strong>
-          <hr>
-
+      <div class="card">
+        <div class="card-header text-bold">
+          Car Details
+        </div>
+        <div class="card-body">
           Manufacturer
           <div class="input-group mb-3">
             {{ form.manufacturer }}
@@ -99,12 +93,15 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
 
-          <strong>
-            Car body details
-          </strong>
-          <hr>
+      <div class="card">
+        <div class="card-header text-bold">
+          Car body details
+        </div>
 
+        <div class="card-body">
           Body type
           <div class="input-group mb-3">
             {{ form.body_type }}
@@ -132,12 +129,15 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
 
-          <strong>
-            Engine details
-          </strong>
-          <hr>
 
+      <div class="card">
+        <div class="card-header text-bold">
+          Engine details
+        </div>
+        <div class="card-body">
           Engine horsepower
           <div class="input-group mb-3">
             {{ form.horsepower }}
@@ -165,12 +165,14 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
 
-          <strong>
-            Rent pricing
-          </strong>
-          <hr>
-
+      <div class="card">
+        <div class="card-header text-bold">
+          Rent pricing
+        </div>
+        <div class="card-body">
           Daily rent price
           <div class="input-group mb-3">
             {{ form.daily_rent_price }}
@@ -199,12 +201,49 @@
             </div>
           </div>
         </div>
-      </form>
-    </div>
+      </div>
 
+      <div class="card">
+        <div class="card-header text-bold">
+          Servicing details
+        </div>
+        <div class="card-body">
+          Service mileage interval
+          <div class="input-group mb-3">
+            {{ form.service_mileage_interval }}
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-dollar-sign"></span>
+              </div>
+            </div>
+          </div>
+          Insured date
+          <div class="input-group mb-3">
+            {{ form.insured_date }}
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-dollar-sign"></span>
+              </div>
+            </div>
+          </div>
+          Technical overview date
+          <div class="input-group mb-3">
+            {{ form.technical_overview_date }}
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-dollar-sign"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="card">
     <div class="card-footer text-right">
       <a class="mb-2 mr-2 btn btn-shadow ml-3 btn-outline-danger" href="{% url 'dashboard-cars-list-view' %}">Cancel</a>
-      <button class="mb-2 btn btn-shadow btn-primary" type="submit" form="createCar" value="Save">Save</button>
+      <button class="mb-2 btn btn-shadow btn-primary" type="submit" form="updateRent" value="Save">Save</button>
     </div>
   </div>
 {% endblock %}

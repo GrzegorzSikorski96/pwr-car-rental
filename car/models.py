@@ -1,12 +1,18 @@
+import datetime
+
 from django.db import models
+from django.utils import timezone
 
 from car.choices.body_type_choices import BodyType
 from car.choices.drivetrain_type_choices import DrivetrainType
 from car.choices.fuel_type_choices import FuelType
 from car.choices.transmission_type_choices import TransmissionType
+from car_rental import settings
+from core.models_mixins.TimeStampMixin import TimeStampMixin
+from log.models import ServiceLog
 
 
-class Car(models.Model):
+class Car(TimeStampMixin):
     manufacturer = models.CharField(max_length=80)
     model = models.CharField(max_length=80)
     mileage = models.PositiveIntegerField(default=1000)
@@ -20,11 +26,37 @@ class Car(models.Model):
     monthly_rent_price = models.PositiveIntegerField()
     seats = models.PositiveIntegerField()
     trunk_volume = models.PositiveIntegerField()
+    service_mileage_interval = models.PositiveIntegerField(default=15000)
+    insured_date = models.DateField(default=timezone.now)
+    technical_overview_date = models.DateField(default=timezone.now)
     engine = models.ForeignKey(
         'car.Engine',
-        on_delete=models.CASCADE,
+        on_delete=models.DO_NOTHING,
         related_name='cars'
     )
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.DO_NOTHING,
+        related_name='created_cars'
+    )
+
+    def save(self, *args, **kwargs) -> None:
+        create = False if self.pk else True
+        super(Car, self).save(*args, **kwargs)
+
+        if create:
+            ServiceLog.objects.create(
+                car=self,
+                action="Car added to rental system.",
+                description="",
+                mileage=self.mileage,
+                next_service_mileage=self.mileage + self.service_mileage_interval,
+                next_service_date=datetime.date(self.created_at.year + 1, self.created_at.month, self.created_at.day),
+                created_by=self.created_by,
+            )
+
+    def last_service(self):
+        return self.services.last()
 
     def __str__(self):
         return "%d - %s %s" % (self.pk, self.manufacturer, self.model)

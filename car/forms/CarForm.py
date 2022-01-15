@@ -1,3 +1,5 @@
+import datetime
+
 from car.forms.EngineForm import EngineForm
 from car.models import Car
 
@@ -19,6 +21,9 @@ class CarForm(EngineForm):
             'monthly_rent_price',
             'seats',
             'trunk_volume',
+            'service_mileage_interval',
+            'insured_date',
+            'technical_overview_date',
         ]
 
     def __init__(self, *args, **kwargs):
@@ -34,6 +39,7 @@ class CarForm(EngineForm):
 
         self.fields['production_date'].widget.attrs['class'] = 'form-control'
         self.fields['production_date'].widget.attrs['placeholder'] = 'Production date...'
+        self.fields['production_date'].initial = datetime.date.today()
 
         self.fields['air_conditioning'].widget.attrs['class'] = 'form-control'
         self.fields['air_conditioning'].widget.attrs['placeholder'] = 'Air conditioning...'
@@ -61,3 +67,12 @@ class CarForm(EngineForm):
 
         self.fields['trunk_volume'].widget.attrs['class'] = 'form-control'
         self.fields['trunk_volume'].widget.attrs['placeholder'] = 'Trunk volume...'
+
+        self.fields['service_mileage_interval'].widget.attrs['class'] = 'form-control'
+        self.fields['service_mileage_interval'].widget.attrs['placeholder'] = 'Service mileage interval...'
+
+        self.fields['insured_date'].widget.attrs['class'] = 'form-control'
+        self.fields['insured_date'].widget.attrs['placeholder'] = 'Insured date...'
+
+        self.fields['technical_overview_date'].widget.attrs['class'] = 'form-control'
+        self.fields['technical_overview_date'].widget.attrs['placeholder'] = 'Technical overview date...'
