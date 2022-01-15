@@ -9,11 +9,74 @@
       "first_name": "Admin",
       "last_name": "Administrator",
       "email": "admin@example.com",
+      "phone_number": "123456789",
       "is_staff": true,
       "is_active": true,
-      "groups": [],
+      "groups": [
+        1
+      ],
       "user_permissions": [],
       "address_id": 1
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
+      "last_login": "2021-12-27T21:12:58.960Z",
+      "is_superuser": false,
+      "first_name": "user1",
+      "last_name": "user1",
+      "email": "user1@example.com",
+      "phone_number": "321123123",
+      "is_staff": false,
+      "is_active": true,
+      "groups": [
+        2
+      ],
+      "user_permissions": [],
+      "address_id": 2
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
+      "last_login": "2021-12-27T21:12:58.960Z",
+      "is_superuser": false,
+      "first_name": "user2",
+      "last_name": "user2",
+      "email": "user2@example.com",
+      "phone_number": "321321123",
+      "is_staff": false,
+      "is_active": true,
+      "groups": [
+        2
+      ],
+      "user_permissions": [],
+      "address_id": 3
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
+      "last_login": "2021-12-27T21:12:58.960Z",
+      "is_superuser": false,
+      "first_name": "user3",
+      "last_name": "user3",
+      "email": "user3@example.com",
+      "phone_number": "321321321",
+      "is_staff": false,
+      "is_active": true,
+      "groups": [],
+      "user_permissions": [
+        2
+      ],
+      "address_id": 4
     }
   }
 ]

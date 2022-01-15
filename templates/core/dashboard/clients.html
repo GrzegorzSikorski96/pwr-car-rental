@@ -1,13 +1,12 @@
 {% extends "layout/dashboard-base.html" %}
 
-
 {% block title %}
-  Rents
+  Clients
 {% endblock %}
 
 {% block breadcumbs %}
   <li class="breadcrumb-item"><a href="{% url 'dashboard-view' %}">Dashboard</a></li>
-  <li class="breadcrumb-item">Rents</li>
+  <li class="breadcrumb-item">Clients</li>
 {% endblock %}
 
 {% block content %}
@@ -20,44 +19,56 @@
             Id
           </th>
           <th class="col-md-1">
-            Car
+            First name
           </th>
           <th class="col-md-1">
-            Client
+            Last name
+          </th>
+          <th class="col-md-1">
+            Country
+          </th>
+          <th class="col-md-1">
+            City
+          </th>
+          <th class="col-md-1">
+            Street
           </th>
           <th class="col-md-1 text-right">
-            <a href="{% url 'dashboard-rent-create-view' %}">
+            <a href="{% url 'dashboard-client-create-view' %}">
               <i class="fas fa-plus"></i>
             </a>
           </th>
         </tr>
         </thead>
         <tbody>
-        {% for rent in rent_list %}
+        {% for client in user_list %}
           <tr>
             <td class="col-md-1">
-              {{ rent.id }}
+              {{ client.id }}
             </td>
             <td class="col-md-1">
-              <a href="{% url 'dashboard-car-detail-view' rent.rented_car_id %}">
-                {{ rent.rented_car }}
-              </a>
+              {{ client.first_name }}
             </td>
             <td class="col-md-1">
-              <a href="#">
-              <a href="{% url 'dashboard-client-detail-view' rent.rented_by_id %}">
-                {{ rent.rented_by }}
-              </a>
-              </a>
+              {{ client.last_name }}
+            </th>
+            <td class="col-md-1">
+              {{ client.address.country }}
+            </td>
+            <td class="col-md-1">
+              {{ client.address.city }}
+            </td>
+            <td class="col-md-1">
+              {{ client.address.street }}
             </td>
             <td class="col-md-1 text-right">
-              <a href="{% url 'dashboard-rent-detail-view' rent.pk %}">
+              <a href="{% url 'dashboard-client-detail-view' client.pk %}">
                 <i class="fas fa-external-link-alt"></i>
               </a>
-              <a href="{% url 'dashboard-rent-update-view' rent.pk %}">
+              <a href="{% url 'dashboard-client-update-view' client.pk %}">
                 <i class="fas fa-pen text-info"></i>
               </a>
-              <a href="{% url 'dashboard-rent-delete-view' rent.pk %}">
+              <a href="{% url 'dashboard-client-delete-view' client.pk %}">
                 <i class="fas fa-trash text-danger"></i>
               </a>
             </td>

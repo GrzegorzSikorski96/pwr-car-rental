@@ -1,0 +1,107 @@
+[
+  {
+    "model": "log.servicelog",
+    "pk": 1,
+    "fields": {
+      "created_at": "2019-01-01 23:56:17.918745+00:00",
+      "action": "service 1",
+      "updated_at": "2022-01-01 23:56:17.918745+00:00",
+      "description": "Service things1 ",
+      "mileage": 160938,
+      "next_service_mileage": 175938,
+      "next_service_date": "2020-01-01",
+      "car_id": 1,
+      "created_by_id": 1
+    }
+  },
+  {
+    "model": "log.servicelog",
+    "pk": 2,
+    "fields": {
+      "created_at": "2020-01-01 23:56:17.918745+00:00",
+      "action": "service 2",
+      "updated_at": "2020-01-01 23:56:17.918745+00:00",
+      "description": "Service things 2",
+      "mileage": 174938,
+      "next_service_mileage": 189938,
+      "next_service_date": "2021-01-01",
+      "car_id": 1,
+      "created_by_id": 1
+    }
+  },
+  {
+    "model": "log.servicelog",
+    "pk": 3,
+    "fields": {
+      "created_at": "2021-01-01 23:56:17.918745+00:00",
+      "action": "service 3",
+      "updated_at": "2021-01-01 23:56:17.918745+00:00",
+      "description": "Service things 3",
+      "mileage": 189938,
+      "next_service_mileage": 204938,
+      "next_service_date": "2022-01-01",
+      "car_id": 1,
+      "created_by_id": 1
+    }
+  },
+  {
+    "model": "log.servicelog",
+    "pk": 4,
+    "fields": {
+      "created_at": "2022-01-01 23:56:17.918745+00:00",
+      "action": "service 4 ",
+      "updated_at": "2022-01-01 23:56:17.918745+00:00",
+      "description": "Service things 4",
+      "mileage": 194928,
+      "next_service_mileage": 213928,
+      "next_service_date": "2023-01-01",
+      "car_id": 1,
+      "created_by_id": 1
+    }
+  },
+  {
+    "model": "log.servicelog",
+    "pk": 5,
+    "fields": {
+      "created_at": "2022-01-01 23:56:17.918745+00:00",
+      "action": "service 1",
+      "updated_at": "2022-01-01 23:56:17.918745+00:00",
+      "description": "Service things 1",
+      "mileage": 40542,
+      "next_service_mileage": 55542,
+      "next_service_date": "2023-01-01",
+      "car_id": 2,
+      "created_by_id": 1
+    }
+  },
+  {
+    "model": "log.servicelog",
+    "pk": 6,
+    "fields": {
+      "created_at": "2022-01-01 23:56:17.918745+00:00",
+      "action": "service 1",
+      "updated_at": "2022-01-01 23:56:17.918745+00:00",
+      "description": "Service things 1",
+      "mileage": 180648,
+      "next_service_mileage": 195648,
+      "next_service_date": "2023-01-01",
+      "car_id": 3,
+      "created_by_id": 1
+    }
+  },
+  {
+    "model": "log.servicelog",
+    "pk": 7,
+    "fields": {
+      "created_at": "2022-01-01 23:56:17.918745+00:00",
+      "action": "service 1",
+      "updated_at": "2022-01-01 23:56:17.918745+00:00",
+      "description": "Service things 1",
+      "mileage": 198740,
+      "next_service_mileage": 213740,
+      "next_service_date": "2023-01-01",
+      "car_id": 4,
+      "created_by_id": 1
+    }
+  }
+]

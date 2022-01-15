@@ -30,6 +30,16 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
+    def delete(self, **kwargs):
+        if 0 < self.rents.all().count():
+            for rent in self.rents.all():
+                rent.delete()
+
+        super(User, self).delete()
+
+    def __str__(self):
+        return "#%d - %s %s" % (self.pk, self.first_name, self.last_name)
+
 
 class Address(models.Model):
     country = models.CharField(max_length=150)

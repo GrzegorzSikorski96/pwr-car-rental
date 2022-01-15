@@ -1,0 +1,47 @@
+[
+  {
+    "model": "car.engine",
+    "pk": 1,
+    "fields": {
+      "volume": 2000,
+      "horsepower": 165,
+      "fuel_type": "gas"
+    }
+  },
+  {
+    "model": "car.engine",
+    "pk": 1,
+    "fields": {
+      "volume": 2000,
+      "horsepower": 165,
+      "fuel_type": "gas"
+    }
+  },
+  {
+    "model": "car.engine",
+    "pk": 2,
+    "fields": {
+      "volume": 1300,
+      "horsepower": 100,
+      "fuel_type": "gas"
+    }
+  },
+  {
+    "model": "car.engine",
+    "pk": 3,
+    "fields": {
+      "volume": 2200,
+      "horsepower": 180,
+      "fuel_type": "diesel"
+    }
+  },
+  {
+    "model": "car.engine",
+    "pk": 4,
+    "fields": {
+      "volume": 3000,
+      "horsepower": 189,
+      "fuel_type": "diesel"
+    }
+  }
+]

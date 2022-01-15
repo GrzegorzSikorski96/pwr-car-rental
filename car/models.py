@@ -55,14 +55,29 @@ class Car(TimeStampMixin):
                 created_by=self.created_by,
             )
 
+    def delete(self, **kwargs):
+        for service in self.services.all():
+            service.delete()
+
+        for log in self.logs.all():
+            log.delete()
+
+        if hasattr(self, 'rent'):
+            self.rent.delete()
+
+        super(Car, self).delete()
+
     def last_service(self):
-        return self.services.last()
+        return self.services.first()
 
     def __str__(self):
-        return "%d - %s %s" % (self.pk, self.manufacturer, self.model)
+        return "#%d - %s %s" % (self.pk, self.manufacturer, self.model)
 
 
 class Engine(models.Model):
     volume = models.CharField(max_length=50, null=True)
     horsepower = models.PositiveIntegerField()
     fuel_type = models.CharField(max_length=20, choices=FuelType.FUEL_TYPES_CHOICES)
+
+    def __str__(self):
+        return "#%d - %s cc, %s hp, %s" % (self.pk, self.volume, self.horsepower, self.fuel_type)
