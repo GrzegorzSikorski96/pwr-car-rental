@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from log.models import ServiceLog, CarLog
+
+admin.site.register(ServiceLog)
+admin.site.register(CarLog)

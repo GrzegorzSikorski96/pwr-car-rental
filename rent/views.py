@@ -1,8 +1,6 @@
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
 from django.urls import reverse
-from car.forms.CarForm import CarForm
-from car.models import Car, Engine
 from rent.forms.RentForm import RentForm
 from rent.models import Rent
 

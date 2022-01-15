@@ -1,3 +1,5 @@
+from typing import Optional
+
 from django.db import models
 
 from car_rental import settings
@@ -17,7 +19,7 @@ class CarLog(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def difference_to_previous_day(self):
-        prev_log: CarLog = CarLog.objects \
+        prev_log: Optional[CarLog] = CarLog.objects \
             .filter(car=self.car, id__lt=self.id) \
             .exclude(id=self.id) \
             .order_by('-id').first()
