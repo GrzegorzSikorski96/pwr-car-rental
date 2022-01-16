@@ -10,72 +10,68 @@
 {% endblock %}
 
 {% block content %}
-  <div class="card">
-    <div class="card-body p-0">
-      <table id="test-table" class="table table-striped projects">
-        <thead>
-        <tr class="col-12">
-          <th class="col-md-1">
-            Id
-          </th>
-          <th class="col-md-1">
-            First name
-          </th>
-          <th class="col-md-1">
-            Last name
-          </th>
-          <th class="col-md-1">
-            Country
-          </th>
-          <th class="col-md-1">
-            City
-          </th>
-          <th class="col-md-1">
-            Street
-          </th>
-          <th class="col-md-1 text-right">
-            <a href="{% url 'dashboard-client-create-view' %}">
-              <i class="fas fa-plus"></i>
-            </a>
-          </th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for client in user_list %}
-          <tr>
-            <td class="col-md-1">
-              {{ client.id }}
-            </td>
-            <td class="col-md-1">
-              {{ client.first_name }}
-            </td>
-            <td class="col-md-1">
-              {{ client.last_name }}
-            </th>
-            <td class="col-md-1">
-              {{ client.address.country }}
-            </td>
-            <td class="col-md-1">
-              {{ client.address.city }}
-            </td>
-            <td class="col-md-1">
-              {{ client.address.street }}
-            </td>
-            <td class="col-md-1 text-right">
-              <a href="{% url 'dashboard-client-detail-view' client.pk %}">
-                <i class="fas fa-external-link-alt"></i>
-              </a>
-              <a href="{% url 'dashboard-client-update-view' client.pk %}">
-                <i class="fas fa-pen text-info"></i>
-              </a>
-              <a href="{% url 'dashboard-client-delete-view' client.pk %}">
-                <i class="fas fa-trash text-danger"></i>
-              </a>
-            </td>
-          </tr>
-        {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <table class="table table-striped table-hover">
+    <thead>
+    <tr class="col-12">
+      <th class="col-md-1">
+        Id
+      </th>
+      <th class="col-md-1">
+        First name
+      </th>
+      <th class="col-md-1">
+        Last name
+      </th>
+      <th class="col-md-1">
+        Country
+      </th>
+      <th class="col-md-1">
+        City
+      </th>
+      <th class="col-md-1">
+        Street
+      </th>
+      <th class="col-md-1 text-end">
+        <a href="{% url 'dashboard-client-create-view' %}">
+          <i class="fas fa-plus"></i>
+        </a>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for client in user_list %}
+      <tr>
+        <td class="col-md-1">
+          {{ client.id }}
+        </td>
+        <td class="col-md-1">
+          {{ client.first_name }}
+        </td>
+        <td class="col-md-1">
+          {{ client.last_name }}
+        </th>
+        <td class="col-md-1">
+          {{ client.address.country }}
+        </td>
+        <td class="col-md-1">
+          {{ client.address.city }}
+        </td>
+        <td class="col-md-1">
+          {{ client.address.street }}
+        </td>
+        <td class="col-md-1 text-end">
+          <a href="{% url 'dashboard-client-detail-view' client.pk %}">
+            <i class="fas fa-external-link-alt"></i>
+          </a>
+          <a href="{% url 'dashboard-client-update-view' client.pk %}">
+            <i class="fas fa-pen text-info"></i>
+          </a>
+          <a href="{% url 'dashboard-client-delete-view' client.pk %}">
+            <i class="fas fa-trash text-danger"></i>
+          </a>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}

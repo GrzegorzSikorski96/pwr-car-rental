@@ -1,136 +1,103 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
 {% include 'layout/header.html' %}
 
-<body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-    <a href="{% url 'welcome-view' %}"><b>PWr</b> caRent</a>
-  </div>
-  <div class="card">
-    <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign up to caRent</p>
-      <form method="post">
-        {% if form.errors %}
-          <div class="alert alert-danger">
-            {% for field, errors in form.errors.items %}
-              <div class="alert-danger">
-                {{ field|escape }}:
-                {% for error in errors %}
-                  {{ error|escape }}
-                {% endfor %}
-              </div>
+{% block styles %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+<body class="text-center">
+<main class="container col-md-6 m-auto">
+  <form method="post">
+    {% csrf_token %}
+    {% if form.errors %}
+      <div class="alert alert-danger">
+        {% for field, errors in form.errors.items %}
+          <div class="alert-danger">
+            {{ field|escape }}:
+            {% for error in errors %}
+              {{ error|escape }}
             {% endfor %}
           </div>
-        {% endif %}
-        {% csrf_token %}
-        Account data
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+
+    <div class="card mb-4">
+      <div class="card-body">
+        <span class="fw-bold">
+          Account data
+        </span>
         <hr>
-        <div class="input-group mb-3">
+        <div class="form-floating mb-2">
           {{ form.email }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
+          <label for="1">Email address</label>
         </div>
-        <div class="input-group mb-3">
+        <div class="form-floating mb-2">
           {{ form.password1 }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
+          <label for="2">Password</label>
         </div>
-        <div class="input-group mb-3">
+        <div class="form-floating mb-2">
           {{ form.password2 }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
+          <label for="floatingPassword2">Password confirmation</label>
         </div>
 
-        Personal data
+        <span class="fw-bold">
+          Personal information
+        </span>
         <hr>
-        <div class="input-group mb-3">
+        <div class="form-floating mb-2">
           {{ form.first_name }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
+          <label for="floatingInput">First Name</label>
         </div>
-        <div class="input-group mb-3">
+        <div class="form-floating mb-2">
           {{ form.last_name }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
+          <label for="floatingInput">Last name</label>
         </div>
-        <div class="input-group mb-3">
+        <div class="form-floating mb-2">
           {{ form.phone_number }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
+          <label for="floatingInput">Phone number</label>
         </div>
 
-        Address
+        <span class="fw-bold">
+          Address
+        </span>
         <hr>
-
-        <div class="input-group mb-3">
+        <div class="form-floating mb-2">
           {{ form.country }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-map-marked-alt"></span>
-            </div>
-          </div>
+          <label for="floatingInput">Country</label>
         </div>
-        <div class="input-group mb-3">
+        <div class="form-floating mb-2">
           {{ form.city }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-map-marked-alt"></span>
-            </div>
-          </div>
+          <label for="floatingInput">City</label>
         </div>
-        <div class="input-group mb-3">
+        <div class="form-floating mb-2">
           {{ form.postal_code }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-map-marked-alt"></span>
-            </div>
-          </div>
+          <label for="floatingInput">Postal code</label>
         </div>
-        <div class="input-group mb-3">
+        <div class="form-floating mb-2">
           {{ form.street }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-map-marked-alt"></span>
-            </div>
-          </div>
+          <label for="floatingInput">Street</label>
         </div>
-        <div class="input-group mb-3">
+        <div class="form-floating mb-2">
           {{ form.number }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-map-marked-alt"></span>
-            </div>
-          </div>
+          <label for="floatingInput">House number</label>
         </div>
-
-        <div class="row">
-          <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-          <a href="{% url 'welcome-view' %}" class="btn btn-secondary btn-block">Back</a>
-        </div>
-
-        <input type="hidden" name="next" value={{ request.GET.next }}>
-      </form>
+      </div>
     </div>
-  </div>
-</div>
 
-{% include 'layout/scripts.html' %}
-
-
+    <input type="hidden" name="next" value={{ request.GET.next }}>
+    <button class="w-100 btn btn-lg btn-primary mb-2" type="submit">Sign up</button>
+    <a class="w-100 btn btn-lg btn-secondary mb-2" href="{% url 'welcome-view' %}">Back</a>
+    <a class="btn mb-4 text-primary"
+       href="{% url 'core-login-view' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}">
+      Already have an account? Sign in
+    </a>
+  </form>
+</main>
+</body>
+</html>

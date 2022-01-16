@@ -20,57 +20,50 @@
     <div class="p-2">
       {% csrf_token %}
 
-      <div class="card">
-        <div class="card-header text-bold">
+      <div class="card mb-4">
+        <div class="card-header fw-bold">
           Rent details
         </div>
         <div class="card-body">
           Rented by
           <div class="input-group mb-3">
             {{ form.rented_by }}
-            <div class="input-group-append">
-              <div class="input-group-text">
+            <span class="input-group-text" id="basic-addon2">
                 <span class="fas fa-user"></span>
-              </div>
-            </div>
+            </span>
           </div>
           Rented car
           <div class="input-group mb-3">
             {{ form.rented_car }}
-            <div class="input-group-append">
-              <div class="input-group-text">
+            <span class="input-group-text" id="basic-addon2">
                 <span class="fas fa-car"></span>
-              </div>
-            </div>
+            </span>
           </div>
           Rented at
           <div class="input-group mb-3">
             {{ form.rented_at }}
-            <div class="input-group-append">
-              <div class="input-group-text">
+            <span class="input-group-text" id="basic-addon2">
                 <span class="fas fa-calendar"></span>
-              </div>
-            </div>
+            </span>
           </div>
           Rented to
           <div class="input-group mb-3">
             {{ form.rented_to }}
-            <div class="input-group-append">
-              <div class="input-group-text">
+            <span class="input-group-text" id="basic-addon2">
                 <span class="fas fa-calendar"></span>
-              </div>
-            </div>
+            </span>
           </div>
         </div>
       </div>
     </div>
   </form>
 
-  <div class="card">
-  <div class="card-footer text-right">
-    <a class="mb-2 mr-2 btn btn-shadow ml-3 btn-outline-danger" href="{% url 'dashboard-rents-list-view' %}">Cancel</a>
-    <button class="mb-2 btn btn-shadow btn-primary" type="submit" form="updateRent" value="Save">Save</button>
-  </div>
+  <div class="card mb-4">
+    <div class="card-footer text-center">
+      <a class="mb-2 mr-2 btn btn-shadow ml-3 btn-outline-danger"
+         href="{% url 'dashboard-rents-list-view' %}">Cancel</a>
+      <button class="mb-2 btn btn-shadow btn-primary" type="submit" form="updateRent" value="Save">Save</button>
+    </div>
   </div>
 
 {% endblock %}
