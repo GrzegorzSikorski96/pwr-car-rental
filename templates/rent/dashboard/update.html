@@ -1,0 +1,69 @@
+{% extends "layout/dashboard-base.html" %}
+
+{% block title %}
+  Update rent
+{% endblock %}
+
+{% block breadcumbs %}
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-view' %}">Dashboard</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-rents-list-view' %}">Rents</a></li>
+  <li class="breadcrumb-item">Update - #{{ rent.id }}</li>
+{% endblock %}
+
+{% block content %}
+  <form id="updateRent" method="post">
+    {% if form.errors %}
+      <div class="alert alert-danger">
+        {{ form.errors }}
+      </div>
+    {% endif %}
+    <div class="p-2">
+      {% csrf_token %}
+
+      <div class="card mb-4">
+        <div class="card-header fw-bold">
+            Rent details
+        </div>
+        <div class="card-body">
+          Rented by
+          <div class="input-group mb-3">
+            {{ form.rented_by }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fa-user"></span>
+            </span>
+          </div>
+          Rented car
+          <div class="input-group mb-3">
+            {{ form.rented_car }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fa-car"></span>
+            </span>
+          </div>
+          Rented at
+          <div class="input-group mb-3">
+            {{ form.rented_at }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fa-calendar"></span>
+            </span>
+          </div>
+          Rented to
+          <div class="input-group mb-3">
+            {{ form.rented_to }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fa-calendar"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="card mb-5">
+    <div class="card-footer text-center">
+      <a class="mb-2 mr-2 btn btn-shadow ml-3 btn-outline-danger"
+         href="{% url 'dashboard-rents-list-view' %}">Cancel</a>
+      <button class="mb-2 btn btn-shadow btn-primary" type="submit" form="updateRent" value="Save">Save</button>
+    </div>
+  </div>
+
+{% endblock %}

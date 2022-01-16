@@ -1,0 +1,50 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+{% include 'layout/header.html' %}
+
+{% block styles %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/signin.css' %}">
+{% endblock %}
+
+<body class="text-center">
+
+<main class="col-md-6 mx-auto p-2">
+  <form method="post">
+    {% if form.errors %}
+      <div class="alert alert-danger">
+        {% for field, errors in form.errors.items %}
+          <div class="alert-danger">
+            {{ field|escape }}:
+            {% for error in errors %}
+              {{ error|escape }}
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="form-floating mb-2">
+      {{ form.username }}
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating mb-4">
+      {{ form.password }}
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <input type="hidden" name="next" value={{ request.GET.next }}>
+
+    <button class="w-100 btn btn-lg btn-primary mb-2" type="submit">Sign up</button>
+    <a class="w-100 btn btn-lg btn-secondary mb-2" href="{% url 'welcome-view' %}">Back</a>
+    <a class="btn mb-4 text-primary"
+       href="{% url 'core-register-view' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}">
+      Don't have an account yet? Sign Up
+    </a>
+  </form>
+</main>
+</body>
+</html>

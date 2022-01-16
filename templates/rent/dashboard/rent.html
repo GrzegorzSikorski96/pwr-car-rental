@@ -1,0 +1,167 @@
+{% extends "layout/dashboard-base.html" %}
+{% load template_filetrs %}
+{% load static %}
+
+{% block title %}
+  #{{ rent.id }} - {{ rent.rented_by.first_name }} {{ rent.rented_by.last_name }}
+{% endblock %}
+
+{% block breadcumbs %}
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-view' %}">Dashboard</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-rents-list-view' %}">Rents</a></li>
+  <li class="breadcrumb-item">#{{ rent.id }}</li>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-3">
+      <div class="card">
+        <div class="card-header fw-bold">
+          <div class="row">
+            <div class="col-11">
+              Client details
+            </div>
+            <div class="col-1">
+              <a href="{% url 'dashboard-client-detail-view' rent.rented_by_id %}">
+                <i class="fa fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              First name
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ user.first_name }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Last name
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ user.last_name }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              E-mail
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ user.email }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Phone number
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ user.phone_number }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-3">
+      <div class="card">
+        <div class="card-header fw-bold">
+          <div class="row">
+            <div class="col-11">
+              Car details
+            </div>
+            <div class="col-1">
+              <a href="{% url 'dashboard-car-detail-view' rent.rented_car_id %}">
+                <i class="fa fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Manufacturer
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ rent.rented_car.manufacturer }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Model
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ rent.rented_car.model }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Mileage
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ rent.rented_car.mileage }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Production
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ rent.rented_car.production_date }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-3">
+      <div class="card">
+        <div class="card-header fw-bold">
+          <div class="row">
+            <div class="col-11">
+              Rent details
+            </div>
+            <div class="col-1">
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Rented at / to
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ rent.rented_at }} / {{ rent.rented_to }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Daily price
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ rent.rented_car.daily_rent_price }} zł
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Weekly price
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ rent.rented_car.weekly_rent_price }} zł
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Monthly
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ rent.rented_car.monthly_rent_price }} zł
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

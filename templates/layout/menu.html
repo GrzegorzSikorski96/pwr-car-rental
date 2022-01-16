@@ -1,0 +1,38 @@
+<ul class="nav flex-column">
+  <li class="nav-item">
+    <a href="{% url 'dashboard-view' %}"
+       class="nav-link {% if request.resolver_match.url_name == 'dashboard-view' %} active {% endif %}">
+      <i class="fas fa-th"></i>
+      Dashboard
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a href="{% url 'dashboard-cars-list-view' %}"
+       class="nav-link {% if request.resolver_match.url_name == 'dashboard-cars-list-view' %} active {% endif %}">
+      <i class="fas fa-car"></i>
+      Cars
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a href="{% url 'dashboard-clients-list-view' %}"
+       class="nav-link {% if request.resolver_match.url_name == 'dashboard-clients-list-view' %} active {% endif %}">
+      <i class="fas fa-users"></i>
+      Clients
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a href="{% url 'dashboard-rents-list-view' %}"
+       class="nav-link {% if request.resolver_match.url_name == 'dashboard-rents-list-view' %} active {% endif %}">
+      <i class="fas fa-exchange-alt"></i>
+      Rents
+    </a>
+  </li>
+</ul>
+
+<a href="{% url 'core-logout' %}" class="nav-link text-danger fixed-bottom">
+  <i class="fa fa-sign-out-alt"></i>
+  Sign out
+</a>

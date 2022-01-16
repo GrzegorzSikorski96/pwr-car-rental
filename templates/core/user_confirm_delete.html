@@ -1,0 +1,21 @@
+{% extends "layout/dashboard-base.html" %}
+{% load template_filetrs %}
+{% load static %}
+
+{% block title %}
+  <strong class="text-danger">DELETE CLIENT</strong> {{ user }}
+{% endblock %}
+
+{% block breadcumbs %}
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-view' %}">Dashboard</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-clients-list-view' %}">Rents</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-client-detail-view' user.id %}">#{{ user.id }}</a></li>
+  <li class="breadcrumb-item text-danger">Delete - {{ user }}</li>
+{% endblock %}
+
+{% block content %}
+  <form method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input class="btn btn-danger" type="submit" value="Confirm">
+  </form>
+{% endblock %}

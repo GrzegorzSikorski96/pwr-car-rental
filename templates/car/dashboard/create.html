@@ -1,0 +1,211 @@
+{% extends "layout/dashboard-base.html" %}
+
+{% block title %}
+  Add car
+{% endblock %}
+
+{% block breadcumbs %}
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-view' %}">Dashboard</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-cars-list-view' %}">Cars</a></li>
+  <li class="breadcrumb-item">Create</li>
+{% endblock %}
+
+{% block content %}
+  <form id="createCar" method="post">
+    {% if form.errors %}
+      <div class="alert alert-danger">
+        {{ form.errors }}
+      </div>
+    {% endif %}
+    <div class="p-2">
+      {% csrf_token %}
+
+      <div class="card mb-4">
+        <div class="card-header fw-bold">
+          Car Details
+        </div>
+        <div class="card-body">
+          Manufacturer
+          <div class="input-group mb-3">
+            {{ form.manufacturer }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fa-car"></span>
+            </span>
+          </div>
+          Model
+          <div class="input-group mb-3">
+            {{ form.model }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-car"></span>
+            </span>
+          </div>
+          Mileage
+          <div class="input-group mb-3">
+            {{ form.mileage }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-tachometer-alt"></span>
+            </span>
+          </div>
+          Production date
+          <div class="input-group mb-3">
+            {{ form.production_date }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-calendar"></span>
+            </span>
+          </div>
+
+          Air conditioning
+          <div class="input-group mb-3">
+            <select name="air_conditioning" class="form-control">
+              <option value="true">True</option>
+              <option value="false">False</option>
+            </select>
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-snowflake"></span>
+            </span>
+          </div>
+
+          Transmission type
+          <div class="input-group mb-3">
+            {{ form.transmission_type }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-car"></span>
+            </span>
+          </div>
+          Drivetrain type
+          <div class="input-group mb-3">
+            {{ form.drivetrain_type }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-truck-monster"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-header fw-bold">
+         Car body details
+        </div>
+
+        <div class="card-body">
+          Body type
+          <div class="input-group mb-3">
+            {{ form.body_type }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-car"></span>
+            </span>
+          </div>
+          Seats
+          <div class="input-group mb-3">
+            {{ form.seats }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-users"></span>
+            </span>
+          </div>
+          Trunk volume (luggage)
+          <div class="input-group mb-3">
+            {{ form.trunk_volume }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-luggage-cart"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card mb-4">
+        <div class="card-header fw-bold">
+          Engine details
+        </div>
+        <div class="card-body">
+          Engine horsepower
+          <div class="input-group mb-3">
+            {{ form.horsepower }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-car"></span>
+            </span>
+          </div>
+          Engine volume
+          <div class="input-group mb-3">
+            {{ form.volume }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-car"></span>
+            </span>
+          </div>
+          Engine fuel type
+          <div class="input-group mb-3">
+            {{ form.fuel_type }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-gas-pump"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-header fw-bold">
+          Rent pricing
+        </div>
+        <div class="card-body">
+          Daily rent price
+          <div class="input-group mb-3">
+            {{ form.daily_rent_price }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-dollar-sign"></span>
+            </span>
+          </div>
+          Weekly rent price
+          <div class="input-group mb-3">
+            {{ form.weekly_rent_price }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-dollar-sign"></span>
+            </span>
+          </div>
+          Monthly rent price
+          <div class="input-group mb-3">
+            {{ form.monthly_rent_price }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-dollar-sign"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-header fw-bold">
+          Servicing details
+        </div>
+        <div class="card-body">
+          Service mileage interval
+          <div class="input-group mb-3">
+            {{ form.service_mileage_interval }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-road"></span>
+            </span>
+          </div>
+          Insured date
+          <div class="input-group mb-3">
+            {{ form.insured_date }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-calendar"></span>
+            </span>
+          </div>
+          Technical overview date
+          <div class="input-group mb-3">
+            {{ form.technical_overview_date }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-calendar"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="card mb-4">
+    <div class="card-footer text-center">
+      <a class="mb-2 mr-2 btn btn-shadow ml-3 btn-outline-danger" href="{% url 'dashboard-cars-list-view' %}">Cancel</a>
+      <button class="mb-2 btn btn-shadow btn-primary" type="submit" form="createCar" value="Save">Save</button>
+    </div>
+  </div>
+{% endblock %}
