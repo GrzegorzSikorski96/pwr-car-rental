@@ -9,10 +9,9 @@
 {% endblock %}
 
 <body class="text-center">
-
-<main class="form-signin">
-<div class="container-fluid">
+<main class="container col-md-6 m-auto">
   <form method="post">
+    {% csrf_token %}
     {% if form.errors %}
       <div class="alert alert-danger">
         {% for field, errors in form.errors.items %}
@@ -30,59 +29,75 @@
 
     <div class="card mb-4">
       <div class="card-body">
-        <div class="form-floating">
+        <span class="fw-bold">
+          Account data
+        </span>
+        <hr>
+        <div class="form-floating mb-2">
           {{ form.email }}
           <label for="1">Email address</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-2">
           {{ form.password1 }}
           <label for="2">Password</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-2">
           {{ form.password2 }}
           <label for="floatingPassword2">Password confirmation</label>
         </div>
-        <div class="form-floating">
+
+        <span class="fw-bold">
+          Personal information
+        </span>
+        <hr>
+        <div class="form-floating mb-2">
           {{ form.first_name }}
           <label for="floatingInput">First Name</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-2">
           {{ form.last_name }}
           <label for="floatingInput">Last name</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-2">
           {{ form.phone_number }}
           <label for="floatingInput">Phone number</label>
         </div>
-        <div class="form-floating">
+
+        <span class="fw-bold">
+          Address
+        </span>
+        <hr>
+        <div class="form-floating mb-2">
           {{ form.country }}
           <label for="floatingInput">Country</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-2">
           {{ form.city }}
           <label for="floatingInput">City</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-2">
           {{ form.postal_code }}
           <label for="floatingInput">Postal code</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-2">
           {{ form.street }}
           <label for="floatingInput">Street</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-2">
           {{ form.number }}
           <label for="floatingInput">House number</label>
         </div>
       </div>
     </div>
 
-
-    <button class="w-100 btn btn-lg btn-primary mb-2" type="submit">Sign in</button>
-    <a class="w-100 btn btn-lg btn-secondary" href="{% url 'welcome-view' %}">Back</a>
+    <input type="hidden" name="next" value={{ request.GET.next }}>
+    <button class="w-100 btn btn-lg btn-primary mb-2" type="submit">Sign up</button>
+    <a class="w-100 btn btn-lg btn-secondary mb-2" href="{% url 'welcome-view' %}">Back</a>
+    <a class="btn mb-4 text-primary"
+       href="{% url 'core-login-view' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}">
+      Already have an account? Sign in
+    </a>
   </form>
-</div>
-
 </main>
 </body>
 </html>

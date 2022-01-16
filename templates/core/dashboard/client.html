@@ -16,39 +16,39 @@
   <div class="row">
     <div class="col-12 col-md-4 mb-3">
       <div class="card">
-        <div class="card-header">
-          <strong>
-            Client details
-          </strong>
+        <div class="card-header fw-bold">
+
+          Client details
+
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="col-md-4 text-bold">
-              <strong>First name</strong>
+            <div class="col-md-4 fw-bold">
+              First name
             </div>
             <div class="col-md-8">
               {{ user.first_name }}
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4">
-              <strong>Last name</strong>
+            <div class="col-md-4 fw-bold">
+              Last name
             </div>
             <div class="col-md-8">
               {{ user.last_name }}
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4">
-              <strong>E-mail</strong>
+            <div class="col-md-4 fw-bold">
+              E-mail
             </div>
             <div class="col-md-8">
               {{ user.email }}
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4">
-              <strong>Phone number</strong>
+            <div class="col-md-4 fw-bold">
+              Phone number
             </div>
             <div class="col-md-8">
               {{ user.phone_number }}
@@ -60,39 +60,39 @@
 
     <div class="col-12 col-md-4 mb-3">
       <div class="card">
-        <div class="card-header">
-          <strong>
-            Client address
-          </strong>
+        <div class="card-header fw-bold">
+
+          Client address
+
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="col-md-4 text-bold">
-              <strong>Country</strong>
+            <div class="col-md-4 fw-bold">
+              Country
             </div>
             <div class="col-md-8">
               {{ user.address.country }}
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4">
-              <strong>City</strong>
+            <div class="col-md-4 fw-bold">
+              City
             </div>
             <div class="col-md-8">
               {{ user.address.city }}
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4">
-              <strong>Street</strong>
+            <div class="col-md-4 fw-bold">
+              Street
             </div>
             <div class="col-md-8">
               {{ user.address.postal_code }}
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4">
-              <strong>Street / number</strong>
+            <div class="col-md-4 fw-bold">
+              Street / number
             </div>
             <div class="col-md-8">
               {{ user.address.street }} / {{ user.address.number }}
@@ -104,38 +104,43 @@
   </div>
 
   {% if user.rents.count > 0 %}
-    <div class="card mb-4">
-      <div class="card-header text-bold">
-        Rents
-      </div>
-      <div class="card-body">
-        <table class="table table-responsive">
-          <thead>
-          <tr>
-            <th>Rented at</th>
-            <th>Rented to</th>
-            <th>Rented car</th>
-          </tr>
-          </thead>
-          <tbody>
-          {% for rent in user.rents.all %}
-            <tr>
-              <td>
-                {{ rent.rented_at }}
-              </td>
-              <td>
-                {{ rent.rented_to }}
-              </td>
-              <td>
-                <a href="{% url 'dashboard-car-detail-view' rent.rented_car_id %}">
-                {{ rent.rented_car }}
-                </a>
-              </td>
-            </tr>
-          {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <h3>Rents</h3>
+    <hr>
+    <table class="table table-striped table-hover">
+      <thead>
+      <tr>
+        <th>Rent id</th>
+        <th>Rented at</th>
+        <th>Rented to</th>
+        <th>Rented car</th>
+        <th class="text-end">Rent details</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for rent in user.rents.all %}
+        <tr>
+          <td>
+            {{ rent.id }}
+          </td>
+          <td>
+            {{ rent.rented_at }}
+          </td>
+          <td>
+            {{ rent.rented_to }}
+          </td>
+          <td>
+            <a href="{% url 'dashboard-car-detail-view' rent.rented_car_id %}">
+              {{ rent.rented_car }}
+            </a>
+          </td>
+          <td class="text-end">
+            <a href="{% url 'dashboard-rent-detail-view' rent.id %}">
+              <i class="fa fa-external-link-alt"></i>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
   {% endif %}
 {% endblock %}
