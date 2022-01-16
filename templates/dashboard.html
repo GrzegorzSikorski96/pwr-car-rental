@@ -9,5 +9,89 @@
 {% endblock %}
 
 {% block content %}
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-3">
+      <div class="card">
+        <div class="card-header fw-bold">
+          Cars statistics
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Rented
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ rented }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Need service
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ need_service }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              In service
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ in_service }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              ready to rent
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ ready_to_rent }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-3">
+      <div class="card">
+        <div class="card-header fw-bold">
+          Rental statistics
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Employee
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ employees }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Clients
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ clients }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Cars
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ cars }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              rents
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ rents }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+  </div>
 {% endblock %}

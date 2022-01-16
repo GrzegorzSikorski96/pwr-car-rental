@@ -71,10 +71,14 @@
             {{ car.trunk_volume }}
           </td>
           <td>
-            {% if car.rent.id %}
-              <span class="badge rounded-pill bg-success">Ready to rent</span>
-            {% else %}
-              <span class="badge rounded-pill bg-warning">Rented</span>
+            {% if car.status == 'rented' %}
+              <span class="badge rounded-pill bg-success">{{ car.status }}</span>
+            {% elif car.status == 'need service' %}
+              <span class="badge rounded-pill bg-danger">{{ car.status }}</span>
+            {% elif car.staus == 'in service' %}
+              <span class="badge rounded-pill bg-info">{{ car.status }}</span>
+            {% elif car.status == 'ready to rent' %}
+              <span class="badge rounded-pill bg-warning">{{ car.status }}</span>
             {% endif %}
           </td>
           <td class="col-md-1 text-end">
