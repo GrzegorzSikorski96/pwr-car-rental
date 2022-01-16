@@ -1,54 +1,44 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
 {% include 'layout/header.html' %}
 
-<body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-    <a href="{% url 'welcome-view' %}"><b>PWr</b> caRent</a>
-  </div>
-  <div class="card">
-    <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to you caRent account</p>
-      <form method="post">
-        {% if form.errors %}
-          <div class="alert alert-danger">
-            {% for field, errors in form.errors.items %}
-              <div class="alert-danger">
-                {{ field|escape }}:
-                {% for error in errors %}
-                  {{ error|escape }}
-                {% endfor %}
-              </div>
+{% block styles %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/signin.css' %}">
+{% endblock %}
+
+<body class="text-center">
+
+<main class="form-signin">
+  <form method="post">
+    {% if form.errors %}
+      <div class="alert alert-danger">
+        {% for field, errors in form.errors.items %}
+          <div class="alert-danger">
+            {{ field|escape }}:
+            {% for error in errors %}
+              {{ error|escape }}
             {% endfor %}
           </div>
-        {% endif %}
-        {% csrf_token %}
-        <div class="input-group mb-3">
-          {{ form.username }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          {{ form.password }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-          <a href="{% url 'welcome-view' %}" class="btn btn-secondary btn-block">Back</a>
-        </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-        <input type="hidden" name="next" value={{ request.GET.next }}>
-      </form>
+    <div class="form-floating">
+      {{ form.username }}
+      <label for="floatingInput">Email address</label>
     </div>
-  </div>
-</div>
+    <div class="form-floating">
+      {{ form.password }}
+      <label for="floatingPassword">Password</label>
+    </div>
 
-{% include 'layout/scripts.html' %}
-
-
+    <button class="w-100 btn btn-lg btn-primary mb-2" type="submit">Sign in</button>
+    <a class="w-100 btn btn-lg btn-secondary" href="{% url 'welcome-view' %}">Back</a>
+  </form>
+</main>
+</body>
+</html>

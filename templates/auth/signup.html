@@ -1,136 +1,88 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
 {% include 'layout/header.html' %}
 
-<body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-    <a href="{% url 'welcome-view' %}"><b>PWr</b> caRent</a>
-  </div>
-  <div class="card">
-    <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign up to caRent</p>
-      <form method="post">
-        {% if form.errors %}
-          <div class="alert alert-danger">
-            {% for field, errors in form.errors.items %}
-              <div class="alert-danger">
-                {{ field|escape }}:
-                {% for error in errors %}
-                  {{ error|escape }}
-                {% endfor %}
-              </div>
+{% block styles %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+<body class="text-center">
+
+<main class="form-signin">
+<div class="container-fluid">
+  <form method="post">
+    {% if form.errors %}
+      <div class="alert alert-danger">
+        {% for field, errors in form.errors.items %}
+          <div class="alert-danger">
+            {{ field|escape }}:
+            {% for error in errors %}
+              {{ error|escape }}
             {% endfor %}
           </div>
-        {% endif %}
-        {% csrf_token %}
-        Account data
-        <hr>
-        <div class="input-group mb-3">
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="form-floating">
           {{ form.email }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
+          <label for="1">Email address</label>
         </div>
-        <div class="input-group mb-3">
+        <div class="form-floating">
           {{ form.password1 }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
+          <label for="2">Password</label>
         </div>
-        <div class="input-group mb-3">
+        <div class="form-floating">
           {{ form.password2 }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
+          <label for="floatingPassword2">Password confirmation</label>
         </div>
-
-        Personal data
-        <hr>
-        <div class="input-group mb-3">
+        <div class="form-floating">
           {{ form.first_name }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
+          <label for="floatingInput">First Name</label>
         </div>
-        <div class="input-group mb-3">
+        <div class="form-floating">
           {{ form.last_name }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
+          <label for="floatingInput">Last name</label>
         </div>
-        <div class="input-group mb-3">
+        <div class="form-floating">
           {{ form.phone_number }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
+          <label for="floatingInput">Phone number</label>
         </div>
-
-        Address
-        <hr>
-
-        <div class="input-group mb-3">
+        <div class="form-floating">
           {{ form.country }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-map-marked-alt"></span>
-            </div>
-          </div>
+          <label for="floatingInput">Country</label>
         </div>
-        <div class="input-group mb-3">
+        <div class="form-floating">
           {{ form.city }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-map-marked-alt"></span>
-            </div>
-          </div>
+          <label for="floatingInput">City</label>
         </div>
-        <div class="input-group mb-3">
+        <div class="form-floating">
           {{ form.postal_code }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-map-marked-alt"></span>
-            </div>
-          </div>
+          <label for="floatingInput">Postal code</label>
         </div>
-        <div class="input-group mb-3">
+        <div class="form-floating">
           {{ form.street }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-map-marked-alt"></span>
-            </div>
-          </div>
+          <label for="floatingInput">Street</label>
         </div>
-        <div class="input-group mb-3">
+        <div class="form-floating">
           {{ form.number }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-map-marked-alt"></span>
-            </div>
-          </div>
+          <label for="floatingInput">House number</label>
         </div>
-
-        <div class="row">
-          <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-          <a href="{% url 'welcome-view' %}" class="btn btn-secondary btn-block">Back</a>
-        </div>
-
-        <input type="hidden" name="next" value={{ request.GET.next }}>
-      </form>
+      </div>
     </div>
-  </div>
+
+
+    <button class="w-100 btn btn-lg btn-primary mb-2" type="submit">Sign in</button>
+    <a class="w-100 btn btn-lg btn-secondary" href="{% url 'welcome-view' %}">Back</a>
+  </form>
 </div>
 
-{% include 'layout/scripts.html' %}
-
-
+</main>
+</body>
+</html>

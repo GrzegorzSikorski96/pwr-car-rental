@@ -1,7 +1,7 @@
 {% extends "layout/dashboard-base.html" %}
 
 {% block title %}
-  Add new car
+  Add car
 {% endblock %}
 
 {% block breadcumbs %}
@@ -20,46 +20,38 @@
     <div class="p-2">
       {% csrf_token %}
 
-      <div class="card">
+      <div class="card mb-4">
         <div class="card-header text-bold">
-          Car Details
+          <strong>Car Details</strong>
         </div>
         <div class="card-body">
           Manufacturer
           <div class="input-group mb-3">
             {{ form.manufacturer }}
-            <div class="input-group-append">
-              <div class="input-group-text">
+            <span class="input-group-text" id="basic-addon2">
                 <span class="fas fa-car"></span>
-              </div>
-            </div>
+            </span>
           </div>
           Model
           <div class="input-group mb-3">
             {{ form.model }}
-            <div class="input-group-append">
-              <div class="input-group-text">
+            <span class="input-group-text" id="basic-addon2">
                 <span class="fas fas fa-car"></span>
-              </div>
-            </div>
+            </span>
           </div>
           Mileage
           <div class="input-group mb-3">
             {{ form.mileage }}
-            <div class="input-group-append">
-              <div class="input-group-text">
+            <span class="input-group-text" id="basic-addon2">
                 <span class="fas fas fa-tachometer-alt"></span>
-              </div>
-            </div>
+            </span>
           </div>
           Production date
           <div class="input-group mb-3">
             {{ form.production_date }}
-            <div class="input-group-append">
-              <div class="input-group-text">
+            <span class="input-group-text" id="basic-addon2">
                 <span class="fas fas fa-calendar"></span>
-              </div>
-            </div>
+            </span>
           </div>
 
           Air conditioning
@@ -68,180 +60,152 @@
               <option value="true">True</option>
               <option value="false">False</option>
             </select>
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-snowflake"></span>
-              </div>
-            </div>
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-snowflake"></span>
+            </span>
           </div>
 
           Transmission type
           <div class="input-group mb-3">
             {{ form.transmission_type }}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-car"></span>
-              </div>
-            </div>
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-car"></span>
+            </span>
           </div>
           Drivetrain type
           <div class="input-group mb-3">
             {{ form.drivetrain_type }}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-truck-monster"></span>
-              </div>
-            </div>
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-truck-monster"></span>
+            </span>
           </div>
         </div>
       </div>
 
-      <div class="card">
+      <div class="card mb-4">
         <div class="card-header text-bold">
-          Car body details
+         <strong>Car body details</strong>
         </div>
 
         <div class="card-body">
           Body type
           <div class="input-group mb-3">
             {{ form.body_type }}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-car"></span>
-              </div>
-            </div>
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-car"></span>
+            </span>
           </div>
           Seats
           <div class="input-group mb-3">
             {{ form.seats }}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-users"></span>
-              </div>
-            </div>
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-users"></span>
+            </span>
           </div>
           Trunk volume (luggage)
           <div class="input-group mb-3">
             {{ form.trunk_volume }}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-luggage-cart"></span>
-              </div>
-            </div>
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-luggage-cart"></span>
+            </span>
           </div>
         </div>
       </div>
 
 
-      <div class="card">
+      <div class="card mb-4">
         <div class="card-header text-bold">
-          Engine details
+          <strong>Engine details</strong>
         </div>
         <div class="card-body">
           Engine horsepower
           <div class="input-group mb-3">
             {{ form.horsepower }}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-car"></span>
-              </div>
-            </div>
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-car"></span>
+            </span>
           </div>
           Engine volume
           <div class="input-group mb-3">
             {{ form.volume }}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-car"></span>
-              </div>
-            </div>
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-car"></span>
+            </span>
           </div>
           Engine fuel type
           <div class="input-group mb-3">
             {{ form.fuel_type }}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-gas-pump"></span>
-              </div>
-            </div>
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-gas-pump"></span>
+            </span>
           </div>
         </div>
       </div>
 
-      <div class="card">
+      <div class="card mb-4">
         <div class="card-header text-bold">
-          Rent pricing
+          <strong>Rent pricing</strong>
         </div>
         <div class="card-body">
           Daily rent price
           <div class="input-group mb-3">
             {{ form.daily_rent_price }}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-dollar-sign"></span>
-              </div>
-            </div>
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-dollar-sign"></span>
+            </span>
           </div>
           Weekly rent price
           <div class="input-group mb-3">
             {{ form.weekly_rent_price }}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-dollar-sign"></span>
-              </div>
-            </div>
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-dollar-sign"></span>
+            </span>
           </div>
           Monthly rent price
           <div class="input-group mb-3">
             {{ form.monthly_rent_price }}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-dollar-sign"></span>
-              </div>
-            </div>
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-dollar-sign"></span>
+            </span>
           </div>
         </div>
       </div>
 
-      <div class="card">
+      <div class="card mb-4">
         <div class="card-header text-bold">
-          Servicing details
+          <strong>Servicing details</strong>
         </div>
         <div class="card-body">
           Service mileage interval
           <div class="input-group mb-3">
             {{ form.service_mileage_interval }}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-road"></span>
-              </div>
-            </div>
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-road"></span>
+            </span>
           </div>
           Insured date
           <div class="input-group mb-3">
             {{ form.insured_date }}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-calendar"></span>
-              </div>
-            </div>
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-calendar"></span>
+            </span>
           </div>
           Technical overview date
           <div class="input-group mb-3">
             {{ form.technical_overview_date }}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-calendar"></span>
-              </div>
-            </div>
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fas fa-calendar"></span>
+            </span>
           </div>
         </div>
       </div>
     </div>
   </form>
 
-  <div class="card-footer text-right">
-    <a class="mb-2 mr-2 btn btn-shadow ml-3 btn-outline-danger" href="{% url 'dashboard-cars-list-view' %}">Cancel</a>
-    <button class="mb-2 btn btn-shadow btn-primary" type="submit" form="createCar" value="Save">Save</button>
+  <div class="card mb-4">
+    <div class="card-footer text-center">
+      <a class="mb-2 mr-2 btn btn-shadow ml-3 btn-outline-danger" href="{% url 'dashboard-cars-list-view' %}">Cancel</a>
+      <button class="mb-2 btn btn-shadow btn-primary" type="submit" form="createCar" value="Save">Save</button>
+    </div>
   </div>
 {% endblock %}

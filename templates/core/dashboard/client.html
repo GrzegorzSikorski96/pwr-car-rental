@@ -13,25 +13,129 @@
 {% endblock %}
 
 {% block content %}
-  <div class="card">
-    <div class="card-header">
-      Client {{ user.first_name }} {{ user.last_name }}
+  <div class="row">
+    <div class="col-12 col-md-4 mb-3">
+      <div class="card">
+        <div class="card-header">
+          <strong>
+            Client details
+          </strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4 text-bold">
+              <strong>First name</strong>
+            </div>
+            <div class="col-md-8">
+              {{ user.first_name }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <strong>Last name</strong>
+            </div>
+            <div class="col-md-8">
+              {{ user.last_name }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <strong>E-mail</strong>
+            </div>
+            <div class="col-md-8">
+              {{ user.email }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <strong>Phone number</strong>
+            </div>
+            <div class="col-md-8">
+              {{ user.phone_number }}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="card-body">
-      First name: {{ user.first_name }}<br>
-      Last name: {{ user.last_name }}<br>
-      Email: {{ user.email }}<br>
-      Phone number: {{ user.phone_number }}<br>
-      <br>
-      Address
-      <hr>
-      Country: {{ user.address.country }} <br>
-      City: {{ user.address.city }} <br>
-      Postal code: {{ user.address.postal_code }} <br>
-      Street: {{ user.address.street }} <br>
-      Number: {{ user.address.number }} <br>
-
+    <div class="col-12 col-md-4 mb-3">
+      <div class="card">
+        <div class="card-header">
+          <strong>
+            Client address
+          </strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4 text-bold">
+              <strong>Country</strong>
+            </div>
+            <div class="col-md-8">
+              {{ user.address.country }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <strong>City</strong>
+            </div>
+            <div class="col-md-8">
+              {{ user.address.city }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <strong>Street</strong>
+            </div>
+            <div class="col-md-8">
+              {{ user.address.postal_code }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <strong>Street / number</strong>
+            </div>
+            <div class="col-md-8">
+              {{ user.address.street }} / {{ user.address.number }}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+  {% if user.rents.count > 0 %}
+    <div class="card mb-4">
+      <div class="card-header text-bold">
+        Rents
+      </div>
+      <div class="card-body">
+        <table class="table table-responsive">
+          <thead>
+          <tr>
+            <th>Rented at</th>
+            <th>Rented to</th>
+            <th>Rented car</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for rent in user.rents.all %}
+            <tr>
+              <td>
+                {{ rent.rented_at }}
+              </td>
+              <td>
+                {{ rent.rented_to }}
+              </td>
+              <td>
+                <a href="{% url 'dashboard-car-detail-view' rent.rented_car_id %}">
+                {{ rent.rented_car }}
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  {% endif %}
 {% endblock %}

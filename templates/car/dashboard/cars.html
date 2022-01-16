@@ -13,11 +13,11 @@
 {% block content %}
   <div class="card">
     <div class="card-body p-0">
-      <table id="test-table" class="table table-striped projects">
+      <table class="table table-striped table-hover">
         <thead>
         <tr class="col-12">
           <th class="col-md-1">
-            System id
+            Id
           </th>
           <th class="col-md-1">
             Manufacturer
@@ -37,16 +37,7 @@
           <th class="col-md-1">
             Trunk volume
           </th>
-          <th class="col-md-1">
-            Daily price
-          </th>
-          <th class="col-md-1">
-            Weekly price
-          </th>
-          <th class="col-md-1">
-            Monthly price
-          </th>
-          <th class="col-md-1">
+          <th class="col-md-2">
             Status
           </th>
           <th class="col-md-1 text-right">
@@ -80,25 +71,14 @@
             <td class="col-md-1">
               {{ car.trunk_volume }}
             </td>
-            <td class="col-md-1">
-              {{ car.daily_rent_price }}
-            </td>
-            <td class="col-md-1">
-              {{ car.weekly_rent_price }}
-            </td>
-            <td class="col-md-1">
-              {{ car.monthly_rent_price }}
-            </td>
-            <td class="col-md-1">
-              {% if car.rent is not None %}
-                <i class="nav-icon far fa-circle text-warning"></i>
-                <p>Ready to rent</p>
+            <td class="col-md-2">
+              {% if car.rent.id %}
+                <span class="badge rounded-pill bg-success">Ready to rent</span>
               {% else %}
-                <i class="nav-icon far fa-circle text-success"></i>
-                <p>Rented</p>
+                <span class="badge rounded-pill bg-warning">Rented</span>
               {% endif %}
             </td>
-            <td class="col-md-1 text-right">
+            <td class="col-md-1">
               <a href="{% url 'dashboard-car-detail-view' car.pk %}">
                 <i class="fas fa-external-link-alt"></i>
               </a>
@@ -112,6 +92,19 @@
           </tr>
         {% endfor %}
         </tbody>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Cars count: {{ car_list.count }}</td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   </div>
