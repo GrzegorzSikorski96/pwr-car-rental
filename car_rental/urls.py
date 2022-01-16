@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include('car.urls')),
     path('', include('core.urls')),
     path('', include('rent.urls')),
+    path('', include('log.urls')),
 ]

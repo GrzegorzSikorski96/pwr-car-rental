@@ -1,9 +1,11 @@
 import datetime
+import uuid
 
 from django.db import models
 from django.utils import timezone
 
 from car.choices.body_type_choices import BodyType
+from car.choices.car_status_choices import CarStatus
 from car.choices.drivetrain_type_choices import DrivetrainType
 from car.choices.fuel_type_choices import FuelType
 from car.choices.transmission_type_choices import TransmissionType
@@ -15,10 +17,11 @@ from log.models import ServiceLog
 class Car(TimeStampMixin):
     manufacturer = models.CharField(max_length=80)
     model = models.CharField(max_length=80)
-    mileage = models.PositiveIntegerField(default=1000)
+    mileage = models.IntegerField(default=1000)
     production_date = models.DateField()
     air_conditioning = models.BooleanField(default=False)
     transmission_type = models.CharField(max_length=15, choices=TransmissionType.TRANSMISSION_TYPE_CHOICES)
+    status = models.CharField(default="ready to rent", max_length=15, choices=CarStatus.CAR_STATUS_CHOICES)
     body_type = models.CharField(max_length=20, choices=BodyType.BODY_TYPE_CHOICES)
     drivetrain_type = models.CharField(max_length=25, choices=DrivetrainType.DRIVETRAIN_TYPE_CHOICES)
     daily_rent_price = models.PositiveIntegerField()
@@ -29,6 +32,7 @@ class Car(TimeStampMixin):
     service_mileage_interval = models.PositiveIntegerField(default=15000)
     insured_date = models.DateField(default=timezone.now)
     technical_overview_date = models.DateField(default=timezone.now)
+    token = models.UUIDField(primary_key=False, default=uuid.uuid4)
     engine = models.ForeignKey(
         'car.Engine',
         on_delete=models.DO_NOTHING,
@@ -67,8 +71,15 @@ class Car(TimeStampMixin):
 
         super(Car, self).delete()
 
-    def last_service(self):
-        return self.services.first()
+    def last_service(self) -> ServiceLog:
+        return self.services.latest('created_at')
+
+    def days_to_service(self):
+        return (self.last_service().next_service_date - datetime.date.today()).days
+
+    def kilometers_to_service(self):
+        kilometers_to_service = self.last_service().next_service_mileage - int(self.mileage)
+        return kilometers_to_service
 
     def __str__(self):
         return "#%d - %s %s" % (self.pk, self.manufacturer, self.model)

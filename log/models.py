@@ -42,8 +42,8 @@ class ServiceLog(TimeStampMixin):
     action = models.CharField(max_length=150)
     description = models.CharField(max_length=255)
     mileage = models.IntegerField()
-    next_service_mileage = models.IntegerField(null=True)
-    next_service_date = models.DateField(null=True)
+    next_service_mileage = models.IntegerField()
+    next_service_date = models.DateField()
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.DO_NOTHING,

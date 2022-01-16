@@ -6,9 +6,11 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
+from car.models import Car
 from core.forms.UserAuthenticationForm import UserAuthenticationForm
 from core.forms.UserRegistrationForm import UserRegistrationForm
 from core.models import Address, User
+from rent.models import Rent
 
 
 def welcome(request):
@@ -20,7 +22,16 @@ def welcome(request):
 def dashboard(request):
     template = 'dashboard.html'
 
-    return render(request, template)
+    return render(request, template, context={
+        "rented": Car.objects.filter(status='rented').count(),
+        "need_service": Car.objects.filter(status='need service').count(),
+        "in_service": Car.objects.filter(status='in service').count(),
+        "ready_to_rent": Car.objects.filter(status='ready to rent').count(),
+        "employees": User.objects.filter(groups__name='employee').count(),
+        "clients": User.objects.filter(groups__name='client').count(),
+        "cars": Car.objects.all().count(),
+        "rents": Rent.objects.all().count()
+    })
 
 
 def core_login(request):

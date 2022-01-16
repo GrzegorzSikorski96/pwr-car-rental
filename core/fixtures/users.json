@@ -72,10 +72,10 @@
       "phone_number": "321321321",
       "is_staff": false,
       "is_active": true,
-      "groups": [],
-      "user_permissions": [
+      "groups": [
         2
       ],
+      "user_permissions": [],
       "address_id": 4
     }
   }

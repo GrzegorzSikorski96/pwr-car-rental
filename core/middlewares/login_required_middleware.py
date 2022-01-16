@@ -3,6 +3,8 @@ from django.urls import reverse
 
 
 class LoginRequiredMiddleware:
+    LOG_URL_PREFIX = '/log'
+
     def __init__(self, get_response):
         self.get_response = get_response
 
@@ -20,6 +22,7 @@ class LoginRequiredMiddleware:
 
     def __is_excluded_route(self, request) -> bool:
         excluded = [
+            request.path.startswith(self.LOG_URL_PREFIX),
             request.path == reverse('core-login-view'),
             request.path == reverse('core-register-view'),
             request.path == reverse('welcome-view'),
