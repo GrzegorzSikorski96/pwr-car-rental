@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView, U
 from django.urls import reverse
 from car.forms.CarForm import CarForm
 from car.models import Car, Engine
+from rent.models import Pricing
 
 
 class DashboardCarsListView(ListView):
@@ -31,7 +32,14 @@ class DashboardCarCreateView(CreateView):
             fuel_type=form.cleaned_data.get("fuel_type"),
         )
 
+        pricing: Pricing = Pricing.objects.create(
+            daily=form.cleaned_data.get("daily"),
+            weekly=form.cleaned_data.get("weekly"),
+            monthly=form.cleaned_data.get("monthly"),
+        )
+
         obj.engine = engine
+        obj.pricing = pricing
         obj.created_by = self.request.user
         obj.updated_by = self.request.user
 
@@ -51,6 +59,7 @@ class DashboardCarUpdateView(UpdateView):
         car = Car.objects.get(id=self.kwargs['pk'])
         car_dict = car.__dict__
         car_dict.update(car.engine.__dict__)
+        car_dict.update(car.pricing.__dict__)
 
         return car_dict
 
@@ -61,6 +70,11 @@ class DashboardCarUpdateView(UpdateView):
         obj.engine.horsepower = int(form.cleaned_data.get("horsepower"))
         obj.engine.fuel_type = form.cleaned_data.get("fuel_type")
         obj.engine.save()
+
+        obj.pricing.daily = int(form.cleaned_data.get("daily"))
+        obj.pricing.weekly = int(form.cleaned_data.get("weekly"))
+        obj.pricing.monthly = int(form.cleaned_data.get("monthly"))
+        obj.pricing.save()
 
         obj.updated_by = self.request.user
 

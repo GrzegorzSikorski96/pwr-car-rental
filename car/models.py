@@ -24,9 +24,6 @@ class Car(TimeStampMixin):
     status = models.CharField(default="ready to rent", max_length=15, choices=CarStatus.CAR_STATUS_CHOICES)
     body_type = models.CharField(max_length=20, choices=BodyType.BODY_TYPE_CHOICES)
     drivetrain_type = models.CharField(max_length=25, choices=DrivetrainType.DRIVETRAIN_TYPE_CHOICES)
-    daily_rent_price = models.PositiveIntegerField()
-    weekly_rent_price = models.PositiveIntegerField()
-    monthly_rent_price = models.PositiveIntegerField()
     seats = models.PositiveIntegerField()
     trunk_volume = models.PositiveIntegerField()
     service_mileage_interval = models.PositiveIntegerField(default=15000)
@@ -37,6 +34,12 @@ class Car(TimeStampMixin):
         'car.Engine',
         on_delete=models.DO_NOTHING,
         related_name='cars'
+    )
+    pricing = models.ForeignKey(
+        'rent.Pricing',
+        on_delete=models.DO_NOTHING,
+        related_name='car',
+        null=True,
     )
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -74,14 +77,14 @@ class Car(TimeStampMixin):
     def last_service(self) -> ServiceLog:
         return self.services.latest('created_at')
 
-    def days_to_service(self):
+    def days_to_service(self) -> int:
         return (self.last_service().next_service_date - datetime.date.today()).days
 
-    def kilometers_to_service(self):
+    def kilometers_to_service(self) -> int:
         kilometers_to_service = self.last_service().next_service_mileage - int(self.mileage)
         return kilometers_to_service
 
-    def __str__(self):
+    def __str__(self) -> str:
         return "#%d - %s %s" % (self.pk, self.manufacturer, self.model)
 
 

@@ -1,0 +1,38 @@
+[
+  {
+    "model": "rent.pricing",
+    "pk": 1,
+    "fields": {
+      "daily": 50,
+      "weekly": 300,
+      "monthly": 1350
+    }
+  },
+  {
+    "model": "rent.pricing",
+    "pk": 2,
+    "fields": {
+      "daily": 40,
+      "weekly": 250,
+      "monthly": 1050
+    }
+  },
+  {
+    "model": "rent.pricing",
+    "pk": 3,
+    "fields": {
+      "daily": 40,
+      "weekly": 250,
+      "monthly": 1050
+    }
+  },
+  {
+    "model": "rent.pricing",
+    "pk": 4,
+    "fields": {
+      "daily": 45,
+      "weekly": 290,
+      "monthly": 1200
+    }
+  }
+]
