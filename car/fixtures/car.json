@@ -11,9 +11,6 @@
       "transmission_type": "manual",
       "body_type": "coupe",
       "drivetrain_type": "all wheel drive",
-      "daily_rent_price": 50,
-      "weekly_rent_price": 300,
-      "monthly_rent_price": 2500,
       "seats": 5,
       "status": "rented",
       "trunk_volume": 2,
@@ -23,6 +20,7 @@
       "created_at": "2019-01-01 23:56:17.918745+00:00",
       "updated_at": "2022-01-01 23:56:17.918745+00:00",
       "engine_id": 1,
+      "pricing_id": 1,
       "created_by_id": 1
     }
   },
@@ -38,9 +36,6 @@
       "transmission_type": "manual",
       "body_type": "hatchback",
       "drivetrain_type": "front wheel drive",
-      "daily_rent_price": 40,
-      "weekly_rent_price": 280,
-      "monthly_rent_price": 2400,
       "seats": 5,
       "status": "ready to rent",
       "trunk_volume": 2,
@@ -50,6 +45,7 @@
       "created_at": "2022-01-01 23:56:17.918745+00:00",
       "updated_at": "2022-01-01 23:56:17.918745+00:00",
       "engine_id": 2,
+      "pricing_id": 2,
       "created_by_id": 1
     }
   },
@@ -65,9 +61,6 @@
       "transmission_type": "manual",
       "body_type": "suv",
       "drivetrain_type": "front wheel drive",
-      "daily_rent_price": 40,
-      "weekly_rent_price": 280,
-      "monthly_rent_price": 2400,
       "seats": 5,
       "status": "ready to rent",
       "trunk_volume": 2,
@@ -77,6 +70,7 @@
       "created_at": "2022-01-01 23:56:17.918745+00:00",
       "updated_at": "2022-01-01 23:56:17.918745+00:00",
       "engine_id": 3,
+      "pricing_id": 3,
       "created_by_id": 1
     }
   },
@@ -92,9 +86,6 @@
       "transmission_type": "automatic",
       "body_type": "cabriolet",
       "drivetrain_type": "rear wheel drive",
-      "daily_rent_price": 45,
-      "weekly_rent_price": 290,
-      "monthly_rent_price": 2450,
       "seats": 5,
       "status": "rented",
       "trunk_volume": 3,
@@ -104,6 +95,7 @@
       "created_at": "2022-01-01 23:56:17.918745+00:00",
       "updated_at": "2022-01-01 23:56:17.918745+00:00",
       "engine_id": 4,
+      "pricing_id": 4,
       "created_by_id": 1
     }
   }

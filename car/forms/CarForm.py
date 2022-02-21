@@ -2,9 +2,10 @@ import datetime
 
 from car.forms.EngineForm import EngineForm
 from car.models import Car
+from rent.forms.PricingForm import PricingForm
 
 
-class CarForm(EngineForm):
+class CarForm(EngineForm, PricingForm):
     class Meta:
         model = Car
         fields = [
@@ -16,9 +17,6 @@ class CarForm(EngineForm):
             'transmission_type',
             'body_type',
             'drivetrain_type',
-            'daily_rent_price',
-            'weekly_rent_price',
-            'monthly_rent_price',
             'seats',
             'trunk_volume',
             'service_mileage_interval',
@@ -52,15 +50,6 @@ class CarForm(EngineForm):
 
         self.fields['drivetrain_type'].widget.attrs['class'] = 'form-control'
         self.fields['drivetrain_type'].widget.attrs['placeholder'] = 'Drivetrain type...'
-
-        self.fields['daily_rent_price'].widget.attrs['class'] = 'form-control'
-        self.fields['daily_rent_price'].widget.attrs['placeholder'] = 'Daily rent price...'
-
-        self.fields['weekly_rent_price'].widget.attrs['class'] = 'form-control'
-        self.fields['weekly_rent_price'].widget.attrs['placeholder'] = 'Weekly rent price...'
-
-        self.fields['monthly_rent_price'].widget.attrs['class'] = 'form-control'
-        self.fields['monthly_rent_price'].widget.attrs['placeholder'] = 'Monthly rent price...'
 
         self.fields['seats'].widget.attrs['class'] = 'form-control'
         self.fields['seats'].widget.attrs['placeholder'] = 'Seats...'

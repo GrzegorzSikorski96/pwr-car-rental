@@ -17,3 +17,9 @@ class Rent(models.Model):
         on_delete=models.DO_NOTHING,
         related_name='rent',
     )
+
+
+class Pricing(models.Model):
+    daily = models.PositiveIntegerField()
+    weekly = models.PositiveIntegerField()
+    monthly = models.PositiveIntegerField()
