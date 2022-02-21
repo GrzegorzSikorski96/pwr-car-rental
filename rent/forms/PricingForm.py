@@ -29,4 +29,3 @@ class PricingForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(PricingForm, self).__init__(*args, **kwargs)
-
