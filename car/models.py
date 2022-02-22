@@ -26,9 +26,6 @@ class Car(TimeStampMixin):
     drivetrain_type = models.CharField(max_length=25, choices=DrivetrainType.DRIVETRAIN_TYPE_CHOICES)
     seats = models.PositiveIntegerField()
     trunk_volume = models.PositiveIntegerField()
-    service_mileage_interval = models.PositiveIntegerField(default=15000)
-    insured_date = models.DateField(default=timezone.now)
-    technical_overview_date = models.DateField(default=timezone.now)
     token = models.UUIDField(primary_key=False, default=uuid.uuid4)
     engine = models.ForeignKey(
         'car.Engine',
@@ -37,6 +34,12 @@ class Car(TimeStampMixin):
     )
     pricing = models.ForeignKey(
         'rent.Pricing',
+        on_delete=models.DO_NOTHING,
+        related_name='car',
+        null=True,
+    )
+    servicing = models.ForeignKey(
+        'car.Servicing',
         on_delete=models.DO_NOTHING,
         related_name='car',
         null=True,
@@ -52,15 +55,17 @@ class Car(TimeStampMixin):
         super(Car, self).save(*args, **kwargs)
 
         if create:
-            ServiceLog.objects.create(
-                car=self,
-                action="Car added to rental system.",
-                description="",
-                mileage=self.mileage,
-                next_service_mileage=self.mileage + self.service_mileage_interval,
-                next_service_date=datetime.date(self.created_at.year + 1, self.created_at.month, self.created_at.day),
-                created_by=self.created_by,
-            )
+            if self.servicing:
+                ServiceLog.objects.create(
+                    car=self,
+                    action="Car added to rental system.",
+                    description="",
+                    mileage=self.mileage,
+                    next_service_mileage=self.mileage + int(self.servicing.service_mileage_interval),
+                    next_service_date=datetime.date(self.created_at.year + 1, self.created_at.month,
+                                                    self.created_at.day),
+                    created_by=self.created_by,
+                )
 
     def delete(self, **kwargs):
         for service in self.services.all():
@@ -95,3 +100,9 @@ class Engine(models.Model):
 
     def __str__(self):
         return "#%d - %s cc, %s hp, %s" % (self.pk, self.volume, self.horsepower, self.fuel_type)
+
+
+class Servicing(models.Model):
+    service_mileage_interval = models.PositiveIntegerField(default=15000)
+    insured_date = models.DateField(default=timezone.now)
+    technical_overview_date = models.DateField(default=timezone.now)

@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView, U
 
 from django.urls import reverse
 from car.forms.CarForm import CarForm
-from car.models import Car, Engine
+from car.models import Car, Engine, Servicing
 from rent.models import Pricing
 
 
@@ -38,8 +38,15 @@ class DashboardCarCreateView(CreateView):
             monthly=form.cleaned_data.get("monthly"),
         )
 
+        servicing: Servicing = Servicing.objects.create(
+            service_mileage_interval=form.cleaned_data.get("service_mileage_interval"),
+            insured_date=form.cleaned_data.get("insured_date"),
+            technical_overview_date=form.cleaned_data.get("technical_overview_date"),
+        )
+
         obj.engine = engine
         obj.pricing = pricing
+        obj.servicing = servicing
         obj.created_by = self.request.user
         obj.updated_by = self.request.user
 
@@ -60,6 +67,7 @@ class DashboardCarUpdateView(UpdateView):
         car_dict = car.__dict__
         car_dict.update(car.engine.__dict__)
         car_dict.update(car.pricing.__dict__)
+        car_dict.update(car.servicing.__dict__)
 
         return car_dict
 
@@ -75,6 +83,11 @@ class DashboardCarUpdateView(UpdateView):
         obj.pricing.weekly = int(form.cleaned_data.get("weekly"))
         obj.pricing.monthly = int(form.cleaned_data.get("monthly"))
         obj.pricing.save()
+
+        obj.servicing.service_mileage_interval = int(form.cleaned_data.get("service_mileage_interval"))
+        obj.servicing.insured_date = form.cleaned_data.get("insured_date")
+        obj.servicing.technical_overview_date = form.cleaned_data.get("technical_overview_date")
+        obj.servicing.save()
 
         obj.updated_by = self.request.user
 

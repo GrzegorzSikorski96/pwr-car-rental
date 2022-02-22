@@ -1,11 +1,12 @@
 import datetime
 
 from car.forms.EngineForm import EngineForm
+from car.forms.ServicingForm import ServicingForm
 from car.models import Car
 from rent.forms.PricingForm import PricingForm
 
 
-class CarForm(EngineForm, PricingForm):
+class CarForm(EngineForm, PricingForm, ServicingForm):
     class Meta:
         model = Car
         fields = [
@@ -19,9 +20,6 @@ class CarForm(EngineForm, PricingForm):
             'drivetrain_type',
             'seats',
             'trunk_volume',
-            'service_mileage_interval',
-            'insured_date',
-            'technical_overview_date',
         ]
 
     def __init__(self, *args, **kwargs):
@@ -56,12 +54,3 @@ class CarForm(EngineForm, PricingForm):
 
         self.fields['trunk_volume'].widget.attrs['class'] = 'form-control'
         self.fields['trunk_volume'].widget.attrs['placeholder'] = 'Trunk volume...'
-
-        self.fields['service_mileage_interval'].widget.attrs['class'] = 'form-control'
-        self.fields['service_mileage_interval'].widget.attrs['placeholder'] = 'Service mileage interval...'
-
-        self.fields['insured_date'].widget.attrs['class'] = 'form-control'
-        self.fields['insured_date'].widget.attrs['placeholder'] = 'Insured date...'
-
-        self.fields['technical_overview_date'].widget.attrs['class'] = 'form-control'
-        self.fields['technical_overview_date'].widget.attrs['placeholder'] = 'Technical overview date...'

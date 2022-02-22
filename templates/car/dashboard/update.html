@@ -148,21 +148,21 @@
           Rent pricing
         </div>
         <div class="card-body">
-          Daily rent price
+          {{ form.daily.label }}
           <div class="input-group mb-3">
             {{ form.daily }}
             <span class="input-group-text" id="basic-addon2">
                 <span class="fas fas fa-dollar-sign"></span>
             </span>
           </div>
-          Weekly rent price
+          {{ form.weekly.label }}
           <div class="input-group mb-3">
             {{ form.weekly }}
             <span class="input-group-text" id="basic-addon2">
                 <span class="fas fas fa-dollar-sign"></span>
             </span>
           </div>
-          Monthly rent price
+          {{ form.monthly.label }}
           <div class="input-group mb-3">
             {{ form.monthly }}
             <span class="input-group-text" id="basic-addon2">
@@ -177,21 +177,21 @@
           Servicing details
         </div>
         <div class="card-body">
-          Service mileage interval
+          {{ form.service_mileage_interval.label }}
           <div class="input-group mb-3">
             {{ form.service_mileage_interval }}
             <span class="input-group-text" id="basic-addon2">
                 <span class="fas fas fa-road"></span>
             </span>
           </div>
-          Insured date
+          {{ form.technical_overview_date.label }}
           <div class="input-group mb-3">
             {{ form.insured_date }}
             <span class="input-group-text" id="basic-addon2">
                 <span class="fas fas fa-calendar"></span>
             </span>
           </div>
-          Technical overview date
+          {{ form.technical_overview_date.label }}
           <div class="input-group mb-3">
             {{ form.technical_overview_date }}
             <span class="input-group-text" id="basic-addon2">

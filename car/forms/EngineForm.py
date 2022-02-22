@@ -17,7 +17,7 @@ class EngineForm(ModelForm):
     fuel_type = forms.ChoiceField(
         label='Engine fuel type',
         choices=FuelType.FUEL_TYPES_CHOICES,
-        widget=forms.Select(attrs={'placeholder': 'Horsepower...', 'class': 'form-control'})
+        widget=forms.Select(attrs={'placeholder': 'Fuel type...', 'class': 'form-control'})
     )
 
     class Meta:
@@ -30,11 +30,3 @@ class EngineForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(EngineForm, self).__init__(*args, **kwargs)
-        self.fields['volume'].widget.attrs['class'] = 'form-control'
-        self.fields['volume'].widget.attrs['placeholder'] = 'Volume...'
-
-        self.fields['horsepower'].widget.attrs['class'] = 'form-control'
-        self.fields['horsepower'].widget.attrs['placeholder'] = 'Horsepower...'
-
-        self.fields['fuel_type'].widget.attrs['class'] = 'form-control'
-        self.fields['fuel_type'].widget.attrs['placeholder'] = 'Fuel type...'
