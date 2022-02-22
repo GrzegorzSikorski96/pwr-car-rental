@@ -1,0 +1,38 @@
+[
+  {
+    "model": "car.servicing",
+    "pk": 1,
+    "fields": {
+      "service_mileage_interval": 15000,
+      "insured_date": "2022-01-01",
+      "technical_overview_date": "2022-01-01"
+    }
+  },
+  {
+    "model": "car.servicing",
+    "pk": 2,
+    "fields": {
+      "service_mileage_interval": 15000,
+      "insured_date": "2022-01-01",
+      "technical_overview_date": "2022-01-01"
+    }
+  },
+  {
+    "model": "car.servicing",
+    "pk": 3,
+    "fields": {
+      "service_mileage_interval": 15000,
+      "insured_date": "2022-01-01",
+      "technical_overview_date": "2022-01-01"
+    }
+  },
+  {
+    "model": "car.servicing",
+    "pk": 4,
+    "fields": {
+      "service_mileage_interval": 15000,
+      "insured_date": "2022-01-01",
+      "technical_overview_date": "2022-01-01"
+    }
+  }
+]
