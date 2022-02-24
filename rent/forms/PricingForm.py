@@ -5,7 +5,6 @@ from rent.models import Pricing
 
 
 class PricingForm(ModelForm):
-
     daily = forms.IntegerField(
         label='Daily rent price',
         widget=forms.NumberInput(attrs={'placeholder': 'Daily rent price...', 'class': 'form-control'})
@@ -26,6 +25,3 @@ class PricingForm(ModelForm):
             'weekly',
             'monthly',
         ]
-
-    def __init__(self, *args, **kwargs):
-        super(PricingForm, self).__init__(*args, **kwargs)

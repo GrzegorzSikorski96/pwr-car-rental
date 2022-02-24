@@ -1,5 +1,8 @@
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 
+from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.db.models import QuerySet, Model
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
 from django.urls import reverse
@@ -8,18 +11,39 @@ from car.models import Car, Engine, Servicing
 from rent.models import Pricing
 
 
-class DashboardCarsListView(ListView):
+class DashboardCarsListView(PermissionRequiredMixin, ListView):
+    permission_required = 'core.employee_views'
     model = Car
     template_name = 'car/dashboard/cars.html'
     queryset = Car.objects.all()
 
 
-class DashboardCarDetailView(DetailView):
+class ClientCarsListView(PermissionRequiredMixin, ListView):
+    permission_required = 'core.client_views'
+    model = Car
+    template_name = 'car/client/cars.html'
+
+    def get_queryset(self) -> QuerySet:
+        return Car.objects.filter(rent__rented_by=self.request.user)
+
+
+class DashboardCarDetailView(PermissionRequiredMixin, DetailView):
+    permission_required = 'core.employee_views'
     model = Car
     template_name = 'car/dashboard/car.html'
 
 
-class DashboardCarCreateView(CreateView):
+class ClientCarDetailView(PermissionRequiredMixin, DetailView):
+    permission_required = 'core.client_views'
+    model = Car
+    template_name = 'car/client/car.html'
+
+    def get_queryset(self) -> QuerySet:
+        return Car.objects.filter(rent__rented_by=self.request.user)
+
+
+class DashboardCarCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = 'core.employee_views'
     form_class = CarForm
     template_name = 'car/dashboard/create.html'
 
@@ -56,8 +80,8 @@ class DashboardCarCreateView(CreateView):
         return reverse('dashboard-car-detail-view', kwargs={'pk': self.object.pk})  # type: ignore
 
 
-class DashboardCarUpdateView(UpdateView):
-    permission_required = 'core.client'
+class DashboardCarUpdateView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'core.employee_views'
     model = Car
     form_class = CarForm
     template_name = 'car/dashboard/update.html'
@@ -97,7 +121,8 @@ class DashboardCarUpdateView(UpdateView):
         return reverse('dashboard-car-detail-view', kwargs={'pk': self.object.pk})  # type: ignore
 
 
-class DashboardCarDeleteView(DeleteView):
+class DashboardCarDeleteView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'core.employee_views'
     model = Car
 
     def get_success_url(self):

@@ -26,6 +26,3 @@ class ServicingForm(ModelForm):
             'insured_date',
             'technical_overview_date',
         ]
-
-    def __init__(self, *args, **kwargs):
-        super(ServicingForm, self).__init__(*args, **kwargs)

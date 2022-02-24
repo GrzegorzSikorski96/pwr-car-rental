@@ -41,6 +41,7 @@ class Migration(migrations.Migration):
                 ('insured_date', models.DateField(default=django.utils.timezone.now)),
                 ('technical_overview_date', models.DateField(default=django.utils.timezone.now)),
                 ('token', models.UUIDField(default=uuid.uuid4, editable=False)),
+                ('registration_number', models.CharField(max_length=10)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('engine', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='cars', to='car.engine')),

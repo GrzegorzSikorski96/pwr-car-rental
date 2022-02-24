@@ -30,6 +30,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
+    class Meta:
+        permissions = [
+            ('employee_views', 'Can enter employee views'),
+            ('client_views', 'Can enter client views'),
+        ]
+
     def delete(self, **kwargs):
         if 0 < self.rents.all().count():
             for rent in self.rents.all():

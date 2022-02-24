@@ -10,4 +10,7 @@ urlpatterns: List[URLPattern] = [
     path('dashboard/car/<int:pk>', views.DashboardCarDetailView.as_view(), name='dashboard-car-detail-view'),
     path('dashboard/car/<int:pk>/update', views.DashboardCarUpdateView.as_view(), name='dashboard-car-update-view'),
     path('dashboard/car/<int:pk>/delete', views.DashboardCarDeleteView.as_view(), name='dashboard-car-delete-view'),
+
+    path('client/cars', views.ClientCarsListView.as_view(), name='client-cars-list-view'),
+    path('client/car/<int:pk>', views.ClientCarDetailView.as_view(), name='client-car-detail-view'),
 ]

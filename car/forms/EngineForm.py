@@ -27,6 +27,3 @@ class EngineForm(ModelForm):
             'horsepower',
             'fuel_type',
         ]
-
-    def __init__(self, *args, **kwargs):
-        super(EngineForm, self).__init__(*args, **kwargs)

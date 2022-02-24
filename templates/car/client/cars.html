@@ -1,0 +1,71 @@
+{% extends "layout/dashboard-base.html" %}
+
+
+{% block title %}
+  Cars
+{% endblock %}
+
+{% block breadcumbs %}
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-view' %}">{{ user.first_name }} {{ user.last_name }}</a></li>
+  <li class="breadcrumb-item">Cars</li>
+{% endblock %}
+
+{% block content %}
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead>
+      <tr class="col-12">
+        <th class="col-md-1">
+          Registration number
+        </th>
+        <th class="col-md-1">
+          Manufacturer
+        </th>
+        <th class="col-md-1">
+          Model
+        </th>
+        <th class="col-md-1">
+          Mileage
+        </th>
+        <th class="col-md-1">
+          Days to service
+        </th>
+        <th class="col-md-1">
+          Kilometers to service
+        </th>
+        <th class="col-md-1 text-end">
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for car in car_list %}
+        <tr>
+          <td>
+            {{ car.registration_number }}
+          </td>
+          <td>
+            {{ car.manufacturer }}
+          </td>
+          <td>
+            {{ car.model }}
+          </td>
+          <td>
+            {{ car.mileage }}
+          </td>
+          <td>
+            {{ car.days_to_service }}
+          </td>
+          <td>
+            {{ car.kilometers_to_service }} km ({{ car.next_service_mileage }} km)
+          </td>
+          <td class="col-md-1 text-end">
+            <a href="{% url 'client-car-detail-view' car.pk %}">
+              <i class="fas fa-external-link-alt"></i>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

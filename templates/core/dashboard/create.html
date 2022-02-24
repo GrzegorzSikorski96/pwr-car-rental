@@ -30,24 +30,24 @@
         Account data
       </div>
       <div class="card-body">
-        E-mail
+        {{ form.email.label }}
         <div class="input-group mb-3">
           {{ form.email }}
-          <span class="input-group-text" >
+          <span class="input-group-text">
                 <span class="fas fas fa-at"></span>
             </span>
         </div>
-        Password
+        {{ form.password1.label }}
         <div class="input-group mb-3">
           {{ form.password1 }}
-          <span class="input-group-text" >
+          <span class="input-group-text">
                 <span class="fas fas fa-lock"></span>
             </span>
         </div>
-        Password confirmation
+        {{ form.password2.label }}
         <div class="input-group mb-3">
           {{ form.password2 }}
-          <span class="input-group-text" >
+          <span class="input-group-text">
                 <span class="fas fas fa-lock"></span>
             </span>
         </div>
@@ -59,24 +59,24 @@
         Personal data
       </div>
       <div class="card-body">
-        First name
+        {{ form.first_name.label }}
         <div class="input-group mb-3">
           {{ form.first_name }}
-          <span class="input-group-text" >
+          <span class="input-group-text">
                 <span class="fas fas fa-user"></span>
             </span>
         </div>
-        Last name
+        {{ form.last_name.label }}
         <div class="input-group mb-3">
           {{ form.last_name }}
-          <span class="input-group-text" >
+          <span class="input-group-text">
                 <span class="fas fas fa-user"></span>
             </span>
         </div>
-        Phone number
+        {{ form.phone_number.label }}
         <div class="input-group mb-3">
           {{ form.phone_number }}
-          <span class="input-group-text" >
+          <span class="input-group-text">
                 <span class="fas fas fa-phone"></span>
             </span>
         </div>
@@ -88,38 +88,38 @@
         Address
       </div>
       <div class="card-body">
-        Country
+        {{ form.country.label }}
         <div class="input-group mb-3">
           {{ form.country }}
-          <span class="input-group-text" >
+          <span class="input-group-text">
                 <span class="fas fas fa-map-marked-alt"></span>
           </span>
         </div>
-        City
+        {{ form.city.label }}
         <div class="input-group mb-3">
           {{ form.city }}
-          <span class="input-group-text" >
+          <span class="input-group-text">
                 <span class="fas fas fa-map-marked-alt"></span>
           </span>
         </div>
-        Postal code
+        {{ form.postal_code.label }}
         <div class="input-group mb-3">
           {{ form.postal_code }}
-          <span class="input-group-text" >
+          <span class="input-group-text">
                 <span class="fas fas fa-map-marked-alt"></span>
             </span>
         </div>
-        Street
+        {{ form.street.label }}
         <div class="input-group mb-3">
           {{ form.street }}
-          <span class="input-group-text" >
+          <span class="input-group-text">
                 <span class="fas fas fa-map-marked-alt"></span>
           </span>
         </div>
-        House number
+        {{ form.number.label }}
         <div class="input-group mb-3">
           {{ form.number }}
-          <span class="input-group-text" >
+          <span class="input-group-text">
                 <span class="fas fas fa-map-marked-alt"></span>
           </span>
         </div>

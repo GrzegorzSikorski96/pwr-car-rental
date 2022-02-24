@@ -1,6 +1,7 @@
 from typing import Dict, Any
 
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -90,18 +91,21 @@ def core_logout(request):
     return redirect('core-login-view')
 
 
-class DashboardClientsListView(ListView):
+class DashboardClientsListView(PermissionRequiredMixin, ListView):
+    permission_required = 'core.employee_views'
     model = User
     template_name = 'core/dashboard/clients.html'
     queryset = User.objects.filter(groups__name='client')
 
 
-class DashboardClientDetailView(DetailView):
+class DashboardClientDetailView(PermissionRequiredMixin, DetailView):
+    permission_required = 'core.employee_views'
     model = User
     template_name = 'core/dashboard/client.html'
 
 
-class DashboardClientCreateView(CreateView):
+class DashboardClientCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = 'core.employee_views'
     form_class = UserRegistrationForm
     template_name = 'core/dashboard/create.html'
 
@@ -124,7 +128,8 @@ class DashboardClientCreateView(CreateView):
         return reverse('dashboard-client-detail-view', kwargs={'pk': self.object.pk})  # type: ignore
 
 
-class DashboardClientUpdateView(UpdateView):
+class DashboardClientUpdateView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'core.employee_views'
     model = User
     form_class = UserRegistrationForm
     template_name = 'core/dashboard/update.html'
@@ -152,7 +157,8 @@ class DashboardClientUpdateView(UpdateView):
         return reverse('dashboard-client-detail-view', kwargs={'pk': self.object.pk})  # type: ignore
 
 
-class DashboardClientDeleteView(DeleteView):
+class DashboardClientDeleteView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'core.employee_views'
     model = User
 
     def get_success_url(self):
