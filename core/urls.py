@@ -9,6 +9,7 @@ urlpatterns: List[URLPattern] = [
     path('login', views.core_login, name='core-login-view'),
     path('register', views.core_register, name='core-register-view'),
     path('logout', views.core_logout, name='core-logout'),
+
     path('dashboard', views.dashboard, name='dashboard-view'),
 
     path('dashboard/clients', views.DashboardClientsListView.as_view(), name='dashboard-clients-list-view'),

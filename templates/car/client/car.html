@@ -1,0 +1,290 @@
+{% extends "layout/dashboard-base.html" %}
+{% load template_filetrs %}
+{% load static %}
+
+{% block title %}
+  {{ car }}
+{% endblock %}
+
+{% block breadcumbs %}
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-view' %}">{{ user.first_name }} {{ user.last_name }}</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-cars-list-view' %}">Cars</a></li>
+  <li class="breadcrumb-item">{{ car }}</li>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-3">
+      <div class="card">
+        <div class="card-header fw-bold">
+          Car details
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Manufacturer
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ car.manufacturer }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Model
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ car.model }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Mileage
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ car.mileage }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Production
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ car.production_date }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-3">
+      <div class="card">
+        <div class="card-header fw-bold">
+          Engine details
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Volume
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ car.engine.volume }} cm<sup>3</sup>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Horsepower
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ car.engine.horsepower }} HP
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Fuel type
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ car.engine.get_fuel_type_display }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Transmission type
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ car.get_transmission_type_display }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-3">
+      <div class="card">
+        <div class="card-header fw-bold">
+          Details
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Air conditioning
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ car.air_conditioning }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Body type
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ car.get_body_type_display }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Drivetrain type
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ car.get_drivetrain_type_display }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Seats / Luggage
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ car.seats }} / {{ car.trunk_volume }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-3">
+      <div class="card">
+        <div class="card-header fw-bold">
+          Servicing
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Service interval
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ car.servicing.service_mileage_interval }} km
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              To next service
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ car.last_service.next_service_mileage|subtract:car.mileage }} km
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Overview date
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ car.servicing.technical_overview_date }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Insurance date
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ car.servicing.insured_date }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-3">
+      <div class="card">
+        <div class="card-header fw-bold">
+          Pricing
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Daily
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ car.pricing.daily }} PLN
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Weekly
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ car.pricing.weekly }} PLN
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 fw-bold">
+              Monthly
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-7">
+              {{ car.pricing.monthly }} PLN
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <br>
+  <h3>Services</h3>
+  <hr>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover mb-6">
+      <thead>
+      <tr>
+        <th>Date</th>
+        <th>Mileage</th>
+        <th>Next service</th>
+        <th>Action</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for service in car.services.all %}
+        <tr>
+          <td>
+            {{ service.created_at }}
+          </td>
+          <td>
+            {{ service.mileage }}
+          </td>
+          <td>
+            {{ service.next_service_mileage }} / {{ service.next_service_date }}
+          </td>
+          <td>
+            {{ service.action }}
+          </td>
+          <td>
+            {{ service.description }}
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <br>
+
+  {% if car.logs.count > 0 %}
+    <h3>Daily logs</h3>
+    <hr>
+    <div class="table-responsive">
+      <table class="table table-hover table-striped mb-4">
+        <thead>
+        <tr>
+          <th>Date</th>
+          <th>Mileage</th>
+          <th>Difference to previous day</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for log in car.logs.all %}
+          <tr>
+            <td>
+              {{ log.created_at }}
+            </td>
+            <td>
+              {{ log.mileage }}
+            </td>
+            <td>
+              {{ log.difference_to_previous_day }}
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+
+{% endblock %}

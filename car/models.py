@@ -19,6 +19,7 @@ class Car(TimeStampMixin):
     model = models.CharField(max_length=80)
     mileage = models.IntegerField(default=1000)
     production_date = models.DateField()
+    registration_number = models.CharField(max_length=10)
     air_conditioning = models.BooleanField(default=False)
     transmission_type = models.CharField(max_length=15, choices=TransmissionType.TRANSMISSION_TYPE_CHOICES)
     status = models.CharField(default="ready to rent", max_length=15, choices=CarStatus.CAR_STATUS_CHOICES)
@@ -82,6 +83,9 @@ class Car(TimeStampMixin):
     def last_service(self) -> ServiceLog:
         return self.services.latest('created_at')
 
+    def next_service_mileage(self) -> int:
+        return self.last_service().next_service_mileage
+
     def days_to_service(self) -> int:
         return (self.last_service().next_service_date - datetime.date.today()).days
 
@@ -90,7 +94,7 @@ class Car(TimeStampMixin):
         return kilometers_to_service
 
     def __str__(self) -> str:
-        return "#%d - %s %s" % (self.pk, self.manufacturer, self.model)
+        return "#%d - %s %s - %s" % (self.pk, self.manufacturer, self.model, self.registration_number)
 
 
 class Engine(models.Model):
@@ -106,3 +110,8 @@ class Servicing(models.Model):
     service_mileage_interval = models.PositiveIntegerField(default=15000)
     insured_date = models.DateField(default=timezone.now)
     technical_overview_date = models.DateField(default=timezone.now)
+
+
+class CompanyCar(models.Model):
+    name = models.CharField(max_length=80)
+    capacity = models.IntegerField()

@@ -1,5 +1,11 @@
 import datetime
 
+from django import forms
+
+from car.choices.body_type_choices import BodyType
+from car.choices.boolean_choices import BooleanChoices
+from car.choices.drivetrain_type_choices import DrivetrainType
+from car.choices.transmission_type_choices import TransmissionType
 from car.forms.EngineForm import EngineForm
 from car.forms.ServicingForm import ServicingForm
 from car.models import Car
@@ -7,6 +13,56 @@ from rent.forms.PricingForm import PricingForm
 
 
 class CarForm(EngineForm, PricingForm, ServicingForm):
+    manufacturer = forms.CharField(
+        label='Manufacturer',
+        widget=forms.TextInput(attrs={'placeholder': 'Manufacturer...', 'class': 'form-control'})
+    )
+    model = forms.CharField(
+        label='Model',
+        widget=forms.TextInput(attrs={'placeholder': 'Model...', 'class': 'form-control'})
+    )
+    mileage = forms.IntegerField(
+        label='Mileage',
+        widget=forms.NumberInput(attrs={'placeholder': 'Mileage...', 'class': 'form-control'})
+    )
+    registration_number = forms.CharField(
+        label='Registration number',
+        widget=forms.TextInput(attrs={'placeholder': 'Mileage...', 'class': 'form-control'})
+    )
+    production_date = forms.DateField(
+        label='Production date',
+        initial=datetime.date.today(),
+        widget=forms.DateInput(attrs={'placeholder': 'Production date...', 'class': 'form-control', 'type': 'date'})
+    )
+    air_conditioning = forms.ChoiceField(
+        choices=BooleanChoices.BooleanChoices,
+        label='Air conditioning',
+        widget=forms.Select(attrs={'placeholder': 'Air conditioning...', 'class': 'form-control'})
+    )
+    transmission_type = forms.ChoiceField(
+        choices=TransmissionType.TRANSMISSION_TYPE_CHOICES,
+        label='Transmission type',
+        widget=forms.Select(attrs={'placeholder': 'Transmission type...', 'class': 'form-control'})
+    )
+    body_type = forms.ChoiceField(
+        choices=BodyType.BODY_TYPE_CHOICES,
+        label='Body type',
+        widget=forms.Select(attrs={'placeholder': 'Body type...', 'class': 'form-control'})
+    )
+    drivetrain_type = forms.ChoiceField(
+        choices=DrivetrainType.DRIVETRAIN_TYPE_CHOICES,
+        label='Drivetrain type',
+        widget=forms.Select(attrs={'placeholder': 'Drivetrain type...', 'class': 'form-control'})
+    )
+    seats = forms.IntegerField(
+        label='Seats',
+        widget=forms.NumberInput(attrs={'placeholder': 'Seats...', 'class': 'form-control'})
+    )
+    trunk_volume = forms.IntegerField(
+        label='Trunk volume (luggage)',
+        widget=forms.NumberInput(attrs={'placeholder': 'Trunk volume...', 'class': 'form-control'})
+    )
+
     class Meta:
         model = Car
         fields = [
@@ -21,36 +77,3 @@ class CarForm(EngineForm, PricingForm, ServicingForm):
             'seats',
             'trunk_volume',
         ]
-
-    def __init__(self, *args, **kwargs):
-        super(CarForm, self).__init__(*args, **kwargs)
-        self.fields['manufacturer'].widget.attrs['class'] = 'form-control'
-        self.fields['manufacturer'].widget.attrs['placeholder'] = 'Manufacturer...'
-
-        self.fields['model'].widget.attrs['class'] = 'form-control'
-        self.fields['model'].widget.attrs['placeholder'] = 'Model...'
-
-        self.fields['mileage'].widget.attrs['class'] = 'form-control'
-        self.fields['mileage'].widget.attrs['placeholder'] = 'Mileage...'
-
-        self.fields['production_date'].widget.attrs['class'] = 'form-control'
-        self.fields['production_date'].widget.attrs['placeholder'] = 'Production date...'
-        self.fields['production_date'].initial = datetime.date.today()
-
-        self.fields['air_conditioning'].widget.attrs['class'] = 'form-control'
-        self.fields['air_conditioning'].widget.attrs['placeholder'] = 'Air conditioning...'
-
-        self.fields['transmission_type'].widget.attrs['class'] = 'form-control'
-        self.fields['transmission_type'].widget.attrs['placeholder'] = 'Transmission type...'
-
-        self.fields['body_type'].widget.attrs['class'] = 'form-control'
-        self.fields['body_type'].widget.attrs['placeholder'] = 'Body type...'
-
-        self.fields['drivetrain_type'].widget.attrs['class'] = 'form-control'
-        self.fields['drivetrain_type'].widget.attrs['placeholder'] = 'Drivetrain type...'
-
-        self.fields['seats'].widget.attrs['class'] = 'form-control'
-        self.fields['seats'].widget.attrs['placeholder'] = 'Seats...'
-
-        self.fields['trunk_volume'].widget.attrs['class'] = 'form-control'
-        self.fields['trunk_volume'].widget.attrs['placeholder'] = 'Trunk volume...'
