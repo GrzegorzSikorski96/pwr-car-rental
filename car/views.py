@@ -1,8 +1,8 @@
-from typing import Dict, Any, Optional
+from typing import Dict, Any
 
-from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.db.models import QuerySet, Model
+from django.db.models import QuerySet
+from django.http import Http404
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
 from django.urls import reverse
@@ -24,7 +24,10 @@ class ClientCarsListView(PermissionRequiredMixin, ListView):
     template_name = 'car/client/cars.html'
 
     def get_queryset(self) -> QuerySet:
-        return Car.objects.filter(rent__rented_by=self.request.user)
+        if self.request.user.is_authenticated:
+            return Car.objects.filter(rent__rented_by=self.request.user)
+
+        raise Http404
 
 
 class DashboardCarDetailView(PermissionRequiredMixin, DetailView):
@@ -39,7 +42,10 @@ class ClientCarDetailView(PermissionRequiredMixin, DetailView):
     template_name = 'car/client/car.html'
 
     def get_queryset(self) -> QuerySet:
-        return Car.objects.filter(rent__rented_by=self.request.user)
+        if self.request.user.is_authenticated:
+            return Car.objects.filter(rent__rented_by=self.request.user)
+
+        raise Http404
 
 
 class DashboardCarCreateView(PermissionRequiredMixin, CreateView):

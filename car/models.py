@@ -115,4 +115,3 @@ class Servicing(models.Model):
 class CompanyCar(models.Model):
     name = models.CharField(max_length=80)
     capacity = models.IntegerField()
-
