@@ -1,4 +1,4 @@
-from typing import Dict, Any, Optional
+from typing import Dict, Any
 
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.db.models import QuerySet
