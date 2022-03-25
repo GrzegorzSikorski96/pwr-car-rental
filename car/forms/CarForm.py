@@ -3,7 +3,7 @@ import datetime
 from django import forms
 
 from car.choices.body_type_choices import BodyType
-from car.choices.boolean_choices import BooleanChoices
+from core.choices.boolean_choices import BooleanChoices
 from car.choices.drivetrain_type_choices import DrivetrainType
 from car.choices.transmission_type_choices import TransmissionType
 from car.forms.EngineForm import EngineForm

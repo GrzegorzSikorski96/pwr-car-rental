@@ -17,7 +17,7 @@ class RentForm(ModelForm):
         widget=forms.DateInput(attrs={'placeholder': 'Rented at...', 'class': 'form-control', 'type': 'date'})
     )
     rented_to = forms.DateField(
-        label='Production date',
+        label='Rented to',
         initial=datetime.date.today(),
         widget=forms.DateInput(attrs={'placeholder': 'Rented to...', 'class': 'form-control', 'type': 'date'})
     )
