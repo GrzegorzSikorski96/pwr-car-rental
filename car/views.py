@@ -2,12 +2,18 @@ from typing import Dict, Any
 
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.db.models import QuerySet
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
-from django.urls import reverse
+from car.choices.car_status_choices import CarStatus
 from car.forms.CarForm import CarForm
+from car.forms.ServiceRequestForm import ServiceRequestForm
 from car.models import Car, Engine, Servicing
+from core.checkers.user_checkers import has_group
+from log.messages.messages import LogMessage
+from log.models import MessageLog
 from rent.models import Pricing
 
 
@@ -42,10 +48,7 @@ class ClientCarDetailView(PermissionRequiredMixin, DetailView):
     template_name = 'car/client/car.html'
 
     def get_queryset(self) -> QuerySet:
-        if self.request.user.is_authenticated:
-            return Car.objects.filter(rent__rented_by=self.request.user)
-
-        raise Http404
+        return Car.objects.get_query(self.request.user)
 
 
 class DashboardCarCreateView(PermissionRequiredMixin, CreateView):
@@ -133,3 +136,36 @@ class DashboardCarDeleteView(PermissionRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('dashboard-cars-list-view')
+
+
+def service_request(request, car_id: int):
+    cars: QuerySet[Car] = Car.objects.get_query(request.user)
+    car: Car = cars.get(id=car_id)
+
+    if request.method == 'POST':
+        form = ServiceRequestForm(request.POST)
+        if form.is_valid():
+            if car:
+                car.status = CarStatus.NEED_SERVICE_STATUS
+
+                if has_group(request.user, 'employee'):
+                    action = LogMessage.SERVICE_REQUESTED_BY_EMPLOYEE
+                else:
+                    action = LogMessage.SERVICE_REQUESTED_BY_CLIENT
+
+                car.messages.add(MessageLog(
+                    car=car,
+                    action=action,
+                    message=request.POST.get('message', ''),
+                    created_by=request.user,
+                ),
+                    bulk=False
+                )
+
+                car.save()
+
+            return HttpResponseRedirect(request.POST.get('next', '/'))
+    else:
+        form = ServiceRequestForm()
+
+    return render(request, 'car/car_confirm_service_request.html', {'form': form, 'car': car})

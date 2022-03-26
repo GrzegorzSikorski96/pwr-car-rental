@@ -1,0 +1,77 @@
+{% extends "layout/dashboard-base.html" %}
+{% load template_filetrs %}
+{% load static %}
+
+{% block title %}
+  <strong>Service request</strong> #{{ car.id }} - {{ car.manufacturer }} {{ car.model }}
+{% endblock %}
+
+{% block breadcumbs %}
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-view' %}">Dashboard</a></li>
+
+  {% if request.user|has_group:"employee" %}
+    <li class="breadcrumb-item"><a href="{% url 'dashboard-cars-list-view' %}">Car</a></li>
+  {% elif request.user|has_group:"client" %}
+    <li class="breadcrumb-item"><a href="{% url 'client-cars-list-view' %}">Car</a></li>
+  {% endif %}
+
+  {% if request.user|has_group:"employee" %}
+    <li class="breadcrumb-item">
+      <a href="{% url 'dashboard-car-detail-view' car.id %}">
+        #{{ car.id }} - {{ car.manufacturer }} {{ car.model }}
+      </a>
+    </li>
+  {% elif request.user|has_group:"client" %}
+    <li class="breadcrumb-item">
+      <a href="{% url 'client-car-detail-view' car.id %}">
+        #{{ car.id }} - {{ car.manufacturer }} {{ car.model }}
+      </a>
+    </li>
+  {% endif %}
+  <li class="breadcrumb-item">Service Request</li>
+{% endblock %}
+
+{% block content %}
+  <form id="serviceRequestForm" method="post">
+    {% if form.errors %}
+      <div class="alert alert-danger">
+        {{ form.errors }}
+      </div>
+    {% endif %}
+    <div class="p-2">
+      {% csrf_token %}
+
+      {% if request.user|has_group:"employee" %}
+        <input type="hidden" name="next" value="{% url 'dashboard-car-detail-view' car.id %}">
+      {% elif request.user|has_group:"client" %}
+        <input type="hidden" name="next" value="{% url 'client-car-detail-view' car.id %}">
+      {% endif %}
+
+      <div class="card mb-4">
+        <div class="card-header fw-bold">
+          Service request details
+        </div>
+        <div class="card-body">
+          {{ form.message.label }}
+          <div class="input-group mb-3">
+            {{ form.message }}
+            <span class="input-group-text" id="basic-addon2">
+                <span class="fas fa-wrench"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="card mb-4">
+    <div class="card-footer text-center">
+      {% if request.user|has_group:"employee" %}
+        <a class="mb-2 mr-2 btn btn-shadow ml-3 btn-outline-danger" href="{% url 'dashboard-car-detail-view' car.id %}">Cancel</a>
+      {% elif request.user|has_group:"client" %}
+        <a class="mb-2 mr-2 btn btn-shadow ml-3 btn-outline-danger" href="{% url 'client-car-detail-view' car.id %}">Cancel</a>
+      {% endif %}
+      <button class="mb-2 btn btn-shadow btn-primary" type="submit" form="serviceRequestForm" value="Save">Save</button>
+    </div>
+  </div>
+{% endblock %}

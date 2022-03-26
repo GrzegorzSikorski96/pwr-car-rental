@@ -49,3 +49,21 @@ class ServiceLog(TimeStampMixin):
         on_delete=models.DO_NOTHING,
         related_name='service_log'
     )
+
+
+class MessageLog(TimeStampMixin):
+    class Meta:
+        ordering = ['-created_at']
+
+    car = models.ForeignKey(
+        'car.Car',
+        on_delete=models.DO_NOTHING,
+        related_name='messages'
+    )
+    action = models.CharField(max_length=150)
+    message = models.CharField(max_length=255)
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.DO_NOTHING,
+        related_name='messages'
+    )
