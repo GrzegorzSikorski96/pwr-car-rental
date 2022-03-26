@@ -2,6 +2,7 @@ import datetime
 import uuid
 
 from django.db import models
+from django.db.models import QuerySet
 from django.utils import timezone
 
 from car.choices.body_type_choices import BodyType
@@ -10,11 +11,24 @@ from car.choices.drivetrain_type_choices import DrivetrainType
 from car.choices.fuel_type_choices import FuelType
 from car.choices.transmission_type_choices import TransmissionType
 from car_rental import settings
+from core.checkers.user_checkers import has_group
 from core.models_mixins.TimeStampMixin import TimeStampMixin
 from log.models import ServiceLog
 
 
+class RestrictedCarManager(models.Manager):
+    def get_query(self, user) -> 'QuerySet[Car]':
+        if user:
+            if has_group(user, 'employee'):
+                return self.all()
+            else:
+                return self.filter(rent__rented_by=user)
+        return self
+
+
 class Car(TimeStampMixin):
+    objects = RestrictedCarManager()
+
     manufacturer = models.CharField(max_length=80)
     model = models.CharField(max_length=80)
     mileage = models.IntegerField(default=1000)

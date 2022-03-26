@@ -13,4 +13,6 @@ urlpatterns: List[URLPattern] = [
 
     path('client/cars', views.ClientCarsListView.as_view(), name='client-cars-list-view'),
     path('client/car/<int:pk>', views.ClientCarDetailView.as_view(), name='client-car-detail-view'),
+
+    path('car/<int:car_id>/service/request', views.service_request, name='car-service-request'),
 ]
