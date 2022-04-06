@@ -26,4 +26,3 @@ def sample_rent(**kwargs) -> Rent:
     defaults.update(kwargs)
 
     return Rent.objects.create(**defaults)
-
