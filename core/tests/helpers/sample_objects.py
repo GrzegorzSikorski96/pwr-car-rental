@@ -1,9 +1,11 @@
+from typing import Optional, List
+
 from django.contrib.auth import get_user_model
 
 from core.models import Address, User
 
 
-def sample_user(**kwargs) -> User:
+def sample_user(groups: Optional[List[int]] = None, **kwargs) -> User:
     defaults = {
         'email': 'username@example.com',
         'password': 'password',
@@ -16,6 +18,9 @@ def sample_user(**kwargs) -> User:
     defaults.update(kwargs)
 
     user = get_user_model().objects.create_user(**defaults)
+
+    if groups:
+        user.groups.set(groups)
 
     return user
 
