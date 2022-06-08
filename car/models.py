@@ -130,6 +130,11 @@ class Servicing(models.Model):
     technical_overview_date = models.DateField(default=timezone.now)
 
 
+class ScheduleService(TimeStampMixin):
+    car = models.ForeignKey('car.Car', on_delete=models.DO_NOTHING, related_name='scheduled_services')
+    ended_at = models.DateTimeField(null=True)
+
+
 class CompanyCar(models.Model):
     name = models.CharField(max_length=80)
     capacity = models.IntegerField()
@@ -140,6 +145,11 @@ class Availability(TimeStampMixin):
     end = models.DateTimeField()
     address = models.ForeignKey('core.UserCarPickupAddress', on_delete=models.DO_NOTHING)
     car = models.ForeignKey('car.Car', on_delete=models.DO_NOTHING, related_name='availabilities')
+    service = models.ForeignKey('car.ScheduleService', null=True, on_delete=models.DO_NOTHING, related_name='availabilities')
 
     class Meta:
         ordering = ['created_at']
+
+    def save(self, *args, **kwargs) -> None:
+        self.service = self.car.scheduled_services.filter(ended_at=None).first()
+        super(Availability, self).save(*args, **kwargs)
