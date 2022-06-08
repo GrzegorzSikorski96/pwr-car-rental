@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'rent.apps.RentConfig',
     'car.apps.CarConfig',
     'log.apps.LogConfig',
+    'schedule.apps.ScheduleConfig',
 ]
 
 MIDDLEWARE = [
