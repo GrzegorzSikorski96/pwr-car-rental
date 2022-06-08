@@ -90,6 +90,9 @@ class Car(TimeStampMixin):
         for log in self.logs.all():
             log.delete()
 
+        for message in self.messages.all():
+            message.delete()
+
         if hasattr(self, 'rent'):
             self.rent.delete()
 

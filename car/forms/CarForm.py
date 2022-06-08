@@ -27,7 +27,7 @@ class CarForm(EngineForm, PricingForm, ServicingForm):
     )
     registration_number = forms.CharField(
         label='Registration number',
-        widget=forms.TextInput(attrs={'placeholder': 'Mileage...', 'class': 'form-control'})
+        widget=forms.TextInput(attrs={'placeholder': 'Registration number...', 'class': 'form-control'})
     )
     production_date = forms.DateField(
         label='Production date',
@@ -70,6 +70,7 @@ class CarForm(EngineForm, PricingForm, ServicingForm):
             'model',
             'mileage',
             'production_date',
+            'registration_number',
             'air_conditioning',
             'transmission_type',
             'body_type',
@@ -77,3 +78,16 @@ class CarForm(EngineForm, PricingForm, ServicingForm):
             'seats',
             'trunk_volume',
         ]
+
+    def clean_air_conditioning(self):
+        air_conditioning = self.cleaned_data['air_conditioning']
+
+        if air_conditioning == BooleanChoices.TRUE:
+            return True
+        if air_conditioning == BooleanChoices.FALSE:
+            return False
+
+    def clean_registration_number(self):
+        registration_number = self.cleaned_data['registration_number']
+
+        return registration_number.strip().upper()
