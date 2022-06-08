@@ -1,6 +1,7 @@
-from django.contrib.auth.models import Group, Permission
-from django.conf import settings
 import json
+
+from django.conf import settings
+from django.contrib.auth.models import Group, Permission
 
 
 class GroupInitializer:

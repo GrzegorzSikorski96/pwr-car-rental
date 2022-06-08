@@ -24,6 +24,8 @@ class RestrictedCarManager(models.Manager):
             else:
                 return self.filter(rent__rented_by=user)
 
+        return self.none()
+
 
 class Car(TimeStampMixin):
     objects = RestrictedCarManager()

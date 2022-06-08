@@ -1,12 +1,11 @@
 from typing import Dict, Any
 
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.db.models import QuerySet
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, FormView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
 from car.choices.car_status_choices import CarStatus
 from car.forms.CarAvailabilityForm import CarAvailabilityForm

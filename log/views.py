@@ -27,7 +27,7 @@ def daily_mileage_report(request, car_id: int):
             }, status=200)
 
     return JsonResponse({
-                "code": 403,
-                "status": "Forbidden",
-                "data": []
-            }, status=403)
+        "code": 403,
+        "status": "Forbidden",
+        "data": []
+    }, status=403)

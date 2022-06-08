@@ -1,11 +1,7 @@
-import datetime
-
 from django import forms
 from django.forms import ModelForm
 
-from car.choices.fuel_type_choices import FuelType
-from car.models import Engine, Car, Availability
-from core.models import Address, UserCarPickupAddress
+from core.models import UserCarPickupAddress
 
 
 class CarAvailabilityAddressForm(ModelForm):

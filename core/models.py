@@ -3,7 +3,6 @@ from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 from django.db.models import QuerySet
 
-from car.models import Car
 from core.checkers.user_checkers import has_group
 
 
@@ -58,6 +57,8 @@ class RestrictedAddressManager(models.Manager):
                 return self.all()
             else:
                 return self.filter(rent__rented_by=user)
+
+        return self.none()
 
 
 class Address(models.Model):

@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('car', '0003_servicing_remove_car_insured_date_and_more'),
     ]

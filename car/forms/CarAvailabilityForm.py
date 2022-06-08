@@ -2,14 +2,9 @@ import datetime
 
 from django import forms
 from django.forms import ModelForm
-from django.utils.dateparse import parse_datetime
-from django.utils.datetime_safe import strftime
-from django.utils.encoding import force_str
 
-from car.choices.fuel_type_choices import FuelType
-from car.forms.CarAvailabilityAddressForm import CarAvailabilityAddressForm
-from car.models import Engine, Car, Availability
-from core.models import Address, UserCarPickupAddress
+from car.models import Car, Availability
+from core.models import UserCarPickupAddress
 
 
 class CarAvailabilityForm(ModelForm):
@@ -17,13 +12,16 @@ class CarAvailabilityForm(ModelForm):
         label='Start',
         initial=datetime.date.today(),
         localize=True,
-        widget=forms.DateTimeInput(attrs={'placeholder': 'Start...', 'class': 'form-control', 'type': 'datetime-local'}, format="%Y-%m-%dT%H:%M")
+        widget=forms.DateTimeInput(
+            attrs={'placeholder': 'Start...', 'class': 'form-control', 'type': 'datetime-local'},
+            format="%Y-%m-%dT%H:%M")
     )
     end = forms.DateTimeField(
         label='End',
         initial=datetime.date.today(),
         localize=True,
-        widget=forms.DateTimeInput(attrs={'placeholder': 'End...', 'class': 'form-control', 'type': 'datetime-local'}, format="%Y-%m-%dT%H:%M")
+        widget=forms.DateTimeInput(attrs={'placeholder': 'End...', 'class': 'form-control', 'type': 'datetime-local'},
+                                   format="%Y-%m-%dT%H:%M")
     )
     car = forms.ModelChoiceField(
         label='Car',
@@ -33,7 +31,7 @@ class CarAvailabilityForm(ModelForm):
     )
     address = forms.ModelChoiceField(
         label='Address',
-        queryset=UserCarPickupAddress.objects.filter(id=None),
+        queryset=UserCarPickupAddress.objects.none(),
         widget=forms.Select(attrs={'placeholder': 'Address...', 'class': 'form-control'})
     )
 
