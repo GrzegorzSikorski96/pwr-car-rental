@@ -15,4 +15,10 @@ urlpatterns: List[URLPattern] = [
     path('client/car/<int:pk>', views.ClientCarDetailView.as_view(), name='client-car-detail-view'),
 
     path('car/<int:car_id>/service/request', views.service_request, name='car-service-request'),
+
+    path('car/<int:car_id>/availabilities', views.CarAvailabilitiesListView.as_view(), name='car-availabilities-list'),
+    path('car/<int:car_id>/availabilities/create', views.CarAvailabilitiesCreateView.as_view(),
+         name='car-availabilities-create'),
+    path('car/<int:car_id>/availabilities/<int:pk>/update', views.CarAvailabilitiesUpdateView.as_view(),
+         name='car-availabilities-update'),
 ]

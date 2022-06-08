@@ -11,17 +11,18 @@ Inż. Grzegorz Sikorski
 
 **Temat:** Planowanie czynności serwisowych w firmie wypożyczającej długoterminowo samochody
 
-
 ### Uruchomienie aplikacji
+
 * Wymagania
-  * Baza danych MySql 8.0
-  * Python 3.9
-  * Make (Opcjonalnie)
-  * Docker (Opcjonalnie)
+    * Baza danych MySql 8.0
+    * Python 3.9
+    * Make (Opcjonalnie)
+    * Docker (Opcjonalnie)
 
 ### Uruchamianie aplikacji - docker
 
-* Skopiuj zawartość pliku `.env.dist` do pliku `.env` oraz zmień wartości zmiennych zgodnie z potrzebą. Aplikacja powinna działać bez żadnych zmian.
+* Skopiuj zawartość pliku `.env.dist` do pliku `.env` oraz zmień wartości zmiennych zgodnie z potrzebą. Aplikacja
+  powinna działać bez żadnych zmian.
 * Polecenie `make run` uruchomienie aplikacji.
 * Polecenie `make test` uruchenie testów.
 * Polecenie `make bash` przejście do konsoli dockerowej.
@@ -31,7 +32,7 @@ Inż. Grzegorz Sikorski
 
 * Utworzyć wirtualne środowisko python (venv) w projekcie używajac polecenia `python3 -m venv venv`
 * Aktywować wirtualne środowisko
-  * Windows: `venv\Scripts\activate`
-  * Linux: `source venv/bin/activate`
+    * Windows: `venv\Scripts\activate`
+    * Linux: `source venv/bin/activate`
 * Skopiuj zawartość pliku `.env.dist` do pliku `.env` oraz zmień wartości zmiennych zgodnie z potrzebą.
 * Uruchomienie servera: `python3 manage.py runserver`

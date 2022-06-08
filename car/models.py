@@ -23,7 +23,8 @@ class RestrictedCarManager(models.Manager):
                 return self.all()
             else:
                 return self.filter(rent__rented_by=user)
-        return self
+
+        return self.none()
 
 
 class Car(TimeStampMixin):
@@ -129,3 +130,13 @@ class Servicing(models.Model):
 class CompanyCar(models.Model):
     name = models.CharField(max_length=80)
     capacity = models.IntegerField()
+
+
+class Availability(TimeStampMixin):
+    start = models.DateTimeField()
+    end = models.DateTimeField()
+    address = models.ForeignKey('core.UserCarPickupAddress', on_delete=models.DO_NOTHING)
+    car = models.ForeignKey('car.Car', on_delete=models.DO_NOTHING, related_name='availabilities')
+
+    class Meta:
+        ordering = ['created_at']
