@@ -144,18 +144,20 @@
       <div class="card">
         <div class="card-header fw-bold">
           <div class="row">
-            <div class="col-7">
+            <div class="col-6">
               Servicing
             </div>
             {% if car.status != 'need service' %}
-              <div class="col-5 text-end">
+              <div class="col-6 text-end">
                 <a href="{% url 'car-service-request' car.pk %}">
                   Request service
                 </a>
               </div>
             {% else %}
-              <div class="col-5 text-end text-danger">
-                {{ car.get_status_display }}
+              <div class="col-6 text-end text-danger">
+                <a href="{% url 'car-availabilities-list' car.id %}" class="text-danger text-uppercase">
+                  Add Pickup availabilities
+                </a>
               </div>
             {% endif %}
           </div>

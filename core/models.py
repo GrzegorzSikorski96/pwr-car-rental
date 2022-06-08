@@ -1,6 +1,10 @@
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
+from django.db.models import QuerySet
+
+from car.models import Car
+from core.checkers.user_checkers import has_group
 
 
 class UserManager(BaseUserManager):
@@ -47,9 +51,30 @@ class User(AbstractBaseUser, PermissionsMixin):
         return "#%d - %s %s" % (self.pk, self.first_name, self.last_name)
 
 
+class RestrictedAddressManager(models.Manager):
+    def get_query(self, user) -> 'QuerySet[Address]':
+        if user:
+            if has_group(user, 'employee'):
+                return self.all()
+            else:
+                return self.filter(rent__rented_by=user)
+
+
 class Address(models.Model):
     country = models.CharField(max_length=150)
     city = models.CharField(max_length=150)
     postal_code = models.CharField(max_length=15)
     street = models.CharField(max_length=150)
     number = models.CharField(max_length=150)
+
+
+class UserCarPickupAddress(models.Model):
+    country = models.CharField(max_length=150)
+    city = models.CharField(max_length=150)
+    postal_code = models.CharField(max_length=15)
+    street = models.CharField(max_length=150)
+    number = models.CharField(max_length=150, null=True)
+    user = models.ForeignKey('core.User', on_delete=models.DO_NOTHING, related_name='car_pickup_addresses')
+
+    def __str__(self):
+        return '%s, %s %s, %s %s' % (self.country, self.city, self.postal_code, self.street, self.number)

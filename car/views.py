@@ -1,16 +1,18 @@
 from typing import Dict, Any
 
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.db.models import QuerySet
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, FormView
 
 from car.choices.car_status_choices import CarStatus
+from car.forms.CarAvailabilityForm import CarAvailabilityForm
 from car.forms.CarForm import CarForm
 from car.forms.ServiceRequestForm import ServiceRequestForm
-from car.models import Car, Engine, Servicing
+from car.models import Car, Engine, Servicing, Availability
 from core.checkers.user_checkers import has_group
 from log.messages.messages import LogMessage
 from log.models import MessageLog
@@ -136,6 +138,63 @@ class DashboardCarDeleteView(PermissionRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('dashboard-cars-list-view')
+
+
+class CarAvailabilitiesListView(LoginRequiredMixin, ListView):
+    model = Availability
+    template_name = 'car/availability/availabilities.html'
+
+    def get_queryset(self):
+        return Availability.objects.filter(car_id=self.kwargs['car_id'])
+
+    def get_context_data(self, **kwargs):
+        context = super(CarAvailabilitiesListView, self).get_context_data(**kwargs)
+        context['car'] = Car.objects.get(id=self.kwargs['car_id'])
+
+        return context
+
+
+class CarAvailabilitiesCreateView(LoginRequiredMixin, CreateView):
+    form_class = CarAvailabilityForm
+    template_name = 'car/availability/create.html'
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(CarAvailabilitiesCreateView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        kwargs['car'] = Car.objects.get(id=self.kwargs['car_id'])
+
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super(CarAvailabilitiesCreateView, self).get_context_data(**kwargs)
+        context['car'] = Car.objects.get(id=self.kwargs['car_id'])
+
+        return context
+
+    def get_success_url(self):
+        return reverse('car-availabilities-list', kwargs={'car_id': self.object.car.id})  # type: ignore
+
+
+class CarAvailabilitiesUpdateView(LoginRequiredMixin, UpdateView):
+    model = Availability
+    form_class = CarAvailabilityForm
+    template_name = 'car/availability/update.html'
+
+    def get_success_url(self):
+        return reverse('car-availabilities-list', kwargs={'car_id': self.object.car.id})  # type: ignore
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(CarAvailabilitiesUpdateView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        kwargs['car'] = Car.objects.get(id=self.kwargs['car_id'])
+
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super(CarAvailabilitiesUpdateView, self).get_context_data(**kwargs)
+        context['car'] = Car.objects.get(id=self.kwargs['car_id'])
+
+        return context
 
 
 def service_request(request, car_id: int):
