@@ -2,7 +2,8 @@ from __future__ import division
 from __future__ import print_function
 
 import json
-import urllib.request as url
+import requests
+
 from typing import List, TYPE_CHECKING
 
 from django.conf import settings
@@ -14,6 +15,13 @@ if TYPE_CHECKING:
 class DistanceMatrix:
     def __init__(self, addresses: List['Address']):
         self.addresses: List[str] = [address.get_slugged_address() for address in addresses]
+        self.distance_matrix: List[List[int]] = self.get_distance_matrix()
+        self.address_to_index_map: List[str] = []
+        self.__map_addresses_to_index()
+
+    def __map_addresses_to_index(self):
+        for address in self.addresses:
+            self.address_to_index_map.append(address)
 
     def __create_distance_matrix(self):
         api_key = settings.GOOGLE_API_KEY
@@ -35,15 +43,15 @@ class DistanceMatrix:
             distance_matrix += self.__build_distance_matrix(response)
         return distance_matrix
 
-    def __send_request(self, origin_addresses, dest_addresses, API_key):
-        request = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial'
+    def __send_request(self, origin_addresses, dest_addresses, api_key):
+        url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial'
         origin_address_str = self.__build_address_str(origin_addresses)
         dest_address_str = self.__build_address_str(dest_addresses)
-        request = request + '&origins=' + origin_address_str + '&destinations=' + dest_address_str + '&key=' + API_key
-        json_result = url.urlopen(request).read()
-        response = json.loads(json_result)
+        url += '&origins=' + origin_address_str + '&destinations=' + dest_address_str + '&key=' + api_key
 
-        return response
+        response = requests.get(url)
+
+        return json.loads(response.content)
 
     def __build_address_str(self, addresses):
         address_str = ''
