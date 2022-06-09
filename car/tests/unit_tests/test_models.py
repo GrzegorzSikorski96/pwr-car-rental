@@ -31,7 +31,7 @@ class CarModelTestCase(TestCase):
         self.assertEqual(self.user, service_log.created_by)
 
     def test_should_remove_all_service_logs_and_messages_when_car_is_deleted(self):
-        car = sample_car()
+        car = sample_car(mileage=154000)
 
         sample_car_log(car=car, mileage=156000)
         sample_car_log(car=car, mileage=157000)

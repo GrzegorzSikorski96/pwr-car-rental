@@ -10,16 +10,16 @@ build:
 down:
 	docker-compose down -v
 
-run: build start-mysql wait-for-database-connection up create-database load-groups load-fixtures
+run: build start-mysql wait-for-database-connection up create-database load-groups load-fixtures load-users-fixtures
 
 load-users-fixtures:
-	-docker-compose run --rm python python3.9 manage.py loaddata users.json
+	docker-compose run --rm python python3.9 manage.py loaddata users.json
 
 load-groups:
 	docker-compose run --rm python python3.9 manage.py create_user_groups_with_permissions
 
 load-fixtures:
-	-docker-compose run --rm python python3.9 manage.py loaddata */fixtures/*
+	docker-compose run --rm python python3.9 manage.py loaddata */fixtures/*
 
 start-mysql:
 	docker-compose up -d mysql
@@ -42,7 +42,4 @@ make-migrations:
 owner:
 	sudo chown grzegorz . -R
 
-reload:
-	clear
-	make down
-	make run
+reload: down run
