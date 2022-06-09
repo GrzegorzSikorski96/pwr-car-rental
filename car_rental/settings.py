@@ -133,3 +133,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'core.User'
 
 CONFIG_FOLDER = os.environ.get('CONFIG_FOLDER', 'config/')
+
+GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY', '')

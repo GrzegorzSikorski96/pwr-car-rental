@@ -13,7 +13,6 @@ def sample_user(groups: Optional[List[int]] = None, **kwargs) -> User:
         'last_name': 'last_manager',
         'phone_number': 'last_manager',
         'is_superuser': True,
-        'address_id': sample_address().id,
     }
     defaults.update(kwargs)
 

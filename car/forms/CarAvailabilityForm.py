@@ -4,7 +4,7 @@ from django import forms
 from django.forms import ModelForm
 
 from car.models import Car, Availability
-from core.models import UserCarPickupAddress
+from core.models import Address
 
 
 class CarAvailabilityForm(ModelForm):
@@ -31,7 +31,7 @@ class CarAvailabilityForm(ModelForm):
     )
     address = forms.ModelChoiceField(
         label='Address',
-        queryset=UserCarPickupAddress.objects.none(),
+        queryset=Address.objects.none(),
         widget=forms.Select(attrs={'placeholder': 'Address...', 'class': 'form-control'})
     )
 
@@ -49,4 +49,5 @@ class CarAvailabilityForm(ModelForm):
 
         self.fields['car'].queryset = Car.objects.get_query(user=user)
         self.fields['car'].initial = Car.objects.get_query(user=user).get(id=car.id)
-        self.fields['address'].queryset = UserCarPickupAddress.objects.filter(user=user)
+
+        self.fields['address'].queryset = Address.objects.filter(user=car.rent.rented_by)
