@@ -4,19 +4,24 @@ from __future__ import print_function
 import json
 import requests
 
-from typing import List, TYPE_CHECKING
+from typing import List
 
 from django.conf import settings
+from django.db.models import QuerySet
 
-if TYPE_CHECKING:
-    from core.models import Address
+from core.models import Address
 
 
 class DistanceMatrix:
-    def __init__(self, addresses: List['Address']):
-        self.addresses: List[str] = [address.get_slugged_address() for address in addresses]
-        self.distance_matrix: List[List[int]] = self.get_distance_matrix()
-        self.address_to_index_map: List[str] = []
+    def __init__(self):
+        self.addresses: List[Address] = list(Address.objects.none())
+
+        self.distance_matrix: List[List[int]] = []
+        self.address_to_index_map: List[Address] = []
+
+    def set_addresses(self, addresses: QuerySet[Address]):
+        self.addresses = list(addresses)
+        self.distance_matrix = self.get_distance_matrix()
         self.__map_addresses_to_index()
 
     def __map_addresses_to_index(self):
@@ -57,9 +62,9 @@ class DistanceMatrix:
         address_str = ''
 
         for i in range(len(addresses) - 1):
-            address_str += addresses[i] + '|'
+            address_str += addresses[i].__str__() + '|'
 
-        address_str += addresses[-1]
+        address_str += addresses[-1].__str__()
 
         return address_str
 

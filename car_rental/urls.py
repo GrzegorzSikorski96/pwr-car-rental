@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('core.urls')),
     path('', include('rent.urls')),
     path('', include('log.urls')),
+    path('', include('schedule.urls')),
 ]

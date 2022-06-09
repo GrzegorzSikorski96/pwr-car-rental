@@ -118,7 +118,7 @@ class Servicing(models.Model):
 
 class ScheduleService(TimeStampMixin):
     car = models.ForeignKey('car.Car', on_delete=models.CASCADE, related_name='scheduled_services')
-    address = models.ForeignKey('core.Address', on_delete=models.CASCADE)
+    address = models.ForeignKey('core.Address', on_delete=models.CASCADE, related_name='scheduled_services')
     ended_at = models.DateTimeField(null=True)
 
     def save(self, *args, **kwargs) -> None:
@@ -138,7 +138,7 @@ class CompanyCar(models.Model):
 class Availability(TimeStampMixin):
     start = models.DateTimeField()
     end = models.DateTimeField()
-    address = models.ForeignKey('core.Address', on_delete=models.CASCADE)
+    address = models.ForeignKey('core.Address', on_delete=models.CASCADE, related_name='availabilities')
     car = models.ForeignKey('car.Car', on_delete=models.CASCADE, related_name='availabilities')
     service = models.ForeignKey('car.ScheduleService', on_delete=models.DO_NOTHING, related_name='availabilities')
 
