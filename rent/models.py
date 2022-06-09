@@ -16,7 +16,7 @@ class Rent(models.Model):
     )
     rented_car = models.OneToOneField(
         'car.Car',
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
         related_name='rent',
     )
 

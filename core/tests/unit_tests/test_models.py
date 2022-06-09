@@ -38,7 +38,3 @@ class UserModelTestCase(TestCase):
     def test_create_user_with_invalid_email_fails_spaces(self):
         with self.assertRaises(ValidationError):
             sample_user(email='   ')
-
-    def test_create_user_without_address(self):
-        with self.assertRaises(ValidationError):
-            sample_user(address_id=None)

@@ -12,7 +12,7 @@ class CarLog(models.Model):
 
     car = models.ForeignKey(
         'car.Car',
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
         related_name='logs'
     )
     mileage = models.IntegerField()
@@ -36,7 +36,7 @@ class ServiceLog(TimeStampMixin):
 
     car = models.ForeignKey(
         'car.Car',
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
         related_name='services'
     )
     action = models.CharField(max_length=150)
@@ -57,7 +57,7 @@ class MessageLog(TimeStampMixin):
 
     car = models.ForeignKey(
         'car.Car',
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
         related_name='messages'
     )
     action = models.CharField(max_length=150)

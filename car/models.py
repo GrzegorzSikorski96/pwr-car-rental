@@ -12,6 +12,7 @@ from car.choices.fuel_type_choices import FuelType
 from car.choices.transmission_type_choices import TransmissionType
 from car_rental import settings
 from core.checkers.user_checkers import has_group
+from core.models import Address
 from core.models_mixins.TimeStampMixin import TimeStampMixin
 from log.models import ServiceLog
 
@@ -83,21 +84,6 @@ class Car(TimeStampMixin):
                     created_by=self.created_by,
                 )
 
-    def delete(self, **kwargs):
-        for service in self.services.all():
-            service.delete()
-
-        for log in self.logs.all():
-            log.delete()
-
-        for message in self.messages.all():
-            message.delete()
-
-        if hasattr(self, 'rent'):
-            self.rent.delete()
-
-        super(Car, self).delete()
-
     def last_service(self) -> ServiceLog:
         return self.services.latest('created_at')
 
@@ -130,6 +116,20 @@ class Servicing(models.Model):
     technical_overview_date = models.DateField(default=timezone.now)
 
 
+class ScheduleService(TimeStampMixin):
+    car = models.ForeignKey('car.Car', on_delete=models.CASCADE, related_name='scheduled_services')
+    address = models.ForeignKey('core.Address', on_delete=models.CASCADE, related_name='scheduled_services')
+    ended_at = models.DateTimeField(null=True)
+
+    def save(self, *args, **kwargs) -> None:
+        address = Address.objects.filter(is_service=True).order_by('?').first()
+
+        if address:
+            self.address = address
+
+        super(ScheduleService, self).save(*args, **kwargs)
+
+
 class CompanyCar(models.Model):
     name = models.CharField(max_length=80)
     capacity = models.IntegerField()
@@ -138,8 +138,16 @@ class CompanyCar(models.Model):
 class Availability(TimeStampMixin):
     start = models.DateTimeField()
     end = models.DateTimeField()
-    address = models.ForeignKey('core.UserCarPickupAddress', on_delete=models.DO_NOTHING)
-    car = models.ForeignKey('car.Car', on_delete=models.DO_NOTHING, related_name='availabilities')
+    address = models.ForeignKey('core.Address', on_delete=models.CASCADE, related_name='availabilities')
+    car = models.ForeignKey('car.Car', on_delete=models.CASCADE, related_name='availabilities')
+    service = models.ForeignKey('car.ScheduleService', on_delete=models.DO_NOTHING, related_name='availabilities')
 
     class Meta:
         ordering = ['created_at']
+
+    def save(self, *args, **kwargs) -> None:
+        service = self.car.scheduled_services.filter(ended_at=None).first()
+
+        if service:
+            self.service = service
+        super(Availability, self).save(*args, **kwargs)
