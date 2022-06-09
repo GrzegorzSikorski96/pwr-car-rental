@@ -7,7 +7,7 @@ class Event(TimeStampMixin):
     title = models.CharField(max_length=150)
     start = models.DateTimeField()
     end = models.DateTimeField()
-    address = models.ForeignKey('car.Availability', on_delete=models.DO_NOTHING, related_name='events')
+    address = models.ForeignKey('core.Address', on_delete=models.DO_NOTHING, related_name='events')
     schedule = models.ForeignKey('schedule.Schedule', on_delete=models.DO_NOTHING, related_name='events')
 
 
