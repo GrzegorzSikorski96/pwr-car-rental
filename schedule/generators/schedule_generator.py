@@ -123,7 +123,7 @@ class ScheduleGenerator:
         return optional_orders
 
     def get_trace_random_operation(self, trace: List[int], services_count: int):
-        index = random.randint(1, len(trace) - 2)
+        index = random.randint(1, len(trace) - 2)  # nosec
 
         if trace[index] <= services_count:
             trace_service_index = index
@@ -135,10 +135,10 @@ class ScheduleGenerator:
         return trace_service_index, trace[trace_service_index], trace_pickup_index, trace[trace_pickup_index]
 
     def get_random_route_indexes_pair(self, routes: list['RouteDTO']):
-        first_route_index = random.randint(0, len(routes) - 1)
+        first_route_index = random.randint(0, len(routes) - 1)  # nosec
         second_route_index = first_route_index
 
         while second_route_index == first_route_index:
-            second_route_index = random.randint(0, len(routes) - 1)
+            second_route_index = random.randint(0, len(routes) - 1)  # nosec
 
         return first_route_index, second_route_index
