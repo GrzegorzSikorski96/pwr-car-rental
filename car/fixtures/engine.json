@@ -43,5 +43,14 @@
       "horsepower": 189,
       "fuel_type": "diesel"
     }
+  },
+  {
+    "model": "car.engine",
+    "pk": 5,
+    "fields": {
+      "volume": 3000,
+      "horsepower": 230,
+      "fuel_type": "diesel"
+    }
   }
 ]

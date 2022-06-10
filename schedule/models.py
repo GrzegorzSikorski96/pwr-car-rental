@@ -14,3 +14,8 @@ class Event(TimeStampMixin):
 class Schedule(TimeStampMixin):
     date = models.DateField()
     employee = models.ForeignKey('core.User', on_delete=models.DO_NOTHING, related_name='schedules')
+    is_archive = models.BooleanField(default=False)
+    time = models.IntegerField()
+
+    class Meta:
+        ordering = ['is_archive', 'employee_id']

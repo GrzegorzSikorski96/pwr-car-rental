@@ -13,5 +13,12 @@
       Rented cars
     </a>
   </li>
+  <li class="nav-item">
+    <a href="{% url 'client-addresses-list-view' %}"
+       class="nav-link {% if request.resolver_match.url_name == 'client-addresses-list-view' %} active {% endif %}">
+      <i class="fa-solid fa-address-card"></i>
+      Addresses
+    </a>
+  </li>
 
 </ul>

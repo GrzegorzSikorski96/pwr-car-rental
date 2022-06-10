@@ -1,0 +1,70 @@
+{% extends "layout/dashboard-base.html" %}
+
+
+{% block title %}
+  Addresses
+{% endblock %}
+
+{% block breadcumbs %}
+  <li class="breadcrumb-item">Addresses</li>
+{% endblock %}
+
+{% block content %}
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead>
+      <tr class="col-12">
+        <th class="col-md-2">
+          Country
+        </th>
+        <th class="col-md-2">
+          City
+        </th>
+        <th class="col-md-2">
+          Postal code
+        </th>
+        <th class=col-md-2>
+          Street
+        </th>
+        <th class=col-md-2>
+          Number
+        </th>
+        <th class="col-md-1 text-end">
+          <a href="{% url 'client-addresses-create-view' %}">
+            <i class="fas fa-plus"></i>
+          </a>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for address in address_list %}
+        <tr>
+          <td class="col-md-2">
+            {{ address.country }}
+          </td>
+          <td class="col-md-2">
+            {{ address.city }}
+          </td>
+          <td class="col-md-2">
+            {{ address.postal_code }}
+          </td>
+          <td class="col-md-2">
+            {{ address.street }}
+          </td>
+          <td class="col-md-2">
+            {{ address.number }}
+          </td>
+          <td class="col-md-1">
+            <a href="{% url 'client-addresses-update-view' address.id %}">
+              <i class="fas fa-pen text-info"></i>
+            </a>
+            <a href="{% url 'client-addresses-delete-view' address.id %}">
+              <i class="fas fa-trash text-danger"></i>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

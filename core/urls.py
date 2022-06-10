@@ -19,4 +19,11 @@ urlpatterns: List[URLPattern] = [
          name='dashboard-client-update-view'),
     path('dashboard/client/<int:pk>/delete', views.DashboardClientDeleteView.as_view(),
          name='dashboard-client-delete-view'),
+
+    path('client/addresses', views.ClientAddressListView.as_view(), name='client-addresses-list-view'),
+    path('client/addresses/create', views.ClientAddressCreateView.as_view(), name='client-addresses-create-view'),
+    path('client/addresses/<int:pk>/update', views.ClientAddressUpdateView.as_view(),
+         name='client-addresses-update-view'),
+    path('client/addresses/<int:pk>/delete', views.ClientAddressDeleteView.as_view(),
+         name='client-addresses-delete-view'),
 ]

@@ -74,3 +74,6 @@ class Address(TimeStampMixin):
 
     def get_slugged_address(self):
         return slugify(self.__str__())
+
+    def save(self, *args, **kwargs) -> None:
+        super(Address, self).save(*args, **kwargs)

@@ -1,0 +1,113 @@
+{% extends "layout/dashboard-base.html" %}
+
+
+{% block title %}
+  Schedules
+
+{% endblock %}
+
+{% block breadcumbs %}
+  <li class="breadcrumb-item">Schedules</li>
+{% endblock %}
+
+{% block content %}
+  <form action="{% url 'schedule-generate' %}" method="post">{% csrf_token %}
+    <button type="submit" class="btn btn-outline-info float-end">Generate</button>
+  </form>
+
+
+  {% for schedule in schedule_list %}
+    {% if not schedule.is_archive %}
+      <h4 class="fw-bold">{{ schedule.employee }}</h4>
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>Title</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>Address</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for event in schedule.events.all %}
+          <tr>
+            <td>
+              {{ event.title }}
+            </td>
+            <td>
+              {{ event.start }}
+            </td>
+            <td>
+              {{ event.end }}
+            </td>
+            <td>
+              {{ event.address }}
+            </td>
+          </tr>
+        {% endfor %}
+        <tfooter>
+          <tr>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+              {{ schedule.time }}
+            </td>
+          </tr>
+        </tfooter>
+        </tbody>
+      </table>
+      <hr>
+    {% endif %}
+  {% endfor %}
+  <br>
+  <br>
+  <br>
+  <h3>Archived</h3>
+  <hr>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead>
+      <tr class="col-12">
+        <th class="col-md-2">
+          Employee
+        </th>
+        <th class="col-md-2">
+          Date
+        </th>
+        <th class="col-md-2">
+          Is archive
+        </th>
+        <th>
+          Details
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for schedule in schedule_list %}
+        <tr>
+          <td class="col-md-6">
+            {{ schedule.employee }}
+          </td>
+          <td class="col-md-3">
+            {{ schedule.date }}
+          </td>
+          <td class="col-md-2">
+            {% if schedule.is_archive %}
+              <span class="text-warning">Archived</span>
+            {% else %}
+              <span class="text-success">Actual</span>
+            {% endif %}
+          </td>
+          <td>
+            <a href="{% url 'dashboard-schedule-detail-view' schedule.id %}">Show</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
