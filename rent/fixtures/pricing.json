@@ -34,5 +34,14 @@
       "weekly": 290,
       "monthly": 1200
     }
+  },
+  {
+    "model": "rent.pricing",
+    "pk": 5,
+    "fields": {
+      "daily": 45,
+      "weekly": 290,
+      "monthly": 1200
+    }
   }
 ]

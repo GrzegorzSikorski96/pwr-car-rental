@@ -39,7 +39,7 @@
       "city": "Wrocław",
       "postal_code": "51-630",
       "street": "Chełmońskiego",
-      "number": "22",
+      "number": "21",
       "is_service": true,
       "is_depot": false,
       "user_id": null,
@@ -52,13 +52,13 @@
     "pk": 4,
     "fields": {
       "country": "Poland",
-      "city": "Wrocław",
-      "postal_code": "53-505",
-      "street": "Plac Rozjezdny",
-      "number": "1",
-      "is_service": true,
+      "city": "Wałbrzych",
+      "postal_code": "58-304",
+      "street": "Piotra Wysockiego",
+      "number": "29",
+      "is_service": false,
       "is_depot": false,
-      "user_id": null,
+      "user_id": 2,
       "created_at": "2019-01-01 23:56:17.918745+00:00",
       "updated_at": "2022-01-01 23:56:17.918745+00:00"
     }
@@ -68,27 +68,10 @@
     "pk": 5,
     "fields": {
       "country": "Poland",
-      "city": "Warszawa",
-      "postal_code": "10-000",
-      "street": "Ulicowa",
-      "number": "13",
-      "is_service": false,
-      "is_depot": false,
-      "user_id": 2,
-      "is_primary": true,
-      "created_at": "2019-01-01 23:56:17.918745+00:00",
-      "updated_at": "2022-01-01 23:56:17.918745+00:00"
-    }
-  },
-  {
-    "model": "core.address",
-    "pk": 6,
-    "fields": {
-      "country": "Poland",
-      "city": "Gdynia",
-      "postal_code": "23-200",
-      "street": "Marynarska",
-      "number": "123s",
+      "city": "Minkowice Oławskie",
+      "postal_code": "55-220",
+      "street": "Kościuszki",
+      "number": "87",
       "is_service": false,
       "is_depot": false,
       "user_id": 3,
@@ -99,16 +82,50 @@
   },
   {
     "model": "core.address",
-    "pk": 7,
+    "pk": 6,
     "fields": {
       "country": "Poland",
-      "city": "Szczecin",
-      "postal_code": "44-320",
-      "street": "Morska",
-      "number": "23c",
+      "city": "Środa Śląska",
+      "postal_code": "55-300",
+      "street": "Malczycka",
+      "number": "12",
       "is_service": false,
       "is_depot": false,
       "user_id": 4,
+      "is_primary": true,
+      "created_at": "2019-01-01 23:56:17.918745+00:00",
+      "updated_at": "2022-01-01 23:56:17.918745+00:00"
+    }
+  },
+  {
+    "model": "core.address",
+    "pk": 7,
+    "fields": {
+      "country": "Poland",
+      "city": "Syców",
+      "postal_code": "56-500",
+      "street": "Parkowa",
+      "number": "1",
+      "is_service": false,
+      "is_depot": false,
+      "user_id": 5,
+      "is_primary": true,
+      "created_at": "2019-01-01 23:56:17.918745+00:00",
+      "updated_at": "2022-01-01 23:56:17.918745+00:00"
+    }
+  },
+  {
+    "model": "core.address",
+    "pk": 8,
+    "fields": {
+      "country": "Poland",
+      "city": "Leszno",
+      "postal_code": "64-100",
+      "street": "plac Tadeusza Kościuszki",
+      "number": "4",
+      "is_service": false,
+      "is_depot": false,
+      "user_id": 6,
       "is_primary": true,
       "created_at": "2019-01-01 23:56:17.918745+00:00",
       "updated_at": "2022-01-01 23:56:17.918745+00:00"

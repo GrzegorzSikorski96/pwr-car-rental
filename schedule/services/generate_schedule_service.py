@@ -30,21 +30,16 @@ class GenerateScheduleService:
 
         generated_routes = ScheduleGenerator().generate(algorithm_string_data, distances)
 
+        self.__archive_schedules()
+
         for index, route in enumerate(generated_routes):
             schedule: 'Schedule' = Schedule()
             schedule.date = datetime.date.today()
-            schedule.employee = User.objects.all()[index]
+            schedule.employee = User.objects.filter(groups__name='employee')[index]
+            schedule.time = route.work_time
             schedule.save()
 
             for key in range(0, len(route.addresses)):
-
-                # raise Exception(
-                #     route.S,
-                #     route.C,
-                #     route.trace,
-                #     route.addresses,
-                # )
-
                 if key == 0:
                     event = Event(
                         title='Start work',
@@ -52,7 +47,7 @@ class GenerateScheduleService:
                             datetime.datetime(day=1, month=1, year=datetime.date.today().year), route.S[key]),
                         end=add_minutes_to_date_time(
                             datetime.datetime(day=1, month=1, year=datetime.date.today().year), (route.S[key] + 1)),
-                        address=address_to_index_map[route.trace[key]],
+                        address=address_to_index_map[route.trace[key]]
                     )
                     schedule.events.add(event, bulk=False)
                     continue
@@ -79,3 +74,10 @@ class GenerateScheduleService:
                         address=address_to_index_map[route.addresses[key]],
                     )
                     schedule.events.add(event, bulk=False)
+
+    def __archive_schedules(self):
+        schedules = Schedule.objects.filter(is_archive=False)
+
+        for schedule in schedules:
+            schedule.is_archive = True
+            schedule.save()

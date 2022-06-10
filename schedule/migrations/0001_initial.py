@@ -20,6 +20,8 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('date', models.DateField()),
+                ('is_archive', models.BooleanField(default=False)),
+                ('time', models.IntegerField()),
                 ('employee', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='schedules', to='core.user')),
             ],
             options={

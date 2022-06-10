@@ -3,11 +3,13 @@ from typing import Dict, Any
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import Group
+from django.db.models import QuerySet
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from car.models import Car
+from core.forms.AddressForm import AddressForm
 from core.forms.UserAuthenticationForm import UserAuthenticationForm
 from core.forms.UserRegistrationForm import UserRegistrationForm
 from core.models import Address, User
@@ -163,3 +165,47 @@ class DashboardClientDeleteView(PermissionRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('dashboard-clients-list-view')
+
+
+class ClientAddressListView(PermissionRequiredMixin, ListView):
+    permission_required = 'core.client_views'
+    model = Address
+    template_name = 'core/client/address/addresses.html'
+
+    def get_queryset(self) -> 'QuerySet':
+        if self.request.user.is_authenticated:
+            return Address.objects.filter(user=self.request.user)
+        return Address.objects.none()
+
+
+class ClientAddressCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = 'core.client_views'
+    form_class = AddressForm
+    template_name = 'core/client/address/create.html'
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = self.request.user
+
+        return super(ClientAddressCreateView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('client-addresses-list-view')
+
+
+class ClientAddressUpdateView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'core.client_views'
+    form_class = AddressForm
+    template_name = 'core/client/address/update.html'
+    model = Address
+
+    def get_success_url(self):
+        return reverse('client-addresses-list-view')
+
+
+class ClientAddressDeleteView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'core.client_views'
+    model = Address
+
+    def get_success_url(self):
+        return reverse('client-addresses-list-view')

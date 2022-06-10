@@ -25,7 +25,6 @@ SECRET_KEY = os.environ.get('APP_SECRET', '')
 DEBUG = os.environ.get('DEBUG', True)
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
-
 # Application definition
 
 INSTALLED_APPS = [

@@ -5,7 +5,7 @@
     "fields": {
       "rented_at": "2019-01-01 23:56:17.918745+00:00",
       "rented_to": null,
-      "rented_by_id": 2,
+      "rented_by_id": 1,
       "rented_car_id": 1
     }
   },
@@ -15,8 +15,38 @@
     "fields": {
       "rented_at": "2021-03-04 15:36:17.918745+00:00",
       "rented_to": null,
+      "rented_by_id": 2,
+      "rented_car_id": 2
+    }
+  },
+  {
+    "model": "rent.rent",
+    "pk": 3,
+    "fields": {
+      "rented_at": "2021-03-04 15:36:17.918745+00:00",
+      "rented_to": null,
+      "rented_by_id": 3,
+      "rented_car_id": 3
+    }
+  },
+  {
+    "model": "rent.rent",
+    "pk": 4,
+    "fields": {
+      "rented_at": "2021-03-04 15:36:17.918745+00:00",
+      "rented_to": null,
       "rented_by_id": 4,
       "rented_car_id": 4
+    }
+  },
+  {
+    "model": "rent.rent",
+    "pk": 5,
+    "fields": {
+      "rented_at": "2021-03-04 15:36:17.918745+00:00",
+      "rented_to": null,
+      "rented_by_id": 5,
+      "rented_car_id": 5
     }
   }
 ]

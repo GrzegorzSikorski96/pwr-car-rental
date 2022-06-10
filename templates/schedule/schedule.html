@@ -1,0 +1,42 @@
+{% extends "layout/dashboard-base.html" %}
+
+
+{% block title %}
+  Create address
+{% endblock %}
+
+{% block breadcumbs %}
+  <li class="breadcrumb-item"><a href="{% url 'dashboard-schedules-list-view' %}">Schedules</a></li>
+  <li class="breadcrumb-item">{{ schedule }}</li>
+{% endblock %}
+
+{% block content %}
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for event in schedule.events.all %}
+        <tr>
+          <td>
+            {{ event.title }}
+          </td>
+          <td>
+            {{ event.start }}
+          </td>
+          <td>
+            {{ event.end }}
+          </td>
+          <td>
+            {{ event.address }}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

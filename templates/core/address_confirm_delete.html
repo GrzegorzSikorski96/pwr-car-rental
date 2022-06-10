@@ -1,0 +1,20 @@
+{% extends "layout/dashboard-base.html" %}
+{% load template_filetrs %}
+{% load static %}
+
+{% block title %}
+  <strong class="text-danger">DELETE ADDRESS</strong> {{ address }}
+{% endblock %}
+
+{% block breadcumbs %}
+  <li class="breadcrumb-item"><a href="{% url 'client-addresses-list-view' %}">Addresses</a></li>
+  <li class="breadcrumb-item">{{ address }}</li>
+  <li class="breadcrumb-item text-danger">Delete</li>
+{% endblock %}
+
+{% block content %}
+  <form method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input class="btn btn-danger" type="submit" value="Confirm">
+  </form>
+{% endblock %}
