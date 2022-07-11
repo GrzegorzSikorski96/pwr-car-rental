@@ -151,13 +151,13 @@
               Status
             </div>
             <div class="col-12 col-md-12 col-lg-5 col-xl-7">
-              {% if car.rent is not None %}
-                <span class="text-warning">
-                Rented
+              {% if car.rent %}
+                <span class="text-success">
+                  Rented
                 </span>
               {% else %}
-                <span class="text-success">
-                Ready to rent
+                <span class="text-warning">
+                  Ready to rent
                 </span>
               {% endif %}
             </div>
@@ -167,7 +167,7 @@
               Daily
             </div>
             <div class="col-12 col-md-12 col-lg-5 col-xl-7">
-              {{ car.daily_rent_price }} PLN
+              {{ car.pricing.daily }} PLN
             </div>
           </div>
           <div class="row">
@@ -175,7 +175,7 @@
               Weekly
             </div>
             <div class="col-12 col-md-12 col-lg-5 col-xl-7">
-              {{ car.weekly_rent_price }} PLN
+              {{ car.pricing.weekly }} PLN
             </div>
           </div>
           <div class="row">
@@ -183,7 +183,7 @@
               Monthly
             </div>
             <div class="col-12 col-md-12 col-lg-5 col-xl-7">
-              {{ car.monthly_rent_price }} PLN
+              {{ car.pricing.monthly }} PLN
             </div>
           </div>
         </div>
@@ -193,7 +193,24 @@
     <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-3">
       <div class="card">
         <div class="card-header fw-bold">
-          Servicing
+          <div class="row">
+            <div class="col-6">
+              Servicing
+            </div>
+            {% if car.status != 'need service' %}
+              <div class="col-6 text-end">
+                <a href="{% url 'car-service-request' car.pk %}">
+                  Request service
+                </a>
+              </div>
+            {% else %}
+              <div class="col-6 text-end text-danger">
+                <a href="{% url 'car-availabilities-list' car.id %}" class="text-danger text-uppercase">
+                  Add Pickup availabilities
+                </a>
+              </div>
+            {% endif %}
+          </div>
         </div>
         <div class="card-body">
           <div class="row">
@@ -201,7 +218,7 @@
               Service interval
             </div>
             <div class="col-12 col-md-12 col-lg-5 col-xl-7">
-              {{ car.service_mileage_interval }} km
+              {{ car.servicing.service_mileage_interval }} km
             </div>
           </div>
           <div class="row">
@@ -217,7 +234,7 @@
               Overview date
             </div>
             <div class="col-12 col-md-12 col-lg-5 col-xl-7">
-              {{ car.technical_overview_date }}
+              {{ car.servicing.technical_overview_date }}
             </div>
           </div>
           <div class="row">
@@ -225,14 +242,49 @@
               Insurance date
             </div>
             <div class="col-12 col-md-12 col-lg-5 col-xl-7">
-              {{ car.insured_date }}
+              {{ car.servicing.insured_date }}
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
+  {% if car.messages.count > 0 %}
+    <br>
+    <h3>Messages</h3>
+    <hr>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover mb-6">
+        <thead>
+        <tr>
+          <th>Action</th>
+          <th>Message</th>
+          <th>Reported by</th>
+          <th>Reported at</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for message in car.messages.all %}
+          <tr>
+            <td>
+              {{ message.action }}
+            </td>
+            <td>
+              {{ message.message }}
+            </td>
+            <td>
+              {{ message.created_by }}
+            </td>
+            <td>
+              {{ message.created_at }}
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <br>
+  {% endif %}
   <br>
   <h3>Services</h3>
   <hr>

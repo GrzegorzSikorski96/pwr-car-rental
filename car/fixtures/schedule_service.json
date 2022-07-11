@@ -1,0 +1,57 @@
+[
+  {
+    "model": "car.scheduleservice",
+    "pk": 1,
+    "fields": {
+      "car_id": 1,
+      "address_id": 2,
+      "ended_at": null,
+      "created_at": "2019-01-01 23:56:17.918745+00:00",
+      "updated_at": "2022-01-01 23:56:17.918745+00:00"
+    }
+  },
+  {
+    "model": "car.scheduleservice",
+    "pk": 2,
+    "fields": {
+      "car_id": 2,
+      "address_id": 3,
+      "ended_at": null,
+      "created_at": "2019-01-01 23:56:17.918745+00:00",
+      "updated_at": "2022-01-01 23:56:17.918745+00:00"
+    }
+  },
+  {
+    "model": "car.scheduleservice",
+    "pk": 3,
+    "fields": {
+      "car_id": 3,
+      "address_id": 2,
+      "ended_at": null,
+      "created_at": "2019-01-01 23:56:17.918745+00:00",
+      "updated_at": "2022-01-01 23:56:17.918745+00:00"
+    }
+  },
+  {
+    "model": "car.scheduleservice",
+    "pk": 4,
+    "fields": {
+      "car_id": 4,
+      "address_id": 2,
+      "ended_at": null,
+      "created_at": "2019-01-01 23:56:17.918745+00:00",
+      "updated_at": "2022-01-01 23:56:17.918745+00:00"
+    }
+  },
+  {
+    "model": "car.scheduleservice",
+    "pk": 5,
+    "fields": {
+      "car_id": 5,
+      "address_id": 3,
+      "ended_at": null,
+      "created_at": "2019-01-01 23:56:17.918745+00:00",
+      "updated_at": "2022-01-01 23:56:17.918745+00:00"
+    }
+  }
+]

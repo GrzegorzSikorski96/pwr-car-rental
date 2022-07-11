@@ -25,28 +25,28 @@
           Rent details
         </div>
         <div class="card-body">
-          Rented by
+          {{ form.rented_by.label }}
           <div class="input-group mb-3">
             {{ form.rented_by }}
             <span class="input-group-text" id="basic-addon2">
                 <span class="fas fa-user"></span>
             </span>
           </div>
-          Rented car
+          {{ form.rented_car.label }}
           <div class="input-group mb-3">
             {{ form.rented_car }}
             <span class="input-group-text" id="basic-addon2">
                 <span class="fas fa-car"></span>
             </span>
           </div>
-          Rented at
+          {{ form.rented_at.label }}
           <div class="input-group mb-3">
             {{ form.rented_at }}
             <span class="input-group-text" id="basic-addon2">
                 <span class="fas fa-calendar"></span>
             </span>
           </div>
-          Rented to
+          {{ form.rented_to.label }}
           <div class="input-group mb-3">
             {{ form.rented_to }}
             <span class="input-group-text" id="basic-addon2">

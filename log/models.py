@@ -12,7 +12,7 @@ class CarLog(models.Model):
 
     car = models.ForeignKey(
         'car.Car',
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
         related_name='logs'
     )
     mileage = models.IntegerField()
@@ -36,7 +36,7 @@ class ServiceLog(TimeStampMixin):
 
     car = models.ForeignKey(
         'car.Car',
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
         related_name='services'
     )
     action = models.CharField(max_length=150)
@@ -48,4 +48,22 @@ class ServiceLog(TimeStampMixin):
         settings.AUTH_USER_MODEL,
         on_delete=models.DO_NOTHING,
         related_name='service_log'
+    )
+
+
+class MessageLog(TimeStampMixin):
+    class Meta:
+        ordering = ['-created_at']
+
+    car = models.ForeignKey(
+        'car.Car',
+        on_delete=models.CASCADE,
+        related_name='messages'
+    )
+    action = models.CharField(max_length=150)
+    message = models.CharField(max_length=255)
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.DO_NOTHING,
+        related_name='messages'
     )

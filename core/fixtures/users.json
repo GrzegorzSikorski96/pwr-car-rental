@@ -15,8 +15,7 @@
       "groups": [
         1
       ],
-      "user_permissions": [],
-      "address_id": 1
+      "user_permissions": []
     }
   },
   {
@@ -35,8 +34,7 @@
       "groups": [
         2
       ],
-      "user_permissions": [],
-      "address_id": 2
+      "user_permissions": []
     }
   },
   {
@@ -55,8 +53,7 @@
       "groups": [
         2
       ],
-      "user_permissions": [],
-      "address_id": 3
+      "user_permissions": []
     }
   },
   {
@@ -66,17 +63,320 @@
       "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
       "last_login": "2021-12-27T21:12:58.960Z",
       "is_superuser": false,
-      "first_name": "user3",
-      "last_name": "user3",
-      "email": "user3@example.com",
+      "first_name": "user4",
+      "last_name": "user4",
+      "email": "user4@example.com",
       "phone_number": "321321321",
       "is_staff": false,
       "is_active": true,
       "groups": [
         2
       ],
-      "user_permissions": [],
-      "address_id": 4
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
+      "last_login": "2021-12-27T21:12:58.960Z",
+      "is_superuser": false,
+      "first_name": "user5",
+      "last_name": "user5",
+      "email": "user5@example.com",
+      "phone_number": "321321321",
+      "is_staff": false,
+      "is_active": true,
+      "groups": [
+        2
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
+      "last_login": "2021-12-27T21:12:58.960Z",
+      "is_superuser": false,
+      "first_name": "user6",
+      "last_name": "user6",
+      "email": "user6@example.com",
+      "phone_number": "321321321",
+      "is_staff": false,
+      "is_active": true,
+      "groups": [
+        2
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
+      "last_login": "2021-12-27T21:12:58.960Z",
+      "is_superuser": false,
+      "first_name": "user7",
+      "last_name": "user7",
+      "email": "user7@example.com",
+      "phone_number": "321321321",
+      "is_staff": false,
+      "is_active": true,
+      "groups": [
+        2
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
+      "last_login": "2021-12-27T21:12:58.960Z",
+      "is_superuser": false,
+      "first_name": "employee1",
+      "last_name": "employee1",
+      "email": "employee1@example.com",
+      "phone_number": "321321321",
+      "is_staff": false,
+      "is_active": true,
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
+      "last_login": "2021-12-27T21:12:58.960Z",
+      "is_superuser": false,
+      "first_name": "employee1",
+      "last_name": "employee1",
+      "email": "employee1@example.com",
+      "phone_number": "321321321",
+      "is_staff": false,
+      "is_active": true,
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
+      "last_login": "2021-12-27T21:12:58.960Z",
+      "is_superuser": false,
+      "first_name": "employee1",
+      "last_name": "employee1",
+      "email": "employee1@example.com",
+      "phone_number": "321321321",
+      "is_staff": false,
+      "is_active": true,
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
+      "last_login": "2021-12-27T21:12:58.960Z",
+      "is_superuser": false,
+      "first_name": "employee1",
+      "last_name": "employee1",
+      "email": "employee1@example.com",
+      "phone_number": "321321321",
+      "is_staff": false,
+      "is_active": true,
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
+      "last_login": "2021-12-27T21:12:58.960Z",
+      "is_superuser": false,
+      "first_name": "employee1",
+      "last_name": "employee1",
+      "email": "employee1@example.com",
+      "phone_number": "321321321",
+      "is_staff": false,
+      "is_active": true,
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
+      "last_login": "2021-12-27T21:12:58.960Z",
+      "is_superuser": false,
+      "first_name": "employee1",
+      "last_name": "employee1",
+      "email": "employee1@example.com",
+      "phone_number": "321321321",
+      "is_staff": false,
+      "is_active": true,
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
+      "last_login": "2021-12-27T21:12:58.960Z",
+      "is_superuser": false,
+      "first_name": "employee2",
+      "last_name": "employee2",
+      "email": "employee2@example.com",
+      "phone_number": "321321321",
+      "is_staff": false,
+      "is_active": true,
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
+      "last_login": "2021-12-27T21:12:58.960Z",
+      "is_superuser": false,
+      "first_name": "employee3",
+      "last_name": "employee3",
+      "email": "employee3@example.com",
+      "phone_number": "321321321",
+      "is_staff": false,
+      "is_active": true,
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
+      "last_login": "2021-12-27T21:12:58.960Z",
+      "is_superuser": false,
+      "first_name": "employee4",
+      "last_name": "employee4",
+      "email": "employee4@example.com",
+      "phone_number": "321321321",
+      "is_staff": false,
+      "is_active": true,
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
+      "last_login": "2021-12-27T21:12:58.960Z",
+      "is_superuser": false,
+      "first_name": "employee5",
+      "last_name": "employee5",
+      "email": "employee5@example.com",
+      "phone_number": "321321321",
+      "is_staff": false,
+      "is_active": true,
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
+      "last_login": "2021-12-27T21:12:58.960Z",
+      "is_superuser": false,
+      "first_name": "employee6",
+      "last_name": "employee6",
+      "email": "employee6@example.com",
+      "phone_number": "321321321",
+      "is_staff": false,
+      "is_active": true,
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
+      "last_login": "2021-12-27T21:12:58.960Z",
+      "is_superuser": false,
+      "first_name": "employee7",
+      "last_name": "employee7",
+      "email": "employee7@example.com",
+      "phone_number": "321321321",
+      "is_staff": false,
+      "is_active": true,
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$Nc5XFoodYdX2VfWaEegEWM$sVHX3zR4VCQmne7CRWr51Wqx8j4tiOx9of0w+4kk1Ws=",
+      "last_login": "2021-12-27T21:12:58.960Z",
+      "is_superuser": false,
+      "first_name": "employee8",
+      "last_name": "employee8",
+      "email": "employee8@example.com",
+      "phone_number": "321321321",
+      "is_staff": false,
+      "is_active": true,
+      "groups": [
+        1
+      ],
+      "user_permissions": []
     }
   }
 ]

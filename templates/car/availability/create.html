@@ -1,0 +1,21 @@
+{% extends "layout/dashboard-base.html" %}
+
+
+{% block title %}
+  Create availability for {{ car }}
+{% endblock %}
+
+{% block breadcumbs %}
+  <li class="breadcrumb-item">Car</li>
+  <li class="breadcrumb-item">{{ car }}</li>
+  <li class="breadcrumb-item"><a href="{% url 'car-availabilities-list' car.id %}">Availabilities</a></li>
+  <li class="breadcrumb-item">Create</li>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}

@@ -25,7 +25,6 @@ SECRET_KEY = os.environ.get('APP_SECRET', '')
 DEBUG = os.environ.get('DEBUG', True)
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,6 +38,7 @@ INSTALLED_APPS = [
     'rent.apps.RentConfig',
     'car.apps.CarConfig',
     'log.apps.LogConfig',
+    'schedule.apps.ScheduleConfig',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +132,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'core.User'
 
 CONFIG_FOLDER = os.environ.get('CONFIG_FOLDER', 'config/')
+
+GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY', '')

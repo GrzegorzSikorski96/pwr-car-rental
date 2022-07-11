@@ -26,58 +26,53 @@
           Car Details
         </div>
         <div class="card-body">
-          Manufacturer
+          {{ form.manufacturer.label }}
           <div class="input-group mb-3">
             {{ form.manufacturer }}
             <span class="input-group-text" id="basic-addon2">
                 <span class="fas fa-car"></span>
             </span>
           </div>
-          Model
+          {{ form.model.label }}
           <div class="input-group mb-3">
             {{ form.model }}
             <span class="input-group-text" id="basic-addon2">
-                <span class="fas fas fa-car"></span>
+                <span class="fas fa-car"></span>
             </span>
           </div>
-          Mileage
+          {{ form.mileage.label }}
           <div class="input-group mb-3">
             {{ form.mileage }}
             <span class="input-group-text" id="basic-addon2">
-                <span class="fas fas fa-tachometer-alt"></span>
+                <span class="fas fa-tachometer-alt"></span>
             </span>
           </div>
-          Production date
+          {{ form.production_date.label }}
           <div class="input-group mb-3">
             {{ form.production_date }}
             <span class="input-group-text" id="basic-addon2">
-                <span class="fas fas fa-calendar"></span>
+                <span class="fas fa-calendar"></span>
             </span>
           </div>
-
-          Air conditioning
+          {{ form.air_conditioning.label }}
           <div class="input-group mb-3">
-            <select name="air_conditioning" class="form-control">
-              <option value="true">True</option>
-              <option value="false">False</option>
-            </select>
+            {{ form.air_conditioning }}
             <span class="input-group-text" id="basic-addon2">
-                <span class="fas fas fa-snowflake"></span>
+                <span class="fas fa-snowflake"></span>
             </span>
           </div>
-
-          Transmission type
+          {{ form.transmission_type.label }}
           <div class="input-group mb-3">
             {{ form.transmission_type }}
             <span class="input-group-text" id="basic-addon2">
-                <span class="fas fas fa-car"></span>
+                <span class="fas fa-car"></span>
             </span>
           </div>
-          Drivetrain type
+          {{ form.drivetrain_type.label }}
           <div class="input-group mb-3">
             {{ form.drivetrain_type }}
             <span class="input-group-text" id="basic-addon2">
-                <span class="fas fas fa-truck-monster"></span>
+                <span class="fas fa-truck-monster"></span>
             </span>
           </div>
         </div>
@@ -89,25 +84,25 @@
         </div>
 
         <div class="card-body">
-          Body type
+          {{ form.body_type.label }}
           <div class="input-group mb-3">
             {{ form.body_type }}
             <span class="input-group-text" id="basic-addon2">
-                <span class="fas fas fa-car"></span>
+                <span class="fas fa-car"></span>
             </span>
           </div>
-          Seats
+          {{ form.seats.label }}
           <div class="input-group mb-3">
             {{ form.seats }}
             <span class="input-group-text" id="basic-addon2">
-                <span class="fas fas fa-users"></span>
+                <span class="fas fa-users"></span>
             </span>
           </div>
-          Trunk volume (luggage)
+          {{ form.trunk_volume.label }}
           <div class="input-group mb-3">
             {{ form.trunk_volume }}
             <span class="input-group-text" id="basic-addon2">
-                <span class="fas fas fa-luggage-cart"></span>
+                <span class="fas fa-luggage-cart"></span>
             </span>
           </div>
         </div>
@@ -119,25 +114,25 @@
           Engine details
         </div>
         <div class="card-body">
-          Engine horsepower
+          {{ form.horsepower.label }}
           <div class="input-group mb-3">
             {{ form.horsepower }}
             <span class="input-group-text" id="basic-addon2">
-                <span class="fas fas fa-car"></span>
+                <span class="fas fa-car"></span>
             </span>
           </div>
-          Engine volume
+          {{ form.volume.label }}
           <div class="input-group mb-3">
             {{ form.volume }}
             <span class="input-group-text" id="basic-addon2">
-                <span class="fas fas fa-car"></span>
+                <span class="fas fa-car"></span>
             </span>
           </div>
-          Engine fuel type
+          {{ form.fuel_type.label }}
           <div class="input-group mb-3">
             {{ form.fuel_type }}
             <span class="input-group-text" id="basic-addon2">
-                <span class="fas fas fa-gas-pump"></span>
+                <span class="fas fa-gas-pump"></span>
             </span>
           </div>
         </div>
@@ -148,25 +143,25 @@
           Rent pricing
         </div>
         <div class="card-body">
-          Daily rent price
+          {{ form.daily.label }}
           <div class="input-group mb-3">
-            {{ form.daily_rent_price }}
+            {{ form.daily }}
             <span class="input-group-text" id="basic-addon2">
-                <span class="fas fas fa-dollar-sign"></span>
+                <span class="fas fa-dollar-sign"></span>
             </span>
           </div>
-          Weekly rent price
+          {{ form.weekly.label }}
           <div class="input-group mb-3">
-            {{ form.weekly_rent_price }}
+            {{ form.weekly }}
             <span class="input-group-text" id="basic-addon2">
-                <span class="fas fas fa-dollar-sign"></span>
+                <span class="fas fa-dollar-sign"></span>
             </span>
           </div>
-          Monthly rent price
+          {{ form.monthly.label }}
           <div class="input-group mb-3">
-            {{ form.monthly_rent_price }}
+            {{ form.monthly }}
             <span class="input-group-text" id="basic-addon2">
-                <span class="fas fas fa-dollar-sign"></span>
+                <span class="fas fa-dollar-sign"></span>
             </span>
           </div>
         </div>
@@ -177,25 +172,25 @@
           Servicing details
         </div>
         <div class="card-body">
-          Service mileage interval
+          {{ form.service_mileage_interval.label }}
           <div class="input-group mb-3">
             {{ form.service_mileage_interval }}
             <span class="input-group-text" id="basic-addon2">
-                <span class="fas fas fa-road"></span>
+                <span class="fas fa-road"></span>
             </span>
           </div>
-          Insured date
+          {{ form.technical_overview_date.label }}
           <div class="input-group mb-3">
             {{ form.insured_date }}
             <span class="input-group-text" id="basic-addon2">
-                <span class="fas fas fa-calendar"></span>
+                <span class="fas fa-calendar"></span>
             </span>
           </div>
-          Technical overview date
+          {{ form.technical_overview_date.label }}
           <div class="input-group mb-3">
             {{ form.technical_overview_date }}
             <span class="input-group-text" id="basic-addon2">
-                <span class="fas fas fa-calendar"></span>
+                <span class="fas fa-calendar"></span>
             </span>
           </div>
         </div>

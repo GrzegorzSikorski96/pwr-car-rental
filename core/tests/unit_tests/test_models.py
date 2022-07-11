@@ -1,7 +1,7 @@
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 
 from core.tests.helpers.sample_objects import sample_user
-from django.core.exceptions import ValidationError
 
 
 class UserModelTestCase(TestCase):
@@ -38,7 +38,3 @@ class UserModelTestCase(TestCase):
     def test_create_user_with_invalid_email_fails_spaces(self):
         with self.assertRaises(ValidationError):
             sample_user(email='   ')
-
-    def test_create_user_without_address(self):
-        with self.assertRaises(ValidationError):
-            sample_user(address_id=None)

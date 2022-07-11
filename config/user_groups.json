@@ -8,6 +8,7 @@
     "core.change_user",
     "core.delete_user",
     "core.view_user",
+    "core.employee_views",
     "rent.add_rent",
     "rent.change_rent",
     "rent.delete_rent",
@@ -29,12 +30,6 @@
     "log.delete_carlog"
   ],
   "client": [
-    "core.change_address",
-    "core.view_address",
-    "rent.add_rent",
-    "rent.view_rent",
-    "car.view_car",
-    "log.view_servicelog",
-    "log.add_carlog"
+    "core.client_views"
   ]
 }
